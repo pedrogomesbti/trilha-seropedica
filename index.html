@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trilha Seropédica — Banco de Questões · Analista de TI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#12303A;--paper:#F2F5F4;--card:#FFFFFF;--brand:#0C6B70;--brand-d:#094B4F;--amber:#D98A00;--violet:#5B4BA6;
+    --right:#1E8E5A;--right-bg:#E7F6EE;--wrong:#CF3D3D;--wrong-bg:#FBEAEA;--muted:#5B6B72;--line:#DBE5E3;--soft:#F6FAF9;
+    --shadow:0 1px 2px rgba(18,48,58,.06),0 8px 24px rgba(18,48,58,.05);}
+  [data-theme="dark"]{--ink:#E6EEF0;--paper:#0E1A1F;--card:#16262C;--brand:#3BA7AC;--brand-d:#6FC9CD;--amber:#F0A92B;--violet:#9B8BE0;
+    --right:#3FCB85;--right-bg:#0F2E22;--wrong:#F0686A;--wrong-bg:#341A1C;--muted:#90A4AC;--line:#27393F;--soft:#13232A;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);}
+  *{box-sizing:border-box} html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
+  .wrap{max-width:880px;margin:0 auto;padding:0 16px 64px}
+  header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .hd{max-width:880px;margin:0 auto;padding:11px 16px;display:flex;align-items:center;gap:14px;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;cursor:pointer;min-width:0}
+  .logo{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--brand-d));display:grid;place-items:center;color:#fff;font-family:"Space Grotesk";font-weight:700;font-size:15px;flex:none}
+  .brand h1{font-family:"Space Grotesk";font-size:15px;margin:0;font-weight:700;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand span{display:block;font-size:11px;color:var(--muted);font-weight:500}
+  .stats{display:flex;gap:14px;flex:none}
+  .stat{text-align:center;line-height:1.1}.stat b{font-family:"Space Grotesk";font-size:16px;display:block}
+  .stat small{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  .stat.fire b{color:var(--amber)}
+  .hero{padding:28px 0 4px}
+  .eyebrow{font-family:"Space Grotesk";font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--brand);font-weight:600}
+  .hero h2{font-family:"Space Grotesk";font-size:26px;line-height:1.12;margin:8px 0 6px;letter-spacing:-.5px;font-weight:700}
+  .hero p{color:var(--muted);margin:0;max-width:60ch;font-size:14.5px}
+  .gen{margin:20px 0 6px;background:linear-gradient(135deg,#13303a,#0c6b70);color:#fff;border-radius:18px;padding:20px 22px;box-shadow:var(--shadow)}
+  .gen .lbl{font-family:"Space Grotesk";font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#8FD0CE}
+  .gen h3{font-family:"Space Grotesk";margin:4px 0 4px;font-size:19px;font-weight:600}
+  .gen p{margin:0 0 14px;color:#cfeaea;font-size:12.8px;max-width:62ch}
+  .gen .fields{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+  .fld{display:flex;flex-direction:column;gap:4px}
+  .fld label{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:#9fdedc;font-weight:600}
+  select{font-family:"Inter";font-size:13.5px;padding:10px 12px;border-radius:10px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.95);color:var(--ink);min-width:120px;cursor:pointer}
+  .fld.tema select{min-width:210px}
+  .btn{font-family:"Space Grotesk";font-weight:600;border:none;border-radius:11px;padding:12px 18px;font-size:14px;cursor:pointer;background:var(--brand);color:#fff;transition:transform .08s ease,background .15s,opacity .15s;white-space:nowrap}
+  .btn:hover{background:var(--brand-d)} .btn:active{transform:translateY(1px)} .btn[disabled]{opacity:.6;cursor:default}
+  .btn.amber{background:var(--amber)} .btn.amber:hover{filter:brightness(.94)}
+  .btn.white{background:#fff;color:var(--brand-d)} .btn.white:hover{background:#eafafa}
+  .btn.ghost{background:#fff;color:var(--muted);border:1px solid var(--line)} .btn.ghost:hover{border-color:var(--brand);color:var(--brand)}
+  .btn.danger{background:#fff;color:var(--wrong);border:1px solid #E7C4C4} .btn.danger:hover{background:var(--wrong-bg)}
+  .btn.lg{padding:14px 22px;font-size:15px} .btn.sm{padding:8px 13px;font-size:12.5px;border-radius:9px}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  .genmsg{margin-top:10px;font-size:12.5px;color:#bfe7e6;min-height:16px}
+  .spinner{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:6px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .nav2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0 2px}
+  @media (max-width:640px){.nav2{grid-template-columns:1fr}}
+  .navbtn{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer;box-shadow:var(--shadow);transition:border-color .15s,transform .08s;text-align:left;width:100%;font-family:"Inter"}
+  .navbtn:hover{border-color:var(--brand)} .navbtn:active{transform:translateY(1px)}
+  .navbtn .ic{font-size:21px;flex:none}
+  .navbtn .t{font-family:"Space Grotesk";font-weight:600;font-size:14.5px;color:var(--ink);display:block}
+  .navbtn .s{font-size:11.5px;color:var(--muted);display:block}
+  .navbtn .cnt{margin-left:auto;font-family:"Space Grotesk";font-weight:700;color:var(--brand);font-size:17px;flex:none}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 6px}
+  @media (max-width:640px){.twocol{grid-template-columns:1fr}}
+  .panel{border-radius:16px;padding:18px 20px;box-shadow:var(--shadow)}
+  .panel.today{background:var(--ink);color:#fff}.panel.hy{background:#fff;border:2px solid #F0C24A}
+  .panel .lbl{font-family:"Space Grotesk";font-size:11px;letter-spacing:1.3px;text-transform:uppercase}
+  .panel.today .lbl{color:#8FD0CE}.panel.hy .lbl{color:#B07A00}
+  .panel h3{font-family:"Space Grotesk";margin:5px 0 4px;font-size:17px;font-weight:600}
+  .panel small{font-size:12px}.panel.today small{color:#B9CFce}.panel.hy small{color:var(--muted)}
+  .panel .act{margin-top:12px}
+  .seclab{display:flex;align-items:center;gap:12px;margin:26px 0 6px}
+  .seclab h4{font-family:"Space Grotesk";font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin:0;font-weight:600}
+  .seclab .ln{flex:1;height:1px;background:var(--line)}
+  .mods{display:grid;gap:10px;margin-top:6px}
+  .mod{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .08s;box-shadow:var(--shadow)}
+  .mod:hover{border-color:var(--brand);box-shadow:0 2px 4px rgba(12,107,112,.1),0 10px 28px rgba(12,107,112,.08)} .mod:active{transform:translateY(1px)}
+  .mnum{font-family:"Space Grotesk";font-weight:700;font-size:13px;color:#fff;background:var(--brand);width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none}
+  .mod.done .mnum{background:var(--right)}
+  .minfo{flex:1;min-width:0}.minfo h5{margin:0;font-size:15px;font-weight:600;letter-spacing:-.1px}
+  .minfo .meta{font-size:12px;color:var(--muted);margin-top:2px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .pill{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;padding:2px 7px;border-radius:20px;background:var(--soft);border:1px solid var(--line);color:var(--brand-d)}
+  .pill.ti{background:#E6F3F2;border-color:#BfE0dd;color:#0A5559}.pill.pt{background:#EDEBF7;border-color:#D7D2EE;color:#5B4BA6}
+  .pill.dir{background:#FBF0E4;border-color:#F0DCC2;color:#9A6510}.pill.loc{background:#E7F6EE;border-color:#C6E8D4;color:#177A4C}.pill.ger{background:#EEF1F2;border-color:#D7DEDE;color:#44595F}
+  .macc{text-align:right;flex:none;min-width:54px}.macc b{font-family:"Space Grotesk";font-size:15px;display:block;line-height:1}.macc small{font-size:10px;color:var(--muted)}
+  .bar{height:5px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:5px}.bar i{display:block;height:100%;background:var(--brand);border-radius:4px;transition:width .4s}
+  .quiz,.listview{display:none}
+  .qtop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:24px 0 14px}
+  .qtop .back,.lvtop .back{background:none;border:none;color:var(--muted);font-size:13.5px;cursor:pointer;font-weight:500;padding:6px 0}
+  .qtop .back:hover,.lvtop .back:hover{color:var(--ink)}
+  .prog{flex:1;margin:0 4px}.prog .bar{height:7px;margin:0}.prog .bar i{background:var(--amber)}
+  .flagbtn{background:none;border:1.5px solid var(--line);border-radius:10px;padding:7px 11px;font-size:12.5px;cursor:pointer;color:var(--muted);font-family:"Inter";white-space:nowrap;font-weight:500;flex:none}
+  .flagbtn:hover{border-color:var(--amber);color:var(--amber)} .flagbtn.on{background:#FFF6E4;border-color:#F0C24A;color:#9A6510;font-weight:600}
+  .qcount{font-family:"Space Grotesk";font-size:13px;color:var(--muted);font-weight:600;white-space:nowrap}
+  .qcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
+  .qtag{font-size:11px;color:var(--brand);font-weight:600;text-transform:uppercase;letter-spacing:.6px;font-family:"Space Grotesk"}.qtag.ai{color:var(--violet)}
+  .qtext{font-size:17px;line-height:1.5;margin:8px 0 18px;font-weight:500}
+  .opts{display:grid;gap:9px}
+  .opt{display:flex;gap:12px;align-items:flex-start;text-align:left;background:var(--soft);border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;cursor:pointer;font-size:14.5px;color:var(--ink);transition:border-color .12s,background .12s;width:100%}
+  .opt:hover:not([disabled]){border-color:var(--brand);background:#fff} .opt[disabled]{cursor:default}
+  .opt .key{font-family:"Space Grotesk";font-weight:700;color:var(--brand);flex:none;width:18px}
+  .opt.correct{background:var(--right-bg);border-color:var(--right)} .opt.correct .key{color:var(--right)}
+  .opt.wrong{background:var(--wrong-bg);border-color:var(--wrong)} .opt.wrong .key{color:var(--wrong)}
+  .opt .mk{margin-left:auto;font-weight:700;font-family:"Space Grotesk"} .opt.correct .mk{color:var(--right)} .opt.wrong .mk{color:var(--wrong)}
+  .expl{margin-top:16px;border-radius:12px;padding:14px 16px;font-size:13.7px;line-height:1.55;display:none;border:1px solid}
+  .expl.show{display:block} .expl.ok{background:var(--right-bg);border-color:#BfE4CE} .expl.no{background:var(--wrong-bg);border-color:#F0CACA} .expl b{font-family:"Space Grotesk"}
+  .deep{margin-top:12px;padding-top:12px;border-top:1px dashed rgba(0,0,0,.12);font-size:13.3px}
+  .deep .dl{font-family:"Space Grotesk";font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--violet);font-weight:600;margin-bottom:4px}
+  .qnav{display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:10px;flex-wrap:wrap}
+  .summary{display:none;text-align:center;padding:34px 8px}
+  .ring{width:128px;height:128px;margin:0 auto 16px;position:relative}.ring svg{transform:rotate(-90deg)}
+  .ring .val{position:absolute;inset:0;display:grid;place-items:center;font-family:"Space Grotesk";font-weight:700;font-size:30px}
+  .summary h3{font-family:"Space Grotesk";font-size:22px;margin:6px 0}.summary p{color:var(--muted);margin:0 0 20px}
+  .lvtop{display:flex;align-items:center;gap:10px;margin:24px 0 6px;flex-wrap:wrap}
+  .lvtop h3{font-family:"Space Grotesk";margin:0;font-size:20px;flex:1}
+  .lvsub{color:var(--muted);font-size:13px;margin:0 0 12px}
+  .filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+  .chip{font-size:12px;padding:6px 12px;border-radius:20px;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--muted);font-family:"Inter"}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .hitem{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px;box-shadow:var(--shadow)}
+  .hitem .top{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+  .badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;font-family:"Space Grotesk"}
+  .badge.ok{background:var(--right-bg);color:var(--right)} .badge.no{background:var(--wrong-bg);color:var(--wrong)} .badge.fl{background:#FFF6E4;color:#9A6510}
+  .hitem .lab{font-size:11px;color:var(--brand-d);font-weight:600}.hitem .dt{font-size:11px;color:var(--muted);margin-left:auto}
+  .hitem .qx{font-size:13.6px;color:var(--ink);line-height:1.42}
+  .hitem .acts{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .empty{text-align:center;color:var(--muted);padding:44px 12px;font-size:14px;line-height:1.6}
+  footer{color:var(--muted);font-size:11.5px;text-align:center;margin-top:40px;line-height:1.6}
+  .reset{background:none;border:none;color:var(--muted);font-size:12px;cursor:pointer;text-decoration:underline}
+  @media (max-width:520px){.hero h2{font-size:22px}.stats{gap:9px}.stat b{font-size:14px}.brand span{display:none}.fld.tema select{min-width:160px}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+  .opt:focus-visible,.btn:focus-visible,.mod:focus-visible,select:focus-visible,.navbtn:focus-visible,.flagbtn:focus-visible,.chip:focus-visible{outline:3px solid #6FC4C2;outline-offset:2px}
+
+  /* ===== MELHORIAS ===== */
+  .hd-right{display:flex;align-items:center;gap:12px;flex:none}
+  .iconbtn{background:none;border:1px solid var(--line);border-radius:10px;width:34px;height:34px;display:grid;place-items:center;cursor:pointer;font-size:16px;color:var(--ink);flex:none;transition:border-color .15s,background .15s}
+  .iconbtn:hover{border-color:var(--brand);background:var(--soft)}
+  /* Countdown */
+  .countdown{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--amber),#C77A00);color:#fff;border-radius:14px;padding:12px 16px;margin:14px 0 0;box-shadow:var(--shadow);flex-wrap:wrap}
+  .countdown .cd-num{font-family:"Space Grotesk";font-size:28px;font-weight:700;line-height:1}
+  .countdown .cd-txt{font-size:13px;line-height:1.3}.countdown .cd-txt b{font-family:"Space Grotesk"}
+  .countdown .cd-bar{flex:1;min-width:120px;height:7px;background:rgba(255,255,255,.3);border-radius:6px;overflow:hidden}
+  .countdown .cd-bar i{display:block;height:100%;background:#fff;border-radius:6px;transition:width .6s}
+  /* Meta diária */
+  .daily{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin:12px 0 0;box-shadow:var(--shadow)}
+  .daily .dring{width:54px;height:54px;position:relative;flex:none}.daily .dring svg{transform:rotate(-90deg)}
+  .daily .dring .dv{position:absolute;inset:0;display:grid;place-items:center;font-family:"Space Grotesk";font-weight:700;font-size:13px}
+  .daily .dinfo{flex:1;min-width:0}.daily .dinfo b{font-family:"Space Grotesk";font-size:14.5px;display:block}
+  .daily .dinfo small{font-size:12px;color:var(--muted)}
+  .daily .dgoal{display:flex;align-items:center;gap:6px;flex:none}
+  .daily .dgoal button{background:var(--soft);border:1px solid var(--line);width:26px;height:26px;border-radius:8px;cursor:pointer;font-size:15px;color:var(--ink);font-family:"Space Grotesk";line-height:1}
+  .daily .dgoal button:hover{border-color:var(--brand)}
+  /* Toast */
+  #toasts{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:60;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;width:calc(100% - 32px);max-width:420px}
+  .toast{background:var(--ink);color:var(--paper);padding:12px 18px;border-radius:12px;font-size:13.5px;font-weight:500;box-shadow:0 8px 30px rgba(0,0,0,.25);display:flex;align-items:center;gap:9px;animation:tin .3s ease;max-width:100%}
+  .toast.win{background:linear-gradient(135deg,var(--right),#137A47)}
+  .toast .ti{font-size:18px;flex:none}
+  @keyframes tin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  /* Atalhos / key hints */
+  .opt .kbd{margin-left:auto;font-family:"Space Grotesk";font-size:10px;font-weight:600;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 6px;align-self:center;flex:none}
+  .opt.correct .kbd,.opt.wrong .kbd{display:none}
+  .khint{font-size:11px;color:var(--muted);text-align:center;margin-top:10px}
+  .khint b{font-family:"Space Grotesk";border:1px solid var(--line);border-radius:5px;padding:0 5px;color:var(--ink)}
+  @media (max-width:640px){.khint{display:none}.opt .kbd{display:none}}
+  /* Análise / pontos fracos */
+  .analytics{display:grid;gap:9px}
+  .arow{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;box-shadow:var(--shadow)}
+  .arow .at{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;margin-bottom:6px}
+  .arow .at .pct{margin-left:auto;font-family:"Space Grotesk";font-size:14px}
+  .arow .abar{height:7px;background:var(--line);border-radius:5px;overflow:hidden}
+  .arow .abar i{display:block;height:100%;border-radius:5px;transition:width .5s}
+  .arow .acnt{font-size:11px;color:var(--muted);margin-top:5px}
+  .weak{border-color:#F0C24A;background:color-mix(in srgb,var(--amber) 8%,var(--card))}
+  /* Resumo por categoria */
+  .sumcats{max-width:420px;margin:6px auto 22px;text-align:left;display:grid;gap:7px}
+  .sumcat{display:flex;align-items:center;gap:8px;font-size:13px}
+  .sumcat .sn{flex:1}.sumcat .sb{width:90px;height:6px;background:var(--line);border-radius:5px;overflow:hidden}
+  .sumcat .sb i{display:block;height:100%;border-radius:5px}.sumcat .sp{font-family:"Space Grotesk";font-weight:600;width:42px;text-align:right;font-size:12px}
+  /* Busca no banco */
+  .searchbar{display:flex;gap:8px;margin:6px 0 2px;align-items:center}
+  .searchbar input{flex:1;font-family:"Inter";font-size:14px;padding:11px 14px;border-radius:11px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+  .searchbar input:focus{outline:none;border-color:var(--brand)}
+  /* Confiança no quiz */
+  .conf{display:flex;gap:7px;margin-top:14px;align-items:center;flex-wrap:wrap}
+  .conf small{font-size:11px;color:var(--muted)}
+  .conf button{font-size:12px;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:8px;padding:5px 11px;cursor:pointer;font-family:"Inter"}
+  .conf button:hover{border-color:var(--brand)} .conf button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  /* Badge de dias de ofensiva */
+  .stat.days b{color:var(--violet)}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <div class="brand" onclick="goHome()" tabindex="0" onkeydown="if(event.key==='Enter')goHome()">
+      <div class="logo">S</div>
+      <div><h1>Trilha Seropédica</h1><span>Banco de Questões · Analista de TI</span></div>
+    </div>
+    <div class="hd-right">
+      <div class="stats">
+        <div class="stat"><b id="st-ans">0</b><small>Feitas</small></div>
+        <div class="stat"><b id="st-acc">—</b><small>Acerto</small></div>
+        <div class="stat fire"><b id="st-str">0</b><small>Sequência</small></div>
+        <div class="stat days"><b id="st-days">0</b><small>Dias</small></div>
+      </div>
+      <button class="iconbtn" id="themebtn" onclick="toggleTheme()" title="Alternar tema (claro/escuro)" aria-label="Alternar tema">🌙</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section id="home">
+    <div class="hero">
+      <div class="eyebrow">Prova: 1º de agosto de 2026 · rumo ao 1º lugar</div>
+      <h2>Gere questões infinitas.<br>Marque, revise, acompanhe.</h2>
+      <p>Crie questões inéditas com IA, treine <b id="hero-count">—</b> prontas, marque as que quer rever depois e acompanhe o histórico de tudo que já fez. Cada exercício é contado automaticamente.</p>
+    </div>
+
+    <div class="countdown" id="countdown">
+      <div><div class="cd-num" id="cd-num">—</div></div>
+      <div class="cd-txt"><b>dias até a prova</b><br><span id="cd-sub">1º de agosto de 2026</span></div>
+      <div class="cd-bar"><i id="cd-fill" style="width:0%"></i></div>
+    </div>
+
+    <div class="daily" id="daily">
+      <div class="dring">
+        <svg width="54" height="54"><circle cx="27" cy="27" r="22" fill="none" stroke="var(--line)" stroke-width="6"/>
+          <circle id="dring-fill" cx="27" cy="27" r="22" fill="none" stroke="var(--right)" stroke-width="6" stroke-linecap="round" stroke-dasharray="138" stroke-dashoffset="138"/></svg>
+        <div class="dv" id="dring-val">0</div>
+      </div>
+      <div class="dinfo"><b id="daily-title">Meta de hoje</b><small id="daily-sub">0 de 20 questões</small></div>
+      <div class="dgoal"><button onclick="changeGoal(-5)" aria-label="Diminuir meta">−</button><button onclick="changeGoal(5)" aria-label="Aumentar meta">+</button></div>
+    </div>
+
+    <div class="gen">
+      <div class="lbl">★ Gerador de questões com IA</div>
+      <h3>Questões novas, na hora, sobre o que você quiser</h3>
+      <p>Escolha o tema e a dificuldade. A IA cria questões inéditas com gabarito comentado. <b>Funciona dentro do app do Claude.</b></p>
+      <div class="fields">
+        <div class="fld tema"><label>Tema</label><select id="g-tema"></select></div>
+        <div class="fld"><label>Dificuldade</label>
+          <select id="g-dif">
+            <option value="média">Média</option>
+            <option value="difícil, com pegadinhas" selected>Difícil</option>
+            <option value="muito difícil, nível de quem disputa o 1º lugar">Muito difícil</option>
+          </select></div>
+        <div class="fld"><label>Quantidade</label><select id="g-qtd"><option>3</option><option selected>4</option><option>5</option></select></div>
+        <button class="btn white" id="g-btn" onclick="generateAndStart()">Gerar e praticar</button>
+      </div>
+      <div class="genmsg" id="g-msg"></div>
+    </div>
+
+    <div class="nav2">
+      <button class="navbtn" onclick="openFlagged()">
+        <span class="ic">⭐</span>
+        <span><span class="t">Para revisar</span><span class="s">Questões que você marcou</span></span>
+        <span class="cnt" id="nav-flag">0</span>
+      </button>
+      <button class="navbtn" onclick="openHistory()">
+        <span class="ic">🕘</span>
+        <span><span class="t">Histórico de exercícios</span><span class="s">Tudo que você já respondeu</span></span>
+        <span class="cnt" id="nav-hist">0</span>
+      </button>
+    </div>
+
+    <div class="twocol">
+      <div class="panel hy">
+        <div class="lbl">🔥 Quase certo na prova</div>
+        <h3>Essenciais — alta probabilidade</h3>
+        <small id="hy-sub">14 questões difíceis</small>
+        <div class="act"><button class="btn amber" onclick="startHigh()">Treinar essenciais</button></div>
+      </div>
+      <div class="panel today">
+        <div class="lbl">Comece por aqui</div>
+        <h3 id="today-title">…</h3>
+        <small id="today-sub"></small>
+        <div class="act row"><button class="btn" id="today-btn">Praticar</button><button class="btn white" onclick="startSimulado()">Simulado 40</button></div>
+      </div>
+    </div>
+
+    <div id="analytics-wrap" style="display:none">
+      <div class="seclab"><h4>Seu desempenho por matéria</h4><div class="ln"></div></div>
+      <div class="analytics" id="analytics"></div>
+    </div>
+
+    <div class="seclab"><h4>Banco por matéria · ordem do plano</h4><div class="ln"></div></div>
+    <div class="searchbar">
+      <input type="search" id="modsearch" placeholder="🔎 Buscar matéria ou questão…" oninput="renderHome()" autocomplete="off">
+    </div>
+    <div class="mods" id="mods"></div>
+
+    <footer>
+      Questões prontas e geradas no padrão da banca, alinhadas ao edital 001/2026 — não são cópias de provas anteriores.<br>
+      Confira dados locais (Seropédica/Regimento) na Lei Orgânica e no Regimento oficiais.<br>
+      <button class="reset" onclick="exportProgress()">Exportar progresso</button> ·
+      <button class="reset" onclick="document.getElementById('importfile').click()">Importar</button> ·
+      <button class="reset" onclick="resetAll()">Zerar tudo</button>
+      <input type="file" id="importfile" accept="application/json" style="display:none" onchange="importProgress(event)">
+    </footer>
+  </section>
+
+  <!-- LISTA: marcadas OU histórico -->
+  <section class="listview" id="listview">
+    <div class="lvtop">
+      <button class="back" onclick="goHome()">← Início</button>
+      <h3 id="lv-title">Para revisar</h3>
+    </div>
+    <p class="lvsub" id="lv-sub"></p>
+    <div class="filters" id="lv-filters"></div>
+    <div id="lv-list"></div>
+  </section>
+
+  <section class="quiz" id="quiz">
+    <div class="qtop">
+      <button class="back" onclick="goHome()">← Início</button>
+      <div class="prog"><div class="bar"><i id="qprog" style="width:0%"></i></div></div>
+      <button class="flagbtn" id="flagbtn" onclick="toggleFlag()">☆ Revisar</button>
+      <div class="qcount" id="qcount">1 / 5</div>
+    </div>
+    <div class="qcard">
+      <div class="qtag" id="qtag"></div>
+      <div class="qtext" id="qtext"></div>
+      <div class="opts" id="opts"></div>
+      <div class="conf" id="conf">
+        <small>Confiança:</small>
+        <button type="button" data-c="3" onclick="setConf(3)">😎 Sei</button>
+        <button type="button" data-c="2" onclick="setConf(2)">🤔 Acho</button>
+        <button type="button" data-c="1" onclick="setConf(1)">🎲 Chute</button>
+      </div>
+      <div class="expl" id="expl"></div>
+      <div class="khint">Atalhos: <b>A</b> <b>B</b> <b>C</b> <b>D</b> responder · <b>←</b> <b>→</b> navegar · <b>F</b> marcar · <b>E</b> explicar</div>
+      <div class="qnav">
+        <button class="btn sm ghost" id="prev" style="display:none" onclick="prevQ()">← Anterior</button>
+        <button class="btn sm white" id="deepbtn" style="display:none" onclick="deepen()">💡 Aprofundar com IA</button>
+        <button class="btn" id="next" style="display:none;margin-left:auto" onclick="nextQ()">Próxima →</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="summary" id="summary">
+    <div class="ring">
+      <svg width="128" height="128"><circle cx="64" cy="64" r="56" fill="none" stroke="#E2EAE9" stroke-width="12"/>
+        <circle id="ringfill" cx="64" cy="64" r="56" fill="none" stroke="#1E8E5A" stroke-width="12" stroke-linecap="round" stroke-dasharray="352" stroke-dashoffset="352"/></svg>
+      <div class="val" id="ringval">0%</div>
+    </div>
+    <h3 id="sum-title">Concluído!</h3>
+    <p id="sum-sub"></p>
+    <div class="sumcats" id="sumcats"></div>
+    <div class="row" style="justify-content:center">
+      <button class="btn" onclick="reviewWrong()" id="rev-btn">Rever só os erros</button>
+      <button class="btn amber" onclick="goHome()">Voltar ao início</button>
+    </div>
+  </section>
+</div>
+
+<div id="toasts" aria-live="polite"></div>
+
+<script>
+/* ===== BANCO FIXO (ordem do plano) ===== */
+const MODULES=[
+ {id:"pt-interp",t:"Português — Interpretação de texto",cat:"pt",day:"16/06",qs:[
+  {q:"A <i>inferência</i> em um texto consiste em:",o:["copiar literalmente uma informação","concluir algo não dito explicitamente, deduzido do texto","trocar uma palavra por sinônimo","resumir o último parágrafo"],a:1,e:"Inferir é deduzir informação implícita a partir de pistas do texto."},
+  {q:"A função predominante em texto que defende um ponto de vista com argumentos é a:",o:["descritiva","narrativa","argumentativa","injuntiva"],a:2,e:"O tipo argumentativo busca convencer por argumentos."},
+  {q:"Fazer referência a outro texto já existente é:",o:["ambiguidade","intertextualidade","polissemia","pleonasmo"],a:1,e:"Intertextualidade é o diálogo entre textos (citação, alusão, paródia)."},
+  {q:"\u201cPrometeu mundos e fundos\u201d é exemplo de:",o:["linguagem denotativa","sentido literal","linguagem conotativa (figurada)","erro de coesão"],a:2,e:"Uso figurado/conotativo: prometer muito, não o sentido literal."},
+  {q:"Texto que orienta o leitor a agir (receita, manual) é do tipo:",o:["expositivo","injuntivo (instrucional)","narrativo","argumentativo"],a:1,e:"O tipo injuntivo orienta a agir, com verbos no imperativo."}
+ ,
+  {q:"A ligação entre as partes do texto por conectivos, pronomes e repetições é a:",o:["coerência","coesão","ambiguidade","redundância"],a:1,e:"Coesão é a ligação formal; coerência é o sentido lógico global."},
+  {q:"Em um texto que defende uma opinião, o ponto de vista central defendido é a:",o:["narração","tese","descrição","conclusão"],a:1,e:"A tese é a ideia que o autor sustenta com argumentos."},
+  {q:"Palavra usada em seu sentido literal, de dicionário, tem emprego:",o:["conotativo","denotativo","irônico","figurado"],a:1,e:"Denotativo = sentido literal; conotativo = figurado."},
+  {q:"\u201CVi o homem com o binóculo\u201D é um caso de:",o:["pleonasmo","ambiguidade","metáfora","antítese"],a:1,e:"A frase admite mais de uma leitura — ambiguidade (anfibologia)."},
+  {q:"Reescrever um texto com outras palavras, mantendo o sentido, é fazer uma:",o:["paródia","paráfrase","citação","cópia"],a:1,e:"Paráfrase preserva o sentido; paródia subverte com humor/crítica."},
+  {q:"Texto que relata fatos em sequência temporal, com personagens e enredo, é:",o:["descritivo","narrativo","dissertativo","injuntivo"],a:1,e:"A narração conta fatos numa linha do tempo."}
+ ]},
+ {id:"ti-arq",t:"TI — Arquitetura e Sistemas Operacionais",cat:"ti",day:"17/06",qs:[
+  {q:"Executa operações aritméticas e lógicas na CPU a:",o:["ULA","memória cache","unidade de controle","BIOS"],a:0,e:"A ULA faz cálculos; a UC coordena instruções."},
+  {q:"Sobre a hierarquia de memória, a cache:",o:["é mais lenta que a RAM","é mais rápida e mais próxima da CPU que a RAM","substitui o disco","é não volátil como a ROM"],a:1,e:"A cache é menor, mais rápida e próxima do processador."},
+  {q:"Um processo no estado <b>bloqueado</b> está:",o:["em execução na CPU","pronto, só aguardando a CPU","aguardando um evento/recurso (ex.: E/S)","encerrado"],a:2,e:"Bloqueado espera recurso/evento; \u201cpronto\u201d espera só a CPU."},
+  {q:"Usar parte do disco como extensão da RAM é a:",o:["memória virtual (paginação)","escalonamento","deadlock","multitarefa"],a:0,e:"Memória virtual usa o disco (swap) para simular mais RAM."},
+  {q:"Memória volátil, que perde o conteúdo ao desligar:",o:["ROM","SSD","RAM","BIOS"],a:2,e:"A RAM é volátil; ROM e disco não."}
+ ,
+  {q:"Coordena e controla a execução das instruções na CPU a:",o:["ULA","unidade de controle (UC)","cache L1","fonte"],a:1,e:"A UC controla; a ULA faz os cálculos."},
+  {q:"Interliga CPU, memória e periféricos para troca de dados o:",o:["registrador","barramento (bus)","clock","cooler"],a:1,e:"O barramento transporta dados, endereços e sinais de controle."},
+  {q:"Sistema que executa vários processos aparentando simultaneidade é:",o:["monotarefa","multitarefa","monousuário","somente lote"],a:1,e:"A multitarefa alterna processos rapidamente (escalonamento)."},
+  {q:"Dois processos travados, cada um esperando recurso preso pelo outro, é:",o:["deadlock (impasse)","starvation","overflow","swap"],a:0,e:"Deadlock: espera circular por recursos."},
+  {q:"A menor unidade de informação, que vale 0 ou 1, é o:",o:["byte","bit","kilobyte","nibble"],a:1,e:"Bit = dígito binário; 8 bits = 1 byte."},
+  {q:"O escalonador de processos (scheduler) decide:",o:["a tensão da fonte","qual processo usa a CPU e quando","a cor da tela","o tamanho do disco"],a:1,e:"Ele gerencia o uso da CPU entre os processos."}
+ ]},
+ {id:"pt-crase",t:"Português — Acentuação e Crase",cat:"pt",day:"18/06",qs:[
+  {q:"Assinale a crase correta:",o:["Refiro-me à você.","Vou à Seropédica.","Entreguei o ofício à secretária.","Cheguei à pé."],a:2,e:"Crase ocorre antes de feminino que aceita artigo (à secretária)."},
+  {q:"Está incorretamente acentuada:",o:["análise","tecnologia","público","júri"],a:1,e:"\u201cTecnologia\u201d não é acentuada."},
+  {q:"\u201cNão sei ___ ele faltou; faltou ___ estava doente.\u201d",o:["porque / por que","porquê / porque","por que / porque","por quê / por que"],a:2,e:"Pergunta indireta: \u201cpor que\u201d; causa: \u201cporque\u201d."},
+  {q:"A crase é OBRIGATÓRIA em:",o:["Falei a ele.","Das 8 às 18 horas.","Comecei a estudar.","Refiro-me a Vossa Senhoria."],a:1,e:"Horas determinadas (\u201càs 18h\u201d) exigem crase."},
+  {q:"Corretamente acentuada:",o:["sòzinho","ìmã","heroì","herói"],a:3,e:"\u201cHerói\u201d: oxítona com ditongo aberto -ói."}
+ ,
+  {q:"Toda proparoxítona é acentuada. Assinale a proparoxítona:",o:["caju","sofá","lâmpada","aqui"],a:2,e:"\u201Clâmpada\u201D é proparoxítona (todas são acentuadas)."},
+  {q:"Assinale a palavra corretamente acentuada:",o:["ruim","saída","juis","caida"],a:1,e:"Em \u201Csaída\u201D, o \u2018i\u2019 tônico em hiato é acentuado."},
+  {q:"A crase é FACULTATIVA diante de:",o:["nome de cidade sem especificação","pronome possessivo feminino (à/a minha casa)","horas determinadas","palavra masculina"],a:1,e:"Antes de possessivo feminino, a crase é facultativa."},
+  {q:"\u201CFui ___ Bahia e voltei ___ Pernambuco.\u201D",o:["a / à","à / a","a / a","à / à"],a:1,e:"\u201Cà Bahia\u201D (vou à / volto da → crase); \u201Ca Pernambuco\u201D (vou a / volto de → sem crase)."},
+  {q:"Recebe acento o monossílabo tônico:",o:["de","se","pé","com"],a:2,e:"\u201Cpé\u201D é monossílabo tônico terminado em -é."},
+  {q:"NÃO ocorre crase antes de:",o:["palavra feminina específica","verbo no infinitivo","horas determinadas","\u2018aquela\u2019"],a:1,e:"Antes de verbo não há artigo: \u201Ccomeçou a estudar\u201D (sem crase)."}
+ ]},
+ {id:"ti-linux",t:"TI — Administração Linux e Windows",cat:"ti",day:"19/06",qs:[
+  {q:"Altera permissões de um arquivo no Linux o comando:",o:["chown","chmod","grep","mv"],a:1,e:"chmod altera permissões; chown muda o dono."},
+  {q:"A permissão octal 755 significa:",o:["dono rwx; grupo e outros r-x","ninguém tem permissão","só o dono lê","leitura p/ todos, escrita p/ ninguém"],a:0,e:"7=rwx, 5=r-x, 5=r-x."},
+  {q:"Arquivos de configuração ficam tradicionalmente em:",o:["/home","/etc","/var","/bin"],a:1,e:"/etc guarda configurações."},
+  {q:"Agenda tarefas automáticas no Linux o:",o:["cron","apt","bash","ssh"],a:0,e:"O cron agenda tarefas periódicas (crontab)."},
+  {q:"Suporta permissões avançadas (ACLs) no Windows o sistema:",o:["FAT32","exFAT","NTFS","ext4"],a:2,e:"NTFS suporta ACLs e journaling."}
+ ,
+  {q:"Lista o conteúdo de um diretório no Linux o comando:",o:["ls","cd","rm","cat"],a:0,e:"ls lista; cd navega; rm remove; cat exibe."},
+  {q:"Mostra o diretório de trabalho atual:",o:["pwd","whoami","top","df"],a:0,e:"pwd = print working directory."},
+  {q:"O superusuário, com privilégios totais no Linux, é o:",o:["guest","root","daemon","nobody"],a:1,e:"root é o administrador do sistema."},
+  {q:"No Windows, gerencia processos e desempenho em tempo real o:",o:["Prompt","Gerenciador de Tarefas","Painel de Controle","Explorer"],a:1,e:"Gerenciador de Tarefas (Ctrl+Shift+Esc)."},
+  {q:"Encerra um processo pelo PID no Linux o comando:",o:["kill","ps","grep","chmod"],a:0,e:"kill envia sinal de término; ps lista processos."},
+  {q:"Em um diretório, o bit de execução (x) permite:",o:["editar arquivos","acessar/entrar no diretório (cd)","apagar o diretório","apenas listar nomes"],a:1,e:"Em diretórios, x permite entrar nele."},
+  {q:"Os arquivos de log do sistema ficam tradicionalmente em:",o:["/var/log","/etc","/home","/dev"],a:0,e:"/var/log guarda os registros do sistema."}
+ ]},
+ {id:"ti-nuvem",t:"TI — Virtualização e Computação em Nuvem",cat:"ti",day:"20/06",qs:[
+  {q:"Provedor entrega infraestrutura; cliente gerencia SO e apps. É:",o:["SaaS","PaaS","IaaS","DaaS"],a:2,e:"IaaS = Infraestrutura como Serviço."},
+  {q:"E-mail no navegador, sem instalar nada, é:",o:["IaaS","PaaS","SaaS","On-premises"],a:2,e:"SaaS: software pronto, usado pela internet."},
+  {q:"Contêineres (Docker), frente a VMs:",o:["exigem SO completo cada","compartilham o kernel do host, sendo mais leves","só rodam no Windows","não isolam apps"],a:1,e:"Contêineres compartilham o kernel; VMs têm SO completo."},
+  {q:"Ajustar recursos conforme a demanda é:",o:["virtualização","elasticidade","redundância","latência"],a:1,e:"Elasticidade ajusta recursos dinamicamente."},
+  {q:"Um hipervisor tipo 1:",o:["roda sobre um SO instalado","roda direto no hardware (bare-metal)","é app de usuário","não permite várias VMs"],a:1,e:"Tipo 1 = bare-metal; tipo 2 roda sobre um SO."}
+ ,
+  {q:"Plataforma pronta para o desenvolvedor publicar apps sem gerenciar o SO é:",o:["IaaS","PaaS","SaaS","DaaS"],a:1,e:"PaaS entrega plataforma de desenvolvimento/execução."},
+  {q:"Nuvem usada exclusivamente por uma única organização é a nuvem:",o:["pública","privada","híbrida","comunitária"],a:1,e:"Privada = exclusiva de uma organização."},
+  {q:"Combina ambientes de nuvem pública e privada integrados é a nuvem:",o:["pública","privada","híbrida","local"],a:2,e:"A híbrida integra nuvens pública e privada."},
+  {q:"Pagar apenas pelos recursos efetivamente consumidos é o modelo:",o:["licença perpétua","sob demanda (pay-as-you-go)","CAPEX fixo","freeware"],a:1,e:"Cobrança conforme o uso."},
+  {q:"Ferramenta amplamente usada para orquestrar contêineres é o:",o:["Kubernetes","Photoshop","Apache","MySQL"],a:0,e:"Kubernetes orquestra contêineres em escala."},
+  {q:"Criar várias máquinas virtuais sobre um mesmo hardware físico é:",o:["clusterização","virtualização","compressão","fragmentação"],a:1,e:"A virtualização abstrai o hardware em VMs."}
+ ]},
+ {id:"ti-redes",t:"TI — Redes: OSI e TCP/IP",cat:"ti",day:"22/06",qs:[
+  {q:"Quantas camadas tem o modelo OSI?",o:["4","5","7","8"],a:2,e:"OSI: 7 camadas (Física a Aplicação)."},
+  {q:"Roteamento e IP ocorrem na camada:",o:["Enlace","Rede","Transporte","Aplicação"],a:1,e:"A camada de Rede (3) cuida de IP e roteamento."},
+  {q:"A camada de Transporte é responsável por:",o:["converter sinais em bits","entrega fim-a-fim e confiabilidade (TCP/UDP)","rotear pacotes","apresentar dados"],a:1,e:"Transporte (4): comunicação fim-a-fim."},
+  {q:"O TCP/IP clássico possui quantas camadas?",o:["3","4","5","7"],a:1,e:"4 camadas: Acesso à Rede, Internet, Transporte, Aplicação."},
+  {q:"Adicionar cabeçalhos a cada camada ao descer a pilha é:",o:["roteamento","encapsulamento","comutação","broadcast"],a:1,e:"Encapsulamento; na recepção, desencapsulamento."}
+ ,
+  {q:"A camada 1 do OSI, que trata de sinais e meio físico, é a:",o:["Enlace","Física","Rede","Sessão"],a:1,e:"Camada Física: bits, cabos e sinais."},
+  {q:"O endereço físico MAC atua na camada de:",o:["Física","Enlace","Rede","Transporte"],a:1,e:"O MAC pertence à camada de Enlace (2)."},
+  {q:"A ordem das camadas OSI, da 1ª à 7ª, começa por:",o:["Aplicação","Física","Rede","Transporte"],a:1,e:"Física, Enlace, Rede, Transporte, Sessão, Apresentação, Aplicação."},
+  {q:"A unidade de dados (PDU) da camada de Rede é o:",o:["quadro","pacote","segmento","bit"],a:1,e:"Rede=pacote; Transporte=segmento; Enlace=quadro."},
+  {q:"A camada de Sessão (5) é responsável por:",o:["rotear pacotes","abrir, gerenciar e encerrar sessões de diálogo","converter sinais","cifrar dados"],a:1,e:"A Sessão controla o diálogo entre aplicações."},
+  {q:"No TCP/IP, a camada de Internet equivale, no OSI, à camada de:",o:["Enlace","Rede","Transporte","Aplicação"],a:1,e:"A camada de Internet corresponde à camada de Rede do OSI."}
+ ]},
+ {id:"ti-protoc",t:"TI — Protocolos e Portas",cat:"ti",day:"23/06",qs:[
+  {q:"A porta padrão do HTTPS é:",o:["21","80","443","53"],a:2,e:"HTTPS=443; HTTP=80; FTP=21; DNS=53."},
+  {q:"Protocolo orientado à conexão e confiável:",o:["UDP","TCP","ICMP","IP"],a:1,e:"TCP usa 3-way handshake; UDP é rápido e sem garantia."},
+  {q:"Atribui IPs automaticamente o protocolo:",o:["DNS","DHCP","FTP","SMTP"],a:1,e:"DHCP distribui IPs; DNS traduz nomes."},
+  {q:"Traduz nomes de domínio em IPs o:",o:["DHCP","DNS","SSH","HTTP"],a:1,e:"DNS resolve nomes para IP (porta 53)."},
+  {q:"A porta padrão do SSH é:",o:["22","23","25","110"],a:0,e:"SSH=22 (seguro); 23=Telnet."}
+ ,
+  {q:"A porta padrão do HTTP é:",o:["8080","80","443","21"],a:1,e:"HTTP=80; HTTPS=443."},
+  {q:"O protocolo de ENVIO de e-mails é o:",o:["POP3","IMAP","SMTP","SNMP"],a:2,e:"SMTP envia; POP3/IMAP recebem."},
+  {q:"Para transferência de arquivos usa-se o protocolo:",o:["FTP","DNS","ICMP","ARP"],a:0,e:"FTP transfere arquivos (portas 20/21)."},
+  {q:"O comando ping utiliza o protocolo:",o:["TCP","ICMP","HTTP","SMTP"],a:1,e:"O ping usa ICMP para testar conectividade."},
+  {q:"Protocolo rápido, sem conexão, comum em streaming e VoIP:",o:["TCP","UDP","FTP","SSH"],a:1,e:"UDP é leve e sem garantia de entrega."},
+  {q:"Acessa páginas web de forma cifrada (TLS/SSL) o:",o:["HTTP","HTTPS","Telnet","FTP"],a:1,e:"HTTPS cifra a comunicação com TLS."},
+  {q:"A porta padrão do DNS é a:",o:["25","53","110","143"],a:1,e:"O DNS usa a porta 53."}
+ ]},
+ {id:"ti-ip",t:"TI — IP, Subnetting e Equipamentos",cat:"ti",day:"24/06",qs:[
+  {q:"A máscara /24 oferece quantos hosts úteis?",o:["256","254","128","64"],a:1,e:"256 − rede − broadcast = 254."},
+  {q:"192.168.0.10 é um IP:",o:["público","privado","de loopback","multicast"],a:1,e:"192.168.x é faixa privada (RFC 1918)."},
+  {q:"Opera na camada 3 e interliga redes o:",o:["hub","switch","roteador","repetidor"],a:2,e:"O roteador atua na camada de Rede; o switch na 2."},
+  {q:"O switch encaminha quadros:",o:["para todas as portas sempre","só p/ a porta do destinatário (MAC)","só via Wi-Fi","só p/ a internet"],a:1,e:"O switch usa a tabela MAC."},
+  {q:"Padrão Wi-Fi mais seguro hoje:",o:["WEP","WPA","WPA2/WPA3","rede aberta"],a:2,e:"WPA2/WPA3; WEP é vulnerável."}
+ ,
+  {q:"O endereço 127.0.0.1 corresponde a:",o:["gateway padrão","loopback (localhost)","broadcast","IP público"],a:1,e:"127.0.0.1 é o loopback da própria máquina."},
+  {q:"Quantos bits tem um endereço IPv4?",o:["16","32","64","128"],a:1,e:"IPv4 = 32 bits; IPv6 = 128 bits."},
+  {q:"Equipamento de camada 1 que repete o sinal a todas as portas é o:",o:["switch","roteador","hub","firewall"],a:2,e:"O hub repete a todos; o switch encaminha por MAC."},
+  {q:"O endereço que envia para todos os hosts da rede é o:",o:["unicast","broadcast","loopback","gateway"],a:1,e:"O broadcast atinge todos os hosts da rede."},
+  {q:"A máscara 255.255.255.0 equivale a:",o:["/16","/24","/8","/30"],a:1,e:"São 24 bits de rede = /24."},
+  {q:"O IPv6 foi criado principalmente para:",o:["acabar com o Wi-Fi","ampliar o número de endereços disponíveis","substituir o DNS","acelerar a CPU"],a:1,e:"O IPv6 resolve o esgotamento de endereços do IPv4."},
+  {q:"O endereço padrão de saída para outras redes (rota padrão) é o:",o:["DNS","gateway padrão","loopback","broadcast"],a:1,e:"O gateway é a porta de saída para outras redes."}
+ ]},
+ {id:"pt-pont",t:"Português — Pontuação",cat:"pt",day:"25/06",qs:[
+  {q:"Frase corretamente pontuada:",o:["O servidor, analisou o processo.","O analista de TI, João, configurou a rede.","Configurou a rede e, o servidor.","Estudou muito, porém; foi aprovado."],a:1,e:"As vírgulas isolam o aposto (João)."},
+  {q:"A vírgula é usada corretamente para:",o:["separar sujeito do verbo","isolar o vocativo","separar verbo do objeto","ligar enumeração com \u2018e\u2019"],a:1,e:"O vocativo é isolado por vírgula."},
+  {q:"Introduz enumeração/explicação o sinal:",o:["ponto final","dois-pontos","interrogação","reticências"],a:1,e:"Os dois-pontos anunciam enumerações/explicações."},
+  {q:"NÃO deve haver vírgula em:",o:["Brasília, capital do país, é planejada.","Quando chegou, todos aplaudiram.","O candidato estudou muito para a prova.","Senhores, atenção!"],a:2,e:"Ordem direta, sem termos a isolar."}
+ ,
+  {q:"O ponto e vírgula é adequado para:",o:["terminar a frase","separar itens longos de uma enumeração","indicar pergunta","substituir aspas"],a:1,e:"Separa itens extensos ou orações coordenadas."},
+  {q:"As aspas servem, entre outros usos, para:",o:["isolar o sujeito","marcar citações ou destacar palavras","indicar soma","encerrar parágrafo"],a:1,e:"Aspas destacam citações e expressões."},
+  {q:"\u201CMaria, traga o relatório.\u201D A vírgula isola um:",o:["aposto","vocativo","adjunto","predicado"],a:1,e:"\u201CMaria\u201D é vocativo (chamamento)."},
+  {q:"Indicam interrupção ou suspensão da fala as:",o:["aspas","reticências","chaves","crases"],a:1,e:"As reticências marcam suspensão/continuidade."},
+  {q:"NÃO se deve usar vírgula entre:",o:["orações adversativas","sujeito e verbo","itens de enumeração","aposto e o restante"],a:1,e:"Não se separa o sujeito do verbo por vírgula."},
+  {q:"Os parênteses servem para:",o:["intercalar comentário ou explicação acessória","encerrar o período","indicar grito","substituir o ponto final"],a:0,e:"Parênteses isolam informação acessória."},
+  {q:"Assinale a frase corretamente pontuada:",o:["Cheguei, cansado mas feliz.","Cheguei cansado, mas feliz.","Cheguei cansado mas, feliz.","Cheguei, cansado, mas feliz."],a:1,e:"A vírgula antecede a conjunção adversativa \u2018mas\u2019."}
+ ]},
+ {id:"pt-conc",t:"Português — Concordância",cat:"pt",day:"26/06",qs:[
+  {q:"Concordância verbal correta:",o:["Fazem dois anos que estudo.","Faz dois anos que estudo.","Houveram muitos aprovados.","Existe muitos cargos."],a:1,e:"\u201cFazer\u201d (tempo) e \u201chaver\u201d (existir) são impessoais."},
+  {q:"\u201c___ muitas vagas no edital.\u201d",o:["Existe","Existem","Houveram","Tinham haviam"],a:1,e:"\u201cExistir\u201d concorda com o sujeito: Existem."},
+  {q:"Concordância nominal correta:",o:["É proibido entrada.","É proibida a entrada.","Os documento anexo.","Vão em anexo as nota."],a:1,e:"Com artigo, \u201cproibida\u201d concorda com \u201centrada\u201d."},
+  {q:"\u201cOs Estados Unidos ___ um grande mercado.\u201d",o:["é","são","era","foi"],a:1,e:"País no plural com artigo: verbo no plural."}
+ ,
+  {q:"\u201CHavia muitos candidatos.\u201D O verbo \u2018haver\u2019 (existir) é:",o:["pessoal","impessoal (fica no singular)","sempre plural","auxiliar"],a:1,e:"Haver no sentido de existir é impessoal: singular."},
+  {q:"Concordância verbal aceita pela norma:",o:["A maioria dos alunos faltou.","Os aluno faltou.","Faltou os alunos.","A maioria faltaram, sempre."],a:0,e:"Com \u2018a maioria de\u2019, o verbo pode concordar com o núcleo (singular)."},
+  {q:"\u201CBebida é proibido.\u201D Sem artigo, a concordância:",o:["vai ao feminino","fica invariável no masculino (proibido)","exige plural","está sempre errada"],a:1,e:"Sem artigo, \u201Cé proibido\u201D fica invariável."},
+  {q:"\u201CVão ___ as fotos.\u201D (anexo)",o:["anexo","anexas","anexados","anexo invariável"],a:1,e:"\u201Canexas\u201D concorda com \u2018fotos\u2019 (feminino plural)."},
+  {q:"\u201CFizeram-se reparos.\u201D A partícula \u2018se\u2019 é:",o:["índice de indeterminação","apassivadora (sujeito: reparos)","reflexiva","conjunção"],a:1,e:"Voz passiva sintética: o verbo concorda com o sujeito (reparos)."},
+  {q:"\u201CTu ___ a prova ontem.\u201D (fazer)",o:["fizeste","fez","fizestes","fizeram"],a:0,e:"Com \u2018tu\u2019: fizeste (2ª pessoa do singular)."},
+  {q:"\u201COs Estados Unidos ___ no jogo.\u201D (vencer)",o:["venceu","venceram","vence","vencido"],a:1,e:"País com artigo no plural → verbo no plural."}
+ ]},
+ {id:"pt-reg",t:"Português — Regência e Colocação",cat:"pt",day:"27/06",qs:[
+  {q:"No sentido de \u201cpresenciar\u201d, assistir exige \u2018a\u2019:",o:["Assisti o jogo.","Assisti ao jogo.","Assisti no jogo.","Assisti com o jogo."],a:1,e:"Assistir (presenciar) é transitivo indireto: ao jogo."},
+  {q:"O verbo obedecer rege a preposição:",o:["nenhuma","a","de","com"],a:1,e:"Obedece-se a algo/alguém."},
+  {q:"Colocação adequada à norma culta:",o:["Não diga-me isso.","Me diga a verdade.","Não me diga isso.","Dir-me-ias incorreto"],a:2,e:"\u201cNão\u201d atrai o pronome → próclise."},
+  {q:"Em \u201cEspero que se faça justiça\u201d há:",o:["ênclise","próclise","mesóclise","erro"],a:1,e:"A conjunção \u201cque\u201d atrai o pronome → próclise."}
+ ,
+  {q:"O verbo \u2018visar\u2019, no sentido de \u2018ter por objetivo\u2019, rege:",o:["nenhuma preposição","a preposição \u2018a\u2019","a preposição \u2018de\u2019","a preposição \u2018com\u2019"],a:1,e:"Visar (almejar) é transitivo indireto: visar a algo."},
+  {q:"\u2018Aspirar\u2019 no sentido de \u2018desejar\u2019 exige a preposição:",o:["nenhuma","\u2018a\u2019 (aspirar a um cargo)","\u2018de\u2019","\u2018por\u2019"],a:1,e:"Aspirar (desejar) é transitivo indireto: aspirar a algo."},
+  {q:"A mesóclise é adequada quando o verbo está no:",o:["presente, com atrativo","futuro do presente/pretérito, sem palavra atrativa","gerúndio","particípio"],a:1,e:"Futuro sem atrator → mesóclise (far-se-á)."},
+  {q:"\u201CQuero-lhe muito bem.\u201D A colocação pronominal é:",o:["próclise","ênclise","mesóclise","incorreta"],a:1,e:"Sem palavra atrativa, o pronome vem depois (ênclise)."},
+  {q:"Na norma culta, o verbo \u2018chegar\u2019 (deslocamento) rege:",o:["em (chegar em casa)","a (cheguei a casa)","de","com"],a:1,e:"Chegar a (não \u2018chegar em\u2019)."},
+  {q:"\u201CPrefiro estudar a trabalhar.\u201D A regência de \u2018preferir\u2019 é:",o:["preferir uma coisa do que outra","preferir uma coisa a outra","preferir mais que outra","preferir do que"],a:1,e:"Preferir A a B (sem \u2018do que\u2019/\u2018mais\u2019)."},
+  {q:"Em \u201CNinguém me viu\u201D, a próclise ocorre por causa de:",o:["futuro","palavra negativa (ninguém)","pausa","sujeito posposto"],a:1,e:"Termo negativo atrai o pronome → próclise."}
+ ]},
+ {id:"ti-seg1",t:"TI — Segurança: Tríade e Criptografia",cat:"ti",day:"29/06",qs:[
+  {q:"A tríade da segurança da informação é:",o:["confidencialidade, integridade e disponibilidade","autenticação, autorização e auditoria","firewall, antivírus e backup","criptografia, hash e VPN"],a:0,e:"CID: Confidencialidade, Integridade, Disponibilidade."},
+  {q:"Na criptografia simétrica:",o:["usa par de chaves pública/privada","a mesma chave cifra e decifra","não há chaves","só serve p/ assinatura"],a:1,e:"Simétrica (AES): mesma chave; assimétrica (RSA): par."},
+  {q:"Uma função hash (SHA-256) garante:",o:["confidencialidade","integridade dos dados","disponibilidade","velocidade"],a:1,e:"Se o dado muda, o hash muda — integridade."},
+  {q:"A assinatura digital garante, além da integridade:",o:["disponibilidade","autenticidade e não-repúdio","velocidade","anonimato"],a:1,e:"Comprova autoria e impede negar o envio."},
+  {q:"Senha + código no celular é:",o:["criptografia simétrica","autenticação multifator (MFA)","firewall","hashing"],a:1,e:"MFA combina fatores (saber + ter/ser)."}
+ ,
+  {q:"Na criptografia assimétrica, para CIFRAR uma mensagem ao destinatário usa-se a:",o:["chave privada do remetente","chave pública do destinatário","mesma chave","nenhuma chave"],a:1,e:"Cifra-se com a chave pública; só a privada do destinatário decifra."},
+  {q:"O algoritmo AES é exemplo de criptografia:",o:["assimétrica","simétrica","de hash","de assinatura"],a:1,e:"AES é simétrico; RSA é assimétrico."},
+  {q:"Garantir que a informação não foi alterada é o pilar da:",o:["confidencialidade","integridade","disponibilidade","autenticidade"],a:1,e:"Integridade = dados íntegros, sem alteração indevida."},
+  {q:"Manter o serviço acessível quando necessário é a:",o:["confidencialidade","integridade","disponibilidade","irretratabilidade"],a:2,e:"Disponibilidade = acesso quando preciso."},
+  {q:"Um certificado digital (ICP-Brasil) é emitido por uma:",o:["operadora de telefonia","Autoridade Certificadora (AC)","ANPD","CPU"],a:1,e:"A AC valida e emite certificados digitais."},
+  {q:"Impedir que o autor negue a autoria de uma ação é o(a):",o:["disponibilidade","não-repúdio (irretratabilidade)","confidencialidade","redundância"],a:1,e:"O não-repúdio comprova a autoria."}
+ ]},
+ {id:"ti-lgpd",t:"TI — Ameaças, Defesas e LGPD",cat:"ti",day:"30/06",qs:[
+  {q:"O malware que criptografa arquivos e exige resgate é o:",o:["spyware","ransomware","adware","worm"],a:1,e:"Ransomware cifra os dados e cobra resgate."},
+  {q:"Pela LGPD, \u201cdado pessoal sensível\u201d inclui:",o:["nome e e-mail","origem racial, religião, política, saúde ou vida sexual","telefone comercial","endereço do trabalho"],a:1,e:"Sensíveis: origem racial, religião, política, saúde, biometria."},
+  {q:"Na LGPD, a pessoa a quem se referem os dados é o:",o:["controlador","operador","titular","encarregado"],a:2,e:"Titular é o dono dos dados."},
+  {q:"Ataque que tira um serviço do ar por sobrecarga:",o:["phishing","DDoS","SQL injection","engenharia social"],a:1,e:"DDoS sobrecarrega o alvo."},
+  {q:"Fiscaliza a LGPD no Brasil a:",o:["Receita Federal","ANPD","Anatel","Polícia Federal"],a:1,e:"A ANPD é a autoridade nacional de proteção de dados."}
+ ,
+  {q:"E-mail falso que induz a vítima a revelar dados é:",o:["phishing","backup","firewall","patch"],a:0,e:"Phishing usa engano para roubar dados."},
+  {q:"A LGPD é a Lei nº:",o:["8.112/1990","13.709/2018","14.133/2021","8.666/1993"],a:1,e:"Lei 13.709/2018 (LGPD)."},
+  {q:"Na LGPD, quem toma as decisões sobre o tratamento dos dados é o:",o:["operador","controlador","titular","encarregado"],a:1,e:"O controlador decide o tratamento; o operador executa."},
+  {q:"O \u2018encarregado\u2019 (DPO), na LGPD, atua como:",o:["dono dos dados","canal entre controlador, titulares e ANPD","hacker ético","fornecedor de nuvem"],a:1,e:"O DPO é o ponto de contato/comunicação."},
+  {q:"Programa que se replica e se espalha sozinho pela rede é o:",o:["worm","cavalo de Troia","planilha","driver"],a:0,e:"Worm se autopropaga; trojan se disfarça."},
+  {q:"Atualizações que corrigem falhas de segurança são chamadas de:",o:["patches/correções","cookies","macros","scripts maliciosos"],a:0,e:"Patches corrigem vulnerabilidades."},
+  {q:"A cópia de segurança dos dados, para recuperação, é o:",o:["backup","cache","spool","log"],a:0,e:"O backup permite restaurar dados após incidentes."}
+ ]},
+ {id:"ti-bd1",t:"TI — Banco de Dados e SQL",cat:"ti",day:"01/07",qs:[
+  {q:"Comando SQL para consultar dados:",o:["INSERT","SELECT","UPDATE","DELETE"],a:1,e:"SELECT recupera dados."},
+  {q:"CREATE, ALTER e DROP pertencem a:",o:["DML","DDL","DCL","TCL"],a:1,e:"DDL define a estrutura."},
+  {q:"Identifica unicamente cada registro a:",o:["chave estrangeira","chave primária","índice","cardinalidade"],a:1,e:"A PK identifica a linha; a FK referencia outra tabela."},
+  {q:"GRANT e REVOKE pertencem a:",o:["DDL","DML","DCL","DQL"],a:2,e:"DCL controla privilégios de acesso."},
+  {q:"Para unir duas tabelas pelos campos relacionados:",o:["GROUP BY","ORDER BY","JOIN","HAVING"],a:2,e:"JOIN combina linhas (PK=FK)."}
+ ,
+  {q:"INSERT, UPDATE e DELETE pertencem à categoria:",o:["DDL","DML","DCL","TCL"],a:1,e:"DML manipula os dados."},
+  {q:"A cláusula que FILTRA linhas em um SELECT é:",o:["WHERE","ORDER BY","GROUP BY","JOIN"],a:0,e:"WHERE filtra registros."},
+  {q:"Para ordenar o resultado de uma consulta usa-se:",o:["GROUP BY","ORDER BY","HAVING","WHERE"],a:1,e:"ORDER BY ordena (ASC/DESC)."},
+  {q:"Agrupa registros para funções de agregação a cláusula:",o:["WHERE","GROUP BY","ORDER BY","LIMIT"],a:1,e:"GROUP BY agrupa; HAVING filtra grupos."},
+  {q:"Conta o número de linhas a função:",o:["SUM()","COUNT()","AVG()","MAX()"],a:1,e:"COUNT() conta registros."},
+  {q:"O campo que referencia a chave primária de outra tabela é a:",o:["chave primária","chave estrangeira (FK)","índice único","superchave"],a:1,e:"A FK cria o relacionamento entre tabelas."},
+  {q:"COMMIT e ROLLBACK pertencem a:",o:["DDL","DML","DCL","TCL"],a:3,e:"TCL controla transações."}
+ ]},
+ {id:"ti-bd2",t:"TI — Normalização e Transações (ACID)",cat:"ti",day:"02/07",qs:[
+  {q:"O objetivo da normalização é:",o:["aumentar redundância","reduzir redundância e anomalias","apagar tabelas","acelerar a internet"],a:1,e:"Normalizar elimina redundância/inconsistência."},
+  {q:"As propriedades de uma transação confiável formam:",o:["CRUD","ACID","HTTP","REST"],a:1,e:"ACID: Atomicidade, Consistência, Isolamento, Durabilidade."},
+  {q:"\u201cTudo ou nada\u201d na transação é a:",o:["Atomicidade","Consistência","Isolamento","Durabilidade"],a:0,e:"Atomicidade: se uma parte falha, desfaz tudo."},
+  {q:"Bancos não relacionais (documento, chave-valor) são:",o:["SQL puro","NoSQL","DDL","OLAP"],a:1,e:"NoSQL abrange modelos não relacionais."}
+ ,
+  {q:"A 1ª Forma Normal (1FN) exige:",o:["valores atômicos (sem campos multivalorados)","todas as FKs","nenhuma chave primária","tabelas únicas"],a:0,e:"1FN: cada campo com um único valor atômico."},
+  {q:"A 2ª Forma Normal (2FN) elimina:",o:["dependências transitivas","dependências parciais da chave","valores nulos","índices"],a:1,e:"2FN remove dependência parcial da chave composta."},
+  {q:"A 3ª Forma Normal (3FN) remove:",o:["dependências parciais","dependências transitivas","chaves estrangeiras","registros duplicados"],a:1,e:"3FN elimina dependências transitivas."},
+  {q:"A propriedade que garante que dados confirmados não se percam após falha é a:",o:["Atomicidade","Consistência","Isolamento","Durabilidade"],a:3,e:"Durabilidade: o commit persiste mesmo após falha."},
+  {q:"O \u2018I\u2019 de ACID, que evita interferência entre transações simultâneas, é:",o:["Integridade","Isolamento","Índice","Iteração"],a:1,e:"Isolamento separa transações concorrentes."},
+  {q:"NÃO é um modelo de banco NoSQL:",o:["documento","chave-valor","grafo","relacional com JOINs como base"],a:3,e:"O último descreve o modelo relacional, não NoSQL."},
+  {q:"A Consistência (ACID) garante que a transação leva o banco:",o:["a um estado inválido","de um estado válido a outro válido","a duplicar dados","a ignorar regras"],a:1,e:"Consistência preserva as regras de integridade."}
+ ]},
+ {id:"dir-adm1",t:"Direito Adm. — Princípios e Poderes",cat:"dir",day:"03/07",qs:[
+  {q:"Os princípios expressos do art. 37 formam a sigla:",o:["LIMPE","ACID","CRUD","SUS"],a:0,e:"LIMPE: Legalidade, Impessoalidade, Moralidade, Publicidade, Eficiência."},
+  {q:"\u201cSó fazer o que a lei permite\u201d é o princípio da:",o:["eficiência","legalidade","publicidade","moralidade"],a:1,e:"Legalidade: a Administração age conforme a lei."},
+  {q:"Limita direitos em prol do coletivo (fiscalização, multas):",o:["hierárquico","disciplinar","de polícia","regulamentar"],a:2,e:"O poder de polícia condiciona direitos."},
+  {q:"Aplica sanções a servidores por faltas funcionais o poder:",o:["disciplinar","regulamentar","vinculado","de polícia"],a:0,e:"Poder disciplinar pune infrações funcionais."},
+  {q:"No ato vinculado, o agente:",o:["decide por conveniência","não tem margem: a lei define tudo","pode ignorar a lei","atua sem competência"],a:1,e:"Vinculado: a lei determina; discricionário: há mérito."}
+ ,
+  {q:"O \u2018P\u2019 de LIMPE refere-se à:",o:["paridade","publicidade","probidade","planejamento"],a:1,e:"LIMPE: Legalidade, Impessoalidade, Moralidade, Publicidade, Eficiência."},
+  {q:"Atuar visando ao interesse público, sem favorecer ninguém, é a:",o:["eficiência","impessoalidade","publicidade","moralidade"],a:1,e:"Impessoalidade: tratamento isonômico, sem favoritismo."},
+  {q:"O poder de a Administração rever seus próprios atos (anular/revogar) é a:",o:["autotutela","tutela","hierarquia","discricionariedade"],a:0,e:"Autotutela (Súmulas 346 e 473 do STF)."},
+  {q:"Editar normas (decretos) para a fiel execução da lei é o poder:",o:["disciplinar","regulamentar/normativo","de polícia","vinculado"],a:1,e:"O poder regulamentar edita atos normativos."},
+  {q:"No ato discricionário, há margem de:",o:["nenhuma escolha","conveniência e oportunidade (mérito)","ilegalidade permitida","incompetência"],a:1,e:"Discricionário: juízo de mérito dentro da lei."},
+  {q:"Distribuir e escalonar funções entre órgãos e agentes é o poder:",o:["hierárquico","de polícia","regulamentar","vinculado"],a:0,e:"O poder hierárquico organiza, ordena e fiscaliza."}
+ ]},
+ {id:"dir-adm2",t:"Direito Adm. — Atos Administrativos",cat:"dir",day:"04/07",qs:[
+  {q:"São requisitos do ato administrativo:",o:["competência, finalidade, forma, motivo e objeto","só forma e objeto","legalidade e eficiência","atomicidade e isolamento"],a:0,e:"Cinco requisitos: competência, finalidade, forma, motivo, objeto."},
+  {q:"Permite executar o ato sem ordem judicial prévia:",o:["presunção de legitimidade","imperatividade","autoexecutoriedade","tipicidade"],a:2,e:"Autoexecutoriedade: executa diretamente."},
+  {q:"Retirar um ato por ilegalidade é:",o:["revogação","anulação","convalidação","caducidade"],a:1,e:"Anulação = ilegalidade; revogação = conveniência."},
+  {q:"A presunção de legitimidade significa que o ato:",o:["é irrevogável","presume-se válido até prova em contrário","não pode ser questionado","dispensa motivação"],a:1,e:"Presume-se legal até prova em contrário (relativa)."}
+ ,
+  {q:"O atributo que impõe o ato a terceiros, independentemente da concordância, é a:",o:["imperatividade","tipicidade","presunção","motivação"],a:0,e:"Imperatividade: o ato se impõe coercitivamente."},
+  {q:"Retirar um ato VÁLIDO por conveniência e oportunidade é:",o:["anulação","revogação","cassação","convalidação"],a:1,e:"Revogação atinge ato legal, por mérito (efeito ex nunc)."},
+  {q:"Corrigir um vício sanável de um ato administrativo é:",o:["anulação","revogação","convalidação","caducidade"],a:2,e:"Convalidação corrige defeitos sanáveis."},
+  {q:"O requisito \u2018competência\u2019 refere-se a:",o:["o resultado do ato","o poder legal do agente para praticá-lo","a forma escrita","o interesse público"],a:1,e:"Competência é a atribuição legal do agente."},
+  {q:"O ato que depende da manifestação de dois ou mais órgãos é:",o:["simples","complexo/composto","unilateral puro","nulo"],a:1,e:"Atos complexos/compostos exigem mais de uma vontade."},
+  {q:"A finalidade de todo ato administrativo é sempre:",o:["o lucro do agente","o interesse público","a vontade do chefe","a urgência"],a:1,e:"O fim é o interesse público; o desvio de finalidade vicia o ato."},
+  {q:"O \u2018motivo\u2019 do ato administrativo é:",o:["o efeito jurídico","a situação de fato e de direito que o fundamenta","a assinatura","o objeto"],a:1,e:"Motivo = pressuposto de fato e de direito."}
+ ]},
+ {id:"ti-eng1",t:"TI — Engenharia de Software e Ágil",cat:"ti",day:"06/07",qs:[
+  {q:"No Scrum, prioriza o backlog e representa o negócio o:",o:["Scrum Master","Product Owner","Desenvolvedor","Gerente"],a:1,e:"O PO prioriza o Product Backlog."},
+  {q:"O período fixo que entrega um incremento é a:",o:["daily","sprint","release","milestone"],a:1,e:"A Sprint entrega um incremento."},
+  {q:"Requisito não funcional é, por exemplo:",o:["cadastrar usuário","emitir nota","responder em até 2s (desempenho)","calcular total"],a:2,e:"Não funcionais tratam de qualidade."},
+  {q:"A diferença do ágil para o cascata é:",o:["entregar tudo no final","ciclos curtos e iterativos","não documentar","dispensar o cliente"],a:1,e:"Ágil é iterativo; cascata é sequencial."},
+  {q:"A ordem usual do ciclo de vida é:",o:["testes → requisitos → implantação","requisitos → projeto → implementação → testes → implantação → manutenção","implementação → requisitos","manutenção → requisitos"],a:1,e:"Do levantamento de requisitos à manutenção."}
+ ,
+  {q:"No Scrum, remove impedimentos e protege o time o:",o:["Product Owner","Scrum Master","Cliente","Gerente de RH"],a:1,e:"O Scrum Master é facilitador e \u2018servidor\u2019 do time."},
+  {q:"A reunião diária do Scrum (até 15 min) é a:",o:["Sprint Review","Daily Scrum","Retrospectiva","Planning"],a:1,e:"A Daily sincroniza o time a cada dia."},
+  {q:"Requisito funcional descreve:",o:["desempenho","segurança","o que o sistema deve fazer (funções)","disponibilidade"],a:2,e:"Funcional = funcionalidade; não funcional = qualidade."},
+  {q:"A reunião que inspeciona o incremento ao fim da sprint é a:",o:["Daily","Sprint Review","Planning","Refinamento"],a:1,e:"A Review apresenta o que foi entregue."},
+  {q:"O modelo em cascata caracteriza-se por:",o:["fases sequenciais e rígidas","entregas iterativas curtas","ausência de requisitos","programação em par"],a:0,e:"Cascata é sequencial; ágil é iterativo."},
+  {q:"O Product Backlog é:",o:["a lista priorizada de itens do produto","o código-fonte","o servidor","o contrato"],a:0,e:"Backlog: itens priorizados pelo PO."},
+  {q:"A Retrospectiva da Sprint serve para:",o:["entregar o produto","melhorar o processo do time","priorizar o backlog","contratar pessoas"],a:1,e:"Busca a melhoria contínua do time."}
+ ]},
+ {id:"ti-eng2",t:"TI — Testes, Git e Orientação a Objetos",cat:"ti",day:"07/07",qs:[
+  {q:"Testa isoladamente a menor parte do código o teste:",o:["de integração","unitário","de aceitação","de carga"],a:1,e:"Unitário valida unidades isoladas."},
+  {q:"No Git, envia commits locais ao remoto:",o:["git pull","git push","git clone","git status"],a:1,e:"git push envia; git pull traz."},
+  {q:"Permite a uma classe herdar de outra a:",o:["herança","encapsulamento","polimorfismo","abstração"],a:0,e:"Herança reaproveita da superclasse."},
+  {q:"Esconder os detalhes internos do objeto é:",o:["herança","polimorfismo","encapsulamento","instanciação"],a:2,e:"Encapsulamento protege o estado interno."},
+  {q:"Linha de desenvolvimento paralela no Git é o:",o:["commit","branch","merge","tag"],a:1,e:"branch ramifica; merge integra."}
+ ,
+  {q:"Testar a interação entre módulos é o teste:",o:["unitário","de integração","de unidade","estático"],a:1,e:"A integração verifica a comunicação entre componentes."},
+  {q:"Combina duas branches em uma só no Git o:",o:["clone","merge","push","fetch"],a:1,e:"merge integra alterações de ramos."},
+  {q:"A capacidade de um método se comportar de formas diferentes conforme o objeto é o:",o:["herança","polimorfismo","encapsulamento","abstração"],a:1,e:"Polimorfismo: mesma interface, comportamentos distintos."},
+  {q:"Registrar uma alteração no repositório local é fazer um:",o:["push","commit","pull","stash"],a:1,e:"O commit grava a alteração no histórico local."},
+  {q:"O molde que define atributos e métodos de um objeto é a:",o:["instância","classe","variável","interface gráfica"],a:1,e:"A classe é o molde; o objeto é a instância."},
+  {q:"Baixar e integrar as alterações do repositório remoto:",o:["git push","git pull","git add","git log"],a:1,e:"git pull traz e mescla o que está no remoto."},
+  {q:"O teste que avalia se o sistema atende ao usuário final é o:",o:["unitário","de aceitação","de unidade","de fumaça apenas"],a:1,e:"O teste de aceitação valida com o cliente/usuário."}
+ ]},
+ {id:"ti-gov",t:"TI — Governança: ITIL e COBIT",cat:"ti",day:"08/07",qs:[
+  {q:"O ITIL é voltado a:",o:["jogos","gerenciamento de serviços de TI","hardware","marketing"],a:1,e:"ITIL: boas práticas de serviços de TI."},
+  {q:"Interrupção não planejada de um serviço é:",o:["mudança","incidente","problema","requisição"],a:1,e:"Incidente é a interrupção; problema é a causa-raiz."},
+  {q:"O COBIT foca em:",o:["governança e gestão de TI","linguagem de programação","banco de dados","Wi-Fi"],a:0,e:"COBIT alinha a TI ao negócio e ao controle."},
+  {q:"Alinhar a TI aos objetivos estratégicos é função da:",o:["governança de TI","manutenção de impressoras","antivírus","formatação de discos"],a:0,e:"A governança garante que a TI sustente as metas."}
+ ,
+  {q:"A causa-raiz de um ou mais incidentes, na ITIL, é o:",o:["problema","evento","requisição","ativo"],a:0,e:"Problema é a causa; incidente é o efeito."},
+  {q:"O documento que define metas de qualidade do serviço entre provedor e cliente é o:",o:["SLA (Acordo de Nível de Serviço)","backlog","kanban","script"],a:0,e:"O SLA estabelece níveis de serviço acordados."},
+  {q:"A ITIL aborda o serviço de TI ao longo de seu:",o:["ciclo de vida","código-fonte","hardware apenas","contrato comercial só"],a:0,e:"A ITIL trata o ciclo de vida do serviço."},
+  {q:"A central que registra e direciona os chamados dos usuários é o:",o:["Service Desk","data center","firewall","backbone"],a:0,e:"O Service Desk é o ponto único de contato."},
+  {q:"O COBIT separa claramente:",o:["hardware e software","governança e gestão","front-end e back-end","LAN e WAN"],a:1,e:"O COBIT distingue governança (direção) de gestão (execução)."},
+  {q:"Uma solicitação rotineira do usuário (ex.: reset de senha) é uma:",o:["mudança emergencial","requisição de serviço","crise","auditoria"],a:1,e:"Requisição de serviço é demanda padrão do usuário."},
+  {q:"A finalidade da governança de TI é:",o:["trocar cabos","alinhar a TI à estratégia e gerar valor","programar jogos","formatar discos"],a:1,e:"A governança garante valor e alinhamento estratégico."}
+ ]},
+ {id:"ti-infra",t:"TI — Infra, Web e Lei 14.133",cat:"ti",day:"09/07",qs:[
+  {q:"O RAID que espelha os dados é o:",o:["RAID 0","RAID 1","RAID 5","RAID 10 apenas"],a:1,e:"RAID 1 espelha; RAID 0 só distribui; RAID 5 usa paridade."},
+  {q:"Em API REST, cria um recurso o método:",o:["GET","POST","DELETE","HEAD"],a:1,e:"POST cria; GET lê; PUT atualiza; DELETE remove."},
+  {q:"A regra de backup \u201c3-2-1\u201d recomenda:",o:["1 cópia em 3 lugares","3 cópias, 2 mídias, 1 fora do local","3 backups por dia","backup só na nuvem"],a:1,e:"3 cópias, 2 mídias, 1 off-site."},
+  {q:"A estrutura de uma página web é definida por:",o:["CSS","JavaScript","HTML","SQL"],a:2,e:"HTML estrutura; CSS estiliza; JS interage."},
+  {q:"Rege as licitações e contratos públicos atuais a:",o:["Lei 8.666/1993","Lei 14.133/2021","Lei 13.709/2018","Lei 8.112/1990"],a:1,e:"14.133/2021 é a atual Lei de Licitações."}
+ ,
+  {q:"O RAID 0 oferece:",o:["espelhamento","desempenho por distribuição (striping), sem redundância","paridade dupla","tolerância total a falhas"],a:1,e:"O RAID 0 melhora desempenho, mas não tem redundância."},
+  {q:"O método HTTP que ATUALIZA/substitui um recurso é:",o:["GET","POST","PUT","HEAD"],a:2,e:"PUT atualiza/substitui; PATCH altera parcialmente."},
+  {q:"Em uma página web, o estilo visual é definido por:",o:["HTML","CSS","SQL","PHP"],a:1,e:"CSS estiliza; HTML estrutura; JS dá comportamento."},
+  {q:"Uma API REST usa, como base, o protocolo:",o:["FTP","HTTP/HTTPS","SMTP","SSH"],a:1,e:"REST trafega sobre HTTP, usando seus métodos."},
+  {q:"O método HTTP usado para LER dados, sem alterá-los, é:",o:["GET","POST","DELETE","PUT"],a:0,e:"GET recupera dados."},
+  {q:"A Lei 14.133/2021 substituiu, principalmente, a:",o:["Lei 8.112/1990","Lei 8.666/1993","Lei 13.709/2018","CLT"],a:1,e:"A nova Lei de Licitações substitui a 8.666/1993."},
+  {q:"Modalidade de licitação mantida pela Lei 14.133/2021 é o:",o:["pregão","convite","tomada de preços","concurso de cargos"],a:0,e:"O convite e a tomada de preços foram extintos; o pregão permanece."}
+ ]},
+ {id:"dir-adm3",t:"Direito Adm. — Servidores, Improbidade e Licitações",cat:"dir",day:"10/07",qs:[
+  {q:"Importa enriquecimento ilícito (Lei 8.429):",o:["atrasar um ofício","receber vantagem econômica indevida em razão do cargo","faltar a reunião","enviar e-mail errado"],a:1,e:"Auferir vantagem indevida em razão do cargo."},
+  {q:"Contratação direta por inviabilidade de competição (14.133):",o:["dispensa","inexigibilidade","adjudicação","habilitação"],a:1,e:"Inexigibilidade: competição inviável."},
+  {q:"Disciplina direitos/deveres e vínculo do servidor o:",o:["regime jurídico (estatuto)","código penal","regimento da empresa","contrato social"],a:0,e:"O estatuto define o vínculo do servidor."},
+  {q:"A estabilidade do servidor efetivo, em regra, vem após:",o:["6 meses","1 ano","3 anos de efetivo exercício + avaliação","10 anos"],a:2,e:"CF: estabilidade após 3 anos e avaliação."}
+ ,
+  {q:"A forma de provimento ORIGINÁRIO em cargo público é a:",o:["promoção","nomeação","readaptação","reversão"],a:1,e:"Nomeação é originária; as demais são derivadas."},
+  {q:"O conjunto de atribuições e responsabilidades, com denominação própria, é o:",o:["cargo","contrato","mandato","estágio"],a:0,e:"Cargo público: atribuições com denominação própria."},
+  {q:"A licitação DISPENSÁVEL ocorre, por exemplo, em:",o:["competição inviável","contratações de pequeno valor","fornecedor exclusivo","notória especialização"],a:1,e:"Na dispensa a lei autoriza não licitar (ex.: baixo valor)."},
+  {q:"A saída do servidor do cargo, sem caráter punitivo, é a:",o:["demissão","exoneração","cassação","disponibilidade"],a:1,e:"Exoneração não pune; demissão é penalidade."},
+  {q:"A Lei 8.429 trata de:",o:["licitações","improbidade administrativa","servidores temporários","tributos"],a:1,e:"Lei de Improbidade Administrativa."},
+  {q:"Causa prejuízo ao erário, na Lei 8.429:",o:["chegar atrasado","facilitar a perda patrimonial de bens públicos","faltar a reunião","errar um cálculo de boa-fé"],a:1,e:"Atos que lesam o patrimônio público."},
+  {q:"Na 14.133, o critério de julgamento que busca o menor dispêndio é o de:",o:["menor preço","maior lance","melhor técnica isolada","sorteio"],a:0,e:"Menor preço é critério de julgamento previsto."}
+ ]},
+ {id:"dir-const1",t:"Direito Const. — Princípios e Direitos",cat:"dir",day:"11/07",qs:[
+  {q:"NÃO é fundamento da República (art. 1º):",o:["soberania","cidadania","dignidade da pessoa humana","a livre concorrência empresarial"],a:3,e:"Fundamentos: soberania, cidadania, dignidade, valores do trabalho/livre iniciativa, pluralismo."},
+  {q:"Protege direito líquido e certo (não amparado por HC/HD):",o:["habeas corpus","mandado de segurança","mandado de injunção","habeas data"],a:1,e:"O MS protege direito líquido e certo."},
+  {q:"O art. 5º da CF trata de:",o:["direitos sociais","direitos e deveres individuais e coletivos","direitos políticos","nacionalidade"],a:1,e:"Art. 5º: direitos e garantias individuais e coletivos."},
+  {q:"São direitos sociais (art. 6º):",o:["voto e elegibilidade","educação, saúde, trabalho e moradia","habeas corpus","nacionalidade"],a:1,e:"Direitos sociais: educação, saúde, trabalho, moradia etc."}
+ ,
+  {q:"Os \u2018objetivos fundamentais\u2019 da República estão no art.:",o:["1º","3º","5º","37"],a:1,e:"Art. 3º: sociedade livre, justa e solidária etc."},
+  {q:"Garante a liberdade de locomoção (ir e vir) o remédio:",o:["habeas data","habeas corpus","mandado de injunção","ação popular"],a:1,e:"O habeas corpus protege a liberdade de locomoção."},
+  {q:"Assegura conhecer/retificar dados pessoais em bancos públicos o:",o:["habeas corpus","habeas data","mandado de segurança","mandado de injunção"],a:1,e:"O habeas data trata de informações pessoais."},
+  {q:"Combate a falta de norma que inviabilize direito constitucional o:",o:["mandado de injunção","habeas corpus","habeas data","ação civil pública"],a:0,e:"O mandado de injunção combate a omissão normativa."},
+  {q:"Os direitos e garantias fundamentais, em regra, têm aplicação:",o:["diferida","imediata","facultativa","retroativa"],a:1,e:"Art. 5º, §1º: aplicação imediata."},
+  {q:"Anula ato lesivo ao patrimônio público, proposta pelo cidadão, a:",o:["ação popular","reclamação","habeas data","mandado de segurança"],a:0,e:"A ação popular é manejada pelo cidadão."}
+ ]},
+ {id:"dir-const2",t:"Direito Const. — Nacionalidade, Municípios e Administração",cat:"dir",day:"13/07",qs:[
+  {q:"Instrumentos de soberania popular direta (art. 14):",o:["só o voto","plebiscito, referendo e iniciativa popular","só referendo","só iniciativa popular"],a:1,e:"Art. 14: plebiscito, referendo e iniciativa popular."},
+  {q:"A \u201cconstituição municipal\u201d é a:",o:["Lei Orgânica do Município","Constituição Estadual","LDO","Lei de Improbidade"],a:0,e:"A Lei Orgânica é a norma fundamental do Município."},
+  {q:"A investidura em cargo público depende, em regra, de:",o:["indicação política","aprovação prévia em concurso público","convite do prefeito","tempo de serviço"],a:1,e:"Regra: concurso público (art. 37, II)."},
+  {q:"São brasileiros natos (art. 12):",o:["estrangeiros naturalizados","nascidos no Brasil, salvo filhos de estrangeiros a serviço do seu país","só filhos de brasileiros","quem mora há 15 anos"],a:1,e:"Critério do solo (jus soli)."}
+ ,
+  {q:"O Município reger-se-á por sua:",o:["Constituição própria","Lei Orgânica","portaria","resolução"],a:1,e:"A Lei Orgânica é a norma máxima do Município."},
+  {q:"Compete privativamente ao Município:",o:["legislar sobre direito penal","organizar serviços de interesse local","emitir moeda","declarar guerra"],a:1,e:"Interesse local é competência municipal (art. 30)."},
+  {q:"A idade mínima para ser Vereador é:",o:["16 anos","18 anos","21 anos","35 anos"],a:1,e:"Vereador: 18 anos (art. 14)."},
+  {q:"São Poderes da União, independentes e harmônicos:",o:["só o Executivo","Legislativo, Executivo e Judiciário","Executivo e Militar","Municipal e Estadual"],a:1,e:"Art. 2º: separação de Poderes."},
+  {q:"O voto, no Brasil, é OBRIGATÓRIO para os:",o:["16 a 18 anos","maiores de 18 até 70 anos","maiores de 70","analfabetos"],a:1,e:"Obrigatório dos 18 aos 70; facultativo nos demais casos."},
+  {q:"A naturalização é forma de aquisição de nacionalidade:",o:["originária (nato)","secundária (naturalizado)","automática a todos","vedada"],a:1,e:"Naturalizado = nacionalidade secundária."},
+  {q:"A administração pública obedece aos princípios do art.:",o:["5º","37","14","1º"],a:1,e:"Art. 37 traz os princípios (LIMPE)."}
+ ]},
+ {id:"loc-sero",t:"Município de Seropédica",cat:"loc",day:"14–15/07",qs:[
+  {q:"Seropédica resultou do desmembramento de:",o:["Nova Iguaçu","Itaguaí","Rio de Janeiro","Paracambi"],a:1,e:"Criada pela Lei estadual 2.446/1995, desmembrada de Itaguaí."},
+  {q:"NÃO faz divisa com Seropédica:",o:["Itaguaí","Japeri","Mangaratiba","Queimados"],a:2,e:"Limítrofes: Itaguaí, Paracambi, Japeri, Queimados, Nova Iguaçu e Rio de Janeiro."},
+  {q:"São símbolos oficiais do município:",o:["só a bandeira","bandeira, hino e brasão","só o brasão","bandeira e moeda própria"],a:1,e:"Bandeira, Hino e Brasão (confirme na Lei Orgânica)."},
+  {q:"Os instrumentos de planejamento orçamentário são:",o:["PPA, LDO e LOA","só a LOA","PIB, IPCA e Selic","CLT, CF e LRF"],a:0,e:"PPA, LDO e LOA."},
+  {q:"Seropédica é conhecida por sediar:",o:["UERJ","UFRRJ","UFRJ","IME"],a:1,e:"A UFRRJ tem campus principal em Seropédica."}
+ ,
+  {q:"Seropédica é um município do estado:",o:["São Paulo","Rio de Janeiro","Minas Gerais","Espírito Santo"],a:1,e:"Seropédica fica no estado do Rio de Janeiro."},
+  {q:"O chefe do Poder Executivo municipal é o:",o:["Governador","Prefeito","Vereador","Presidente da Câmara"],a:1,e:"O Prefeito chefia o Executivo municipal."},
+  {q:"O Poder Legislativo do município é exercido pela:",o:["Assembleia Legislativa","Câmara Municipal (de Vereadores)","Prefeitura","Justiça Eleitoral"],a:1,e:"A Câmara Municipal exerce o Legislativo local."},
+  {q:"Seropédica integra qual região do estado do Rio?",o:["Região dos Lagos","Região Metropolitana / Baixada Fluminense","Norte Fluminense","Região Serrana"],a:1,e:"Situa-se na Região Metropolitana (Baixada Fluminense)."},
+  {q:"Uma marca histórica e econômica de Seropédica é:",o:["a indústria automobilística","a presença da UFRRJ e a tradição agrícola","o turismo de praia","a mineração de ferro"],a:1,e:"A UFRRJ e a vocação rural/agrícola marcam o município."},
+  {q:"A norma fundamental que organiza o município de Seropédica é a:",o:["Constituição Federal apenas","Lei Orgânica do Município","CLT","Lei de Licitações"],a:1,e:"A Lei Orgânica estrutura o município (confirme detalhes na lei oficial)."}
+ ]},
+ {id:"loc-reg",t:"Regimento Interno da Câmara",cat:"loc",day:"16–17/07",qs:[
+  {q:"Disciplina o funcionamento interno da Câmara o:",o:["Estatuto do Servidor","Regimento Interno","Código Tributário","Plano Diretor"],a:1,e:"O Regimento organiza sessões, comissões e processo legislativo."},
+  {q:"Dirige os trabalhos da Câmara (Presidente, Vice, Secretários) a:",o:["Mesa Diretora","Comissão de Ética","Procuradoria","Ouvidoria"],a:0,e:"A Mesa Diretora dirige os trabalhos."},
+  {q:"Comissão temporária p/ apurar fato por prazo certo é a:",o:["permanente","CPI","mesa diretora","liderança"],a:1,e:"A CPI investiga fato específico por prazo determinado."},
+  {q:"A concordância do Prefeito com o projeto aprovado é a:",o:["sanção","veto","promulgação","emenda"],a:0,e:"Sanção = concordância; veto = discordância."},
+  {q:"NÃO é espécie normativa do processo legislativo:",o:["projeto de lei","projeto de resolução","decreto legislativo","contrato de trabalho"],a:3,e:"Contrato de trabalho não é espécie normativa."}
+ ,
+  {q:"As comissões que existem de forma estável na Câmara são as:",o:["temporárias","permanentes","externas só","de inquérito apenas"],a:1,e:"As permanentes são estáveis; as CPIs são temporárias."},
+  {q:"A recusa, total ou parcial, do Prefeito a um projeto aprovado é o:",o:["sanção","veto","promulgação","arquivamento"],a:1,e:"Veto = discordância do chefe do Executivo."},
+  {q:"Para produzir efeitos, após sancionada/promulgada, a lei precisa ser:",o:["esquecida","publicada","vetada","emendada"],a:1,e:"A publicação dá publicidade e vigência à lei."},
+  {q:"Quem dirige, em regra, as sessões da Câmara é o:",o:["Prefeito","Presidente da Câmara","Governador","Procurador"],a:1,e:"O Presidente da Câmara (Mesa) dirige os trabalhos."},
+  {q:"O ato normativo que trata de matéria interna da própria Câmara é a:",o:["lei complementar federal","resolução","medida provisória","emenda à Constituição"],a:1,e:"Resoluções/decretos legislativos cuidam de assuntos do Legislativo."},
+  {q:"A deliberação (votação) de um projeto pela Câmara ocorre em:",o:["sessão plenária","reunião da Prefeitura","cartório","tribunal"],a:0,e:"A votação ocorre no Plenário."}
+ ]},
+ {id:"ger-mat",t:"Matemática e Raciocínio Lógico",cat:"ger",day:"18–19/07",qs:[
+  {q:"A negação de \u201cTodo concurseiro estuda\u201d é:",o:["Nenhum estuda","Algum concurseiro não estuda","Todo concurseiro não estuda","Todos estudam pouco"],a:1,e:"Negação de \u201ctodo A é B\u201d: \u201cexiste A que não é B\u201d."},
+  {q:"R$ 200 com 15% de desconto fica:",o:["R$ 185","R$ 170","R$ 30","R$ 230"],a:1,e:"15% de 200 = 30; 200 − 30 = 170."},
+  {q:"2 impressoras fazem um total em 8h. Para o mesmo em 4h:",o:["1","4","6","8"],a:1,e:"Grandezas inversas: metade do tempo = dobro (4)."},
+  {q:"\u201cSe chove, então a rua molha\u201d é falso apenas quando:",o:["chove e molha","chove e não molha","não chove e molha","não chove e não molha"],a:1,e:"p→q é falso só com p verdadeiro e q falso."},
+  {q:"A média de 4, 8 e 12 é:",o:["6","8","9","12"],a:1,e:"(4+8+12)/3 = 8."}
+ ,
+  {q:"20% de 350 é:",o:["35","60","70","80"],a:2,e:"10% de 350 = 35; 20% = 70."},
+  {q:"A negação de \u201CAlgum aluno passou\u201D é:",o:["Todos passaram","Nenhum aluno passou","Algum não passou","Muitos passaram"],a:1,e:"Negar \u2018algum A é B\u2019 → \u2018nenhum A é B\u2019."},
+  {q:"A conjunção \u2018p e q\u2019 só é verdadeira quando:",o:["pelo menos um é V","ambos são V","ambos são F","p é F"],a:1,e:"A conjunção é V apenas se p e q forem V."},
+  {q:"Se 3 operários fazem uma obra em 12 dias, 6 operários (mesmo ritmo) fazem em:",o:["24","6","9","3"],a:1,e:"Grandezas inversas: dobro de operários → metade do tempo = 6."},
+  {q:"A disjunção \u2018p ou q\u2019 é falsa APENAS quando:",o:["ambos V","ambos F","p V e q F","p F e q V"],a:1,e:"A disjunção só é falsa se ambos forem falsos."},
+  {q:"2 está para 5 assim como 8 está para:",o:["10","15","20","25"],a:2,e:"2/5 = 8/x → x = 20 (proporção)."},
+  {q:"A média aritmética de 10, 20 e 30 é:",o:["15","20","25","30"],a:1,e:"(10+20+30)/3 = 20."}
+ ]},
+ {id:"ger-inf",t:"Informática (noções)",cat:"ger",day:"20/07",qs:[
+  {q:"No Excel/Sheets, soma um intervalo a função:",o:["=MÉDIA()","=SOMA()","=SE()","=PROCV()"],a:1,e:"=SOMA(A1:A10) soma o intervalo."},
+  {q:"Em fluxograma, o losango representa:",o:["um processo","uma decisão (condição)","o início","entrada de dados"],a:1,e:"Losango = decisão; retângulo = processo."},
+  {q:"Repete um bloco de comandos a estrutura de:",o:["decisão (if)","repetição (for/while)","atribuição","comentário"],a:1,e:"Laços (for, while) repetem instruções."},
+  {q:"Filtra o tráfego de rede bloqueando acessos indevidos o:",o:["antivírus","firewall","navegador","driver"],a:1,e:"O firewall controla o tráfego conforme regras."}
+ ,
+  {q:"No Windows, copiar é Ctrl+C e colar é:",o:["Ctrl+V","Ctrl+X","Ctrl+Z","Ctrl+P"],a:0,e:"Ctrl+V cola; Ctrl+X recorta; Ctrl+Z desfaz."},
+  {q:"A função de planilha que faz BUSCA VERTICAL em tabela é:",o:["=SOMA()","=PROCV() / =VLOOKUP()","=HOJE()","=SE()"],a:1,e:"PROCV (VLOOKUP) busca valores em colunas."},
+  {q:"Programa malicioso disfarçado de software legítimo é o:",o:["cavalo de Troia (trojan)","firewall","antivírus","driver"],a:0,e:"O trojan engana o usuário ao se disfarçar."},
+  {q:"Memória de armazenamento permanente (não volátil) é o:",o:["RAM","HD/SSD","cache","registrador"],a:1,e:"HD/SSD guardam dados mesmo desligados."},
+  {q:"Em planilhas, toda fórmula começa com o sinal:",o:["+","=","@","#"],a:1,e:"As fórmulas iniciam com \u2018=\u2019."},
+  {q:"Conjunto finito de passos para resolver um problema é um:",o:["algoritmo","navegador","pixel","cookie"],a:0,e:"Algoritmo é a sequência finita de passos."},
+  {q:"O atalho que salva o documento na maioria dos programas é:",o:["Ctrl+S","Ctrl+B","Ctrl+A","Ctrl+L"],a:0,e:"Ctrl+S (salvar)."}
+ ]}
+];
+
+/* ===== ESSENCIAIS (difíceis) ===== */
+const HIGH={t:"🔥 Essenciais — quase certo na prova",qs:[
+ {q:"Entre os princípios EXPRESSOS no art. 37 (LIMPE), NÃO se inclui:",o:["legalidade","impessoalidade","razoabilidade","eficiência"],a:2,e:"Razoabilidade é princípio implícito; os expressos são LIMPE."},
+ {q:"No OSI, criptografia, compactação e tradução de formatos ocorrem na camada de:",o:["Sessão","Apresentação","Aplicação","Transporte"],a:1,e:"A camada de Apresentação (6) cuida de criptografia, compressão e tradução."},
+ {q:"O comando SQL TRUNCATE pertence à categoria:",o:["DML","DDL","DCL","TCL"],a:1,e:"Pegadinha: TRUNCATE é DDL (não DML). DELETE é que é DML."},
+ {q:"A máscara /30 disponibiliza quantos endereços úteis para hosts?",o:["4","2","6","1"],a:1,e:"/30 tem 4 endereços; menos rede e broadcast = 2 (enlaces ponto a ponto)."},
+ {q:"NÃO é atributo do ato administrativo:",o:["presunção de legitimidade","imperatividade","autoexecutoriedade","discricionariedade"],a:3,e:"Atributos: presunção, imperatividade, autoexecutoriedade e tipicidade."},
+ {q:"Forma correta segundo a norma culta:",o:["Tratam-se de questões difíceis.","Trata-se de questões difíceis.","Tratam-se de uma questão.","Trata de questões difíceis."],a:1,e:"\u201cTratar-se de\u201d é impessoal: sempre no singular."},
+ {q:"Sobre a função hash:",o:["é reversível com a chave certa","é de mão única (não recupera o original)","usa par de chaves","serve para cifrar mensagens"],a:1,e:"Hash é unidirecional: garante integridade, não cifra."},
+ {q:"Pela LGPD, o dado anonimizado, em regra:",o:["é sempre sensível","não é dado pessoal (salvo se reversível)","exige consentimento","pertence à ANPD"],a:1,e:"Anonimizado, em regra, não é dado pessoal, salvo se a anonimização for revertida."},
+ {q:"\u201cRefiro-me ___ questões que estudei.\u201d Forma correta:",o:["a aquelas","àquelas","a àquelas","aquelas"],a:1,e:"a + aquelas = àquelas (crase no \u2018a\u2019 do demonstrativo)."},
+ {q:"O veto do chefe do Executivo no processo legislativo:",o:["é sempre total","pode ser total ou parcial","só recai sobre palavras isoladas","não pode ser derrubado"],a:1,e:"Pode ser total ou parcial; o parcial abrange texto integral de artigo/parágrafo/inciso/alínea, e pode ser derrubado."},
+ {q:"O RAID 5 exige, no mínimo, quantos discos?",o:["2","3","4","1"],a:1,e:"RAID 5 (paridade distribuída) requer no mínimo 3 discos."},
+ {q:"Backup incremental x diferencial:",o:["são iguais","incremental: desde o último backup (qualquer tipo); diferencial: desde o último completo","diferencial ocupa menos e restaura mais rápido","incremental copia tudo sempre"],a:1,e:"Incremental parte do último backup; diferencial, do último completo."},
+ {q:"O TCP caracteriza-se por:",o:["ser sem conexão e não confiável","estabelecer conexão (3-way handshake) e garantir entrega ordenada","não usar portas","ser usado em streaming por ser mais rápido"],a:1,e:"TCP é orientado à conexão e confiável; o UDP é que é sem conexão."},
+ {q:"A anulação de um ato administrativo, por ilegalidade:",o:["produz efeitos só de agora (ex nunc)","retroage à origem (ex tunc)","depende de conveniência","só o Judiciário pode fazer"],a:1,e:"Anulação retroage (ex tunc); a Administração pode anular seus atos (autotutela)."}
+]};
+
+const TEMAS=["TI — Arquitetura e Sistemas Operacionais","TI — Administração de Linux e Windows","TI — Virtualização e Computação em Nuvem","TI — Redes, modelo OSI e TCP/IP","TI — Protocolos e portas","TI — Endereçamento IP, subnetting e equipamentos","TI — Segurança da Informação e criptografia","TI — LGPD (Lei 13.709/2018)","TI — Banco de dados, modelo ER e SQL","TI — Normalização e transações ACID","TI — Engenharia de software e métodos ágeis (Scrum)","TI — Testes, Git e orientação a objetos","TI — Governança de TI (ITIL e COBIT)","TI — Servidores, RAID, backup e monitoramento","TI — Web (HTML, CSS, JS) e API REST","TI — Contratações de TI e Lei 14.133/2021","Português — Interpretação de texto","Português — Crase e acentuação","Português — Pontuação","Português — Concordância","Português — Regência e colocação pronominal","Direito Administrativo","Direito Constitucional (arts. 1º a 41)","Município de Seropédica","Regimento Interno da Câmara de Seropédica","Matemática e Raciocínio Lógico","Informática (noções)"];
+
+/* ===== ESTADO + PERSISTÊNCIA =====
+   Persistência em 3 camadas: window.storage (app do Claude) → localStorage (navegador) → memória.
+   Assim o progresso NÃO se perde ao recarregar a página fora do app. */
+const Store={mem:{},LS:"seropedica_",
+ async get(k){
+   try{if(window.storage){const r=await window.storage.get(k);if(r)return JSON.parse(r.value);}}catch(e){}
+   try{const v=localStorage.getItem(this.LS+k);if(v!=null)return JSON.parse(v);}catch(e){}
+   return (k in this.mem)?this.mem[k]:null;},
+ async set(k,v){
+   this.mem[k]=v;
+   try{localStorage.setItem(this.LS+k,JSON.stringify(v));}catch(e){}
+   try{if(window.storage){await window.storage.set(k,JSON.stringify(v));}}catch(e){}}};
+const EXAM_DATE=new Date(2026,7,1);   // 1º de agosto de 2026 (mês 7 = agosto)
+let answers={};            // {id:{ok,ts,conf}}  -> "feito"
+let hist=[];               // [{id,ts,ok,label,cat,snap,conf}] mais recente primeiro
+let flags={};              // {id:{label,cat,ts,snap}} -> para revisar
+let daily={};              // {"YYYY-MM-DD": nº de questões respondidas no dia}
+let goal=20;               // meta diária de questões
+let streak=0, cur=null, histFilter="all", curConf=0;
+const HISTCAP=600;
+const dayKey=ts=>{const d=new Date(ts||Date.now());return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");};
+const PILL={ti:"TI",pt:"Português",dir:"Direito",loc:"Local",ger:"Geral",hy:"Essenciais",ai:"IA"};
+const CC={ti:"ti",pt:"pt",dir:"dir",loc:"loc",ger:"ger",hy:"ger",ai:"pt"};
+const qidOf=(mi,qi)=>MODULES[mi].id+"_"+qi;
+const snapOf=it=>({q:it.q.q,o:it.q.o,a:it.q.a,e:it.q.e});
+const itemFromSnap=(id,label,cat,snap)=>({q:{q:snap.q,o:snap.o,a:snap.a,e:snap.e},id,label,cat});
+const esc=s=>String(s).replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+const fmtDate=ts=>new Date(ts).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
+
+async function init(){
+  const a=await Store.get("answers"); if(a)answers=a;
+  const h=await Store.get("hist"); if(h)hist=h;
+  const f=await Store.get("flags"); if(f)flags=f;
+  const d=await Store.get("daily"); if(d)daily=d;
+  const g=await Store.get("goal"); if(g)goal=g;
+  const th=await Store.get("theme"); if(th==="dark")applyTheme("dark");
+  const ts=document.getElementById("g-tema"); TEMAS.forEach(t=>{const o=document.createElement("option");o.value=t;o.textContent=t;ts.appendChild(o);});
+  document.getElementById("hy-sub").textContent=HIGH.qs.length+" questões difíceis";
+  const hc=document.getElementById("hero-count");if(hc)hc.textContent=MODULES.reduce((s,m)=>s+m.qs.length,0);
+  bindKeys();
+  renderHome(); updateStats(); updateNav(); pickToday();
+  renderCountdown(); renderDaily(); renderAnalytics();
+}
+
+/* ===== TEMA (claro/escuro) ===== */
+function applyTheme(t){document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"");document.getElementById("themebtn").textContent=t==="dark"?"☀️":"🌙";}
+function toggleTheme(){const dark=document.documentElement.getAttribute("data-theme")==="dark";applyTheme(dark?"light":"dark");Store.set("theme",dark?"light":"dark");}
+
+/* ===== CONTAGEM REGRESSIVA ===== */
+function renderCountdown(){
+  const today=new Date();today.setHours(0,0,0,0);
+  const days=Math.max(0,Math.round((EXAM_DATE-today)/86400000));
+  document.getElementById("cd-num").textContent=days;
+  const start=new Date(2026,5,16);   // início do plano (16/06)
+  const total=Math.max(1,(EXAM_DATE-start)/86400000),passed=Math.min(total,Math.max(0,(today-start)/86400000));
+  document.getElementById("cd-fill").style.width=Math.round(passed/total*100)+"%";
+  document.getElementById("cd-sub").textContent=days===0?"É hoje! Boa prova! 🍀":"Prova: 1º de agosto de 2026";
+}
+
+/* ===== META DIÁRIA ===== */
+function todayCount(){return daily[dayKey()]||0;}
+function renderDaily(){
+  const n=todayCount(),pct=Math.min(100,Math.round(n/goal*100));
+  document.getElementById("dring-val").textContent=n;
+  const C=138;document.getElementById("dring-fill").setAttribute("stroke-dashoffset",C-(C*Math.min(1,n/goal)));
+  document.getElementById("dring-fill").setAttribute("stroke",n>=goal?"var(--right)":"var(--brand)");
+  document.getElementById("daily-title").textContent=n>=goal?"Meta batida hoje! 🎉":"Meta de hoje";
+  document.getElementById("daily-sub").textContent=`${n} de ${goal} questões${n>=goal?" · parabéns!":""}`;
+}
+function changeGoal(d){goal=Math.max(5,Math.min(100,goal+d));Store.set("goal",goal);renderDaily();}
+
+/* ===== ATALHOS DE TECLADO ===== */
+function bindKeys(){
+  document.addEventListener("keydown",e=>{
+    if(document.getElementById("quiz").style.display!=="block")return;
+    if(/input|textarea|select/i.test((e.target.tagName||"")))return;
+    const it=cur&&cur.list[cur.idx];if(!it)return;
+    const k=e.key.toLowerCase();
+    if(["a","b","c","d"].includes(k)&&!it._answered){e.preventDefault();answer({a:0,b:1,c:2,d:3}[k]);}
+    else if(e.key==="ArrowRight"){e.preventDefault();document.getElementById("next").click();}
+    else if(e.key==="ArrowLeft"&&cur.idx>0){e.preventDefault();prevQ();}
+    else if(k==="f"){e.preventDefault();toggleFlag();}
+    else if(k==="e"&&it._answered){e.preventDefault();const db=document.getElementById("deepbtn");if(db.style.display!=="none")deepen();}
+  });
+}
+
+/* ===== TOASTS ===== */
+function toast(msg,win){const wrap=document.getElementById("toasts");const t=document.createElement("div");t.className="toast"+(win?" win":"");
+  t.innerHTML=`<span class="ti">${win?"🏆":"💡"}</span><span>${msg}</span>`;wrap.appendChild(t);
+  setTimeout(()=>{t.style.transition="opacity .4s,transform .4s";t.style.opacity="0";t.style.transform="translateY(10px)";setTimeout(()=>t.remove(),400);},win?3200:2400);}
+function studyDayStreak(){
+  const days=Object.keys(daily).filter(k=>daily[k]>0).sort();
+  if(!days.length)return 0;
+  const set=new Set(days);let count=0;const d=new Date();
+  // conta de hoje (ou ontem) para trás
+  if(!set.has(dayKey(d))){d.setDate(d.getDate()-1);if(!set.has(dayKey(d)))return 0;}
+  while(set.has(dayKey(d))){count++;d.setDate(d.getDate()-1);}
+  return count;
+}
+function updateStats(){
+  const ids=Object.keys(answers), n=ids.length, c=ids.filter(k=>answers[k].ok).length;
+  document.getElementById("st-ans").textContent=n;
+  document.getElementById("st-acc").textContent=n?Math.round(c/n*100)+"%":"—";
+  document.getElementById("st-str").textContent=streak;
+  document.getElementById("st-days").textContent=studyDayStreak();
+}
+/* ===== ANÁLISE POR CATEGORIA (pontos fracos) ===== */
+const CATNAME={ti:"Tecnologia da Informação",pt:"Português",dir:"Direito",loc:"Local (Seropédica)",ger:"Geral/RLM"};
+function catStats(){
+  const s={};hist.forEach(h=>{if(h.cat==="hy"||h.cat==="ai")return;const c=CC[h.cat]||h.cat;(s[c]=s[c]||{a:0,c:0}).a++;if(h.ok)s[c].c++;});return s;}
+function renderAnalytics(){
+  const s=catStats(),wrap=document.getElementById("analytics-wrap"),box=document.getElementById("analytics");
+  const cats=Object.keys(s).filter(c=>s[c].a>=3);
+  if(!cats.length){wrap.style.display="none";return;}
+  wrap.style.display="block";box.innerHTML="";
+  cats.map(cat=>({cat,att:s[cat].a,cor:s[cat].c,pct:Math.round(s[cat].c/s[cat].a*100)})).sort((x,y)=>x.pct-y.pct).forEach(o=>{
+    const weak=o.pct<60,col=o.pct>=70?"var(--right)":o.pct>=50?"var(--amber)":"var(--wrong)";
+    const el=document.createElement("div");el.className="arow"+(weak?" weak":"");el.style.cursor="pointer";el.tabIndex=0;
+    el.innerHTML=`<div class="at"><span class="pill ${o.cat}">${PILL[o.cat]||""}</span><span>${CATNAME[o.cat]||o.cat}</span><span class="pct" style="color:${col}">${o.pct}%</span></div>
+      <div class="abar"><i style="width:${o.pct}%;background:${col}"></i></div>
+      <div class="acnt">${o.cor}/${o.att} corretas · toque para treinar esta matéria${weak?" 👈 foco aqui":""}</div>`;
+    el.onclick=()=>practiceCat(o.cat);el.onkeydown=e=>{if(e.key==="Enter")practiceCat(o.cat);};
+    box.appendChild(el);});
+}
+/* Treina uma categoria: prioriza erradas e não respondidas dessa matéria */
+function practiceCat(cat){
+  let wrong=[],unans=[],done=[];
+  MODULES.forEach((m,mi)=>{if((CC[m.cat]||m.cat)!==cat)return;m.qs.forEach((_,qi)=>{const it=itemStatic(mi,qi),a=answers[it.id];
+    if(!a)unans.push(it);else if(!a.ok)wrong.push(it);else done.push(it);});});
+  const list=[...wrong,...unans,...done];if(!list.length)return;
+  for(let i=list.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[list[i],list[j]]=[list[j],list[i]];}
+  // mantém erradas/não respondidas no topo após embaralhar leve: reordena por prioridade
+  list.sort((x,y)=>prio(x)-prio(y));
+  cur={title:"Foco: "+(CATNAME[cat]||cat),list:list.slice(0,Math.min(15,list.length)),idx:0};showQuiz();
+}
+function prio(it){const a=answers[it.id];return !a?1:(!a.ok?0:2);}
+function updateNav(){
+  document.getElementById("nav-flag").textContent=Object.keys(flags).length;
+  document.getElementById("nav-hist").textContent=hist.length;
+}
+function modStats(mi){const m=MODULES[mi];let a=0,c=0;m.qs.forEach((_,qi)=>{const id=qidOf(mi,qi);if(answers[id]){a++;if(answers[id].ok)c++;}});return{a,c,total:m.qs.length,pct:a?Math.round(c/a*100):0,done:a===m.qs.length};}
+function renderHome(){
+  const box=document.getElementById("mods");box.innerHTML="";
+  const sb=document.getElementById("modsearch"),q=(sb?sb.value:"").trim().toLowerCase();
+  let shown=0;
+  MODULES.forEach((m,mi)=>{
+    const match=!q||m.t.toLowerCase().includes(q)||(PILL[m.cat]||"").toLowerCase().includes(q)||m.qs.some(x=>x.q.toLowerCase().includes(q));
+    if(!match)return;shown++;
+    const s=modStats(mi);const el=document.createElement("div");el.className="mod"+(s.done?" done":"");el.tabIndex=0;
+    el.innerHTML=`<div class="mnum">${s.done?"✓":(mi+1)}</div><div class="minfo"><h5>${m.t}</h5>
+      <div class="meta"><span class="pill ${CC[m.cat]}">${PILL[m.cat]}</span><span>${m.qs.length} questões</span><span>· dia ${m.day}</span></div>
+      <div class="bar"><i style="width:${s.a?(s.a/s.total*100):0}%"></i></div></div>
+      <div class="macc"><b>${s.a?s.pct+"%":"—"}</b><small>${s.a}/${s.total}</small></div>`;
+    el.onclick=()=>startModule(mi);el.onkeydown=e=>{if(e.key==="Enter")startModule(mi);};box.appendChild(el);});
+  if(!shown)box.innerHTML='<div class="empty">Nenhuma matéria encontrada para essa busca.</div>';
+}
+function pickToday(){let idx=MODULES.findIndex((_,mi)=>!modStats(mi).done);if(idx<0)idx=0;const m=MODULES[idx];
+  document.getElementById("today-title").textContent=m.t;document.getElementById("today-sub").textContent=`${m.qs.length} questões · módulo ${idx+1}`;
+  document.getElementById("today-btn").onclick=()=>startModule(idx);}
+
+/* ===== montagem de itens ===== */
+function itemStatic(mi,qi){const m=MODULES[mi];return{q:m.qs[qi],id:qidOf(mi,qi),label:`${PILL[m.cat]} · ${m.t}`,cat:m.cat};}
+function startModule(mi){cur={title:MODULES[mi].t,list:MODULES[mi].qs.map((_,qi)=>itemStatic(mi,qi)),idx:0};showQuiz();}
+function startHigh(){cur={title:HIGH.t,list:HIGH.qs.map((q,i)=>({q,id:"hy_"+i,label:"🔥 Essenciais · alta probabilidade",cat:"hy"})),idx:0};showQuiz();}
+function startSimulado(){let p=[];MODULES.forEach((m,mi)=>m.qs.forEach((_,qi)=>p.push(itemStatic(mi,qi))));HIGH.qs.forEach((q,i)=>p.push({q,id:"hy_"+i,label:"🔥 Essenciais",cat:"hy"}));
+  for(let i=p.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[p[i],p[j]]=[p[j],p[i]];}cur={title:"Simulado",list:p.slice(0,Math.min(40,p.length)),idx:0};showQuiz();}
+function reviewWrong(){if(!cur||!cur._origin)return;const w=cur._origin.filter(it=>it._wrong===true);if(!w.length){goHome();return;}cur={title:cur.title+" · erros",list:w,idx:0};showQuiz();}
+
+/* ===== GERADOR IA ===== */
+async function callClaude(prompt,maxTokens){
+  const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:maxTokens||1000,messages:[{role:"user",content:prompt}]})});
+  if(!r.ok)throw new Error("HTTP "+r.status);const d=await r.json();return d.content.filter(b=>b.type==="text").map(b=>b.text).join("\n");
+}
+async function generateAndStart(){
+  const tema=document.getElementById("g-tema").value,dif=document.getElementById("g-dif").value,n=parseInt(document.getElementById("g-qtd").value,10);
+  const btn=document.getElementById("g-btn"),msg=document.getElementById("g-msg");btn.disabled=true;const old=btn.textContent;btn.innerHTML='<span class="spinner"></span>Gerando…';
+  msg.textContent="Criando questões inéditas sobre: "+tema;
+  const prompt=`Você é examinador da banca Instituto Consulpam. Gere ${n} questões INÉDITAS de múltipla escolha (4 alternativas A-D) sobre "${tema}", para o cargo de Analista de TI da Câmara Municipal de Seropédica (RJ), no nível ${dif}. Uma única alternativa correta, com distratores plausíveis. Se for tema local e não tiver certeza de um dado específico, faça questões conceituais corretas. Responda APENAS com array JSON válido, sem markdown, no formato: [{"q":"enunciado","o":["a","b","c","d"],"a":0,"e":"explicação curta"}]. "a" é o índice (0-3) da correta.`;
+  try{
+    let t=await callClaude(prompt,2048);let c=t.replace(/```json/gi,"").replace(/```/g,"").trim();const s=c.indexOf("["),e=c.lastIndexOf("]");if(s>=0&&e>=0)c=c.slice(s,e+1);
+    let arr=JSON.parse(c).filter(q=>q&&q.q&&Array.isArray(q.o)&&q.o.length===4&&typeof q.a==="number"&&q.a>=0&&q.a<=3&&q.e);
+    if(!arr.length)throw new Error("vazio");
+    cur={title:"IA · "+tema,list:arr.map((q,i)=>({q,id:"ai_"+Date.now()+"_"+i,label:"IA · "+tema,cat:"ai"})),idx:0};msg.textContent="";showQuiz();
+  }catch(err){msg.innerHTML="Não consegui gerar agora. O gerador com IA funciona <b>dentro do app do Claude</b> (online). Use os 144 exercícios prontos enquanto isso.";}
+  finally{btn.disabled=false;btn.textContent=old;}
+}
+
+/* ===== QUIZ ===== */
+function hideAll(){["home","listview","quiz","summary"].forEach(id=>document.getElementById(id).style.display="none");}
+function showQuiz(){hideAll();document.getElementById("quiz").style.display="block";cur._origin=cur.list.slice();window.scrollTo(0,0);renderQ();}
+function renderQ(){
+  const it=cur.list[cur.idx],tag=document.getElementById("qtag");
+  tag.textContent=it.label;tag.className="qtag"+(it.cat==="ai"?" ai":"");
+  document.getElementById("qtext").innerHTML=it.q.q;
+  document.getElementById("qcount").textContent=`${cur.idx+1} / ${cur.list.length}`;
+  document.getElementById("qprog").style.width=(cur.idx/cur.list.length*100)+"%";
+  const opts=document.getElementById("opts");opts.innerHTML="";const keys=["A","B","C","D"];
+  it.q.o.forEach((txt,i)=>{const b=document.createElement("button");b.className="opt";b.innerHTML=`<span class="key">${keys[i]}</span><span>${txt}</span><span class="kbd">${keys[i]}</span>`;b.onclick=()=>answer(i);opts.appendChild(b);});
+  document.getElementById("expl").className="expl";document.getElementById("expl").innerHTML="";
+  document.getElementById("deepbtn").style.display="none";
+  curConf=it._conf||0;renderConf();
+  document.getElementById("conf").style.display=it._answered?"none":"flex";
+  const last=cur.idx===cur.list.length-1;
+  document.getElementById("prev").style.display=cur.idx>0?"inline-block":"none";
+  const next=document.getElementById("next");next.style.display="inline-block";
+  if(it._answered){                       // questão já respondida nesta sessão: reexibe travada
+    reveal(it,it._choice);
+    next.textContent=last?"Ver resultado →":"Próxima →";
+  }else{                                  // ainda não respondida: pode pular sem registrar
+    next.textContent=last?"Finalizar →":"Pular →";
+  }
+  renderFlagBtn();
+}
+function reveal(it,choice){               // mostra gabarito/explicação e trava as alternativas
+  const correct=it.q.a,ok=choice===correct;
+  document.querySelectorAll("#opts .opt").forEach((b,i)=>{b.disabled=true;
+    if(i===correct){b.classList.add("correct");b.innerHTML+=`<span class="mk">✓ correta</span>`;}
+    if(i===choice&&!ok){b.classList.add("wrong");b.innerHTML+=`<span class="mk">✗ sua resposta</span>`;}});
+  const ex=document.getElementById("expl");ex.className="expl show "+(ok?"ok":"no");
+  ex.innerHTML=`<b>${ok?"Você acertou! ":"Correta: "+["A","B","C","D"][correct]+". "}</b>${it.q.e}`;
+  document.getElementById("deepbtn").style.display="inline-block";
+  document.getElementById("conf").style.display="none";
+}
+/* ===== CONFIANÇA ===== */
+function renderConf(){document.querySelectorAll("#conf button").forEach(b=>b.classList.toggle("on",+b.dataset.c===curConf));}
+function setConf(c){const it=cur&&cur.list[cur.idx];if(!it||it._answered)return;curConf=c;it._conf=c;renderConf();}
+function prevQ(){if(cur.idx>0){cur.idx--;renderQ();window.scrollTo(0,0);}}
+function renderFlagBtn(){const it=cur.list[cur.idx],b=document.getElementById("flagbtn");
+  if(flags[it.id]){b.classList.add("on");b.textContent="★ Marcada";}else{b.classList.remove("on");b.textContent="☆ Revisar";}}
+function toggleFlag(){const it=cur.list[cur.idx];
+  if(flags[it.id])delete flags[it.id];else flags[it.id]={label:it.label,cat:it.cat,ts:Date.now(),snap:snapOf(it)};
+  Store.set("flags",flags);renderFlagBtn();updateNav();}
+function answer(choice){
+  const it=cur.list[cur.idx];
+  if(it._answered)return;                 // já respondida: não conta de novo
+  const correct=it.q.a,ok=choice===correct;
+  it._answered=true;it._choice=choice;it._wrong=!ok;
+  const conf=it._conf||0;
+  answers[it.id]={ok,ts:Date.now(),conf};
+  hist.unshift({id:it.id,ts:Date.now(),ok,label:it.label,cat:it.cat,snap:snapOf(it),conf});if(hist.length>HISTCAP)hist=hist.slice(0,HISTCAP);
+  const before=todayCount();daily[dayKey()]=before+1;
+  Store.set("answers",answers);Store.set("hist",hist);Store.set("daily",daily);
+  const prevStreak=streak;streak=ok?streak+1:0;updateStats();updateNav();renderDaily();
+  reveal(it,choice);
+  // conquistas
+  if(ok&&conf===1)toast("Acertou no chute? Revise para fixar! 🎯");
+  if(!ok&&conf===3)toast("Você tinha certeza e errou — marque para revisar (F).");
+  if(streak>0&&streak%10===0)toast(`🔥 ${streak} acertos seguidos! Você está voando!`,true);
+  if(before<goal&&before+1>=goal)toast("Meta diária batida! 🎉 Continue assim.",true);
+  const next=document.getElementById("next");
+  next.style.display="inline-block";next.textContent=(cur.idx===cur.list.length-1)?"Ver resultado →":"Próxima →";next.focus();
+}
+async function deepen(){
+  const it=cur.list[cur.idx],db=document.getElementById("deepbtn"),ex=document.getElementById("expl");
+  db.disabled=true;const old=db.textContent;db.innerHTML='<span class="spinner" style="border-color:rgba(12,107,112,.4);border-top-color:#0C6B70"></span>Pensando…';
+  const prompt=`Explique de forma didática, para um concurseiro, em até 90 palavras e sem markdown, por que a resposta correta é "${it.q.o[it.q.a]}" nesta questão sobre ${it.label}. Dê também um macete curto de memorização. Questão: ${it.q.q}`;
+  try{const t=await callClaude(prompt);const d=document.createElement("div");d.className="deep";d.innerHTML=`<div class="dl">💡 Aprofundando</div>${esc(t).replace(/\n/g,"<br>")}`;ex.appendChild(d);db.style.display="none";}
+  catch(e){db.textContent="IA indisponível offline";setTimeout(()=>{db.style.display="none";},1500);}
+  finally{db.disabled=false;if(db.innerHTML.includes("Pensando"))db.textContent=old;}
+}
+function nextQ(){if(cur.idx<cur.list.length-1){cur.idx++;renderQ();window.scrollTo(0,0);}else showSummary();}
+function showSummary(){
+  hideAll();document.getElementById("summary").style.display="block";
+  const answered=cur._origin.filter(it=>it._answered);
+  const total=answered.length, cor=answered.filter(it=>it._wrong===false).length;
+  const skipped=cur._origin.length-total, pct=total?Math.round(cor/total*100):0;
+  document.getElementById("ringval").textContent=pct+"%";
+  const fill=document.getElementById("ringfill");fill.setAttribute("stroke",pct>=70?"#1E8E5A":pct>=50?"#D98A00":"#CF3D3D");fill.setAttribute("stroke-dashoffset",352);
+  setTimeout(()=>{fill.style.transition="stroke-dashoffset 1s ease";fill.setAttribute("stroke-dashoffset",352-(352*pct/100));},50);
+  document.getElementById("sum-title").textContent=total===0?"Nada respondido ainda":pct>=70?"Mandou bem! 💪":pct>=50?"Quase lá — siga revisando":"Bora reforçar essa matéria";
+  document.getElementById("sum-sub").textContent=total===0
+    ?`Você pulou todas as ${skipped} questões — responda para contar acertos.`
+    :`Você acertou ${cor} de ${total} respondida(s) (${pct}%).`+(skipped?` · ${skipped} pulada(s) não contam.`:"");
+  document.getElementById("rev-btn").style.display=cur._origin.some(it=>it._wrong===true)?"inline-block":"none";
+  // detalhamento por categoria desta sessão
+  const sc={};answered.forEach(it=>{const c=CC[it.cat]||it.cat;(sc[c]=sc[c]||{a:0,c:0}).a++;if(!it._wrong)sc[c].c++;});
+  const box=document.getElementById("sumcats");box.innerHTML="";
+  Object.keys(sc).forEach(c=>{const o=sc[c],p=Math.round(o.c/o.a*100),col=p>=70?"var(--right)":p>=50?"var(--amber)":"var(--wrong)";
+    const r=document.createElement("div");r.className="sumcat";
+    r.innerHTML=`<span class="sn">${CATNAME[c]||PILL[c]||c}</span><span class="sb"><i style="width:${p}%;background:${col}"></i></span><span class="sp" style="color:${col}">${p}%</span>`;
+    box.appendChild(r);});
+  if(pct>=90&&total>=5)toast("Excelente! 90%+ nessa rodada! 🏆",true);
+  renderHome();updateStats();updateNav();pickToday();renderDaily();renderAnalytics();window.scrollTo(0,0);
+}
+function goHome(){hideAll();document.getElementById("home").style.display="block";renderHome();updateStats();updateNav();pickToday();renderCountdown();renderDaily();renderAnalytics();window.scrollTo(0,0);}
+
+/* ===== PARA REVISAR (flags) ===== */
+function openFlagged(){
+  hideAll();document.getElementById("listview").style.display="block";
+  document.getElementById("lv-title").textContent="⭐ Para revisar";
+  const entries=Object.entries(flags).sort((a,b)=>b[1].ts-a[1].ts);
+  document.getElementById("lv-sub").textContent=entries.length?`${entries.length} questão(ões) marcada(s) para estudar depois.`:"";
+  const fl=document.getElementById("lv-filters");fl.innerHTML="";
+  if(entries.length){
+    const b1=document.createElement("button");b1.className="btn sm amber";b1.textContent="Praticar todas";b1.onclick=startFlaggedAll;fl.appendChild(b1);
+    const b2=document.createElement("button");b2.className="btn sm danger";b2.textContent="Limpar marcadas";b2.onclick=()=>{if(confirm("Remover todas as marcações?")){flags={};Store.set("flags",flags);openFlagged();updateNav();}};fl.appendChild(b2);
+  }
+  const list=document.getElementById("lv-list");list.innerHTML="";
+  if(!entries.length){list.innerHTML='<div class="empty">Você ainda não marcou nenhuma questão.<br>Durante os exercícios, toque em <b>☆ Revisar</b> para guardar uma questão aqui.</div>';window.scrollTo(0,0);return;}
+  entries.forEach(([id,f])=>{const d=document.createElement("div");d.className="hitem";
+    d.innerHTML=`<div class="top"><span class="badge fl">★ marcada</span><span class="lab">${f.label}</span><span class="dt">${fmtDate(f.ts)}</span></div>
+      <div class="qx">${f.snap.q}</div>
+      <div class="acts"><button class="btn sm" onclick='practiceOne(${JSON.stringify(id)})'>Praticar</button>
+      <button class="btn sm ghost" onclick='unflag(${JSON.stringify(id)})'>Remover</button></div>`;
+    list.appendChild(d);});
+  window.scrollTo(0,0);
+}
+function unflag(id){delete flags[id];Store.set("flags",flags);openFlagged();updateNav();}
+function startFlaggedAll(){const items=Object.entries(flags).sort((a,b)=>b[1].ts-a[1].ts).map(([id,f])=>itemFromSnap(id,f.label,f.cat,f.snap));if(!items.length)return;cur={title:"Para revisar",list:items,idx:0};showQuiz();}
+function practiceOne(id){const f=flags[id];if(!f)return;cur={title:"Revisão",list:[itemFromSnap(id,f.label,f.cat,f.snap)],idx:0};showQuiz();}
+
+/* ===== HISTÓRICO ===== */
+function openHistory(){
+  hideAll();document.getElementById("listview").style.display="block";
+  document.getElementById("lv-title").textContent="🕘 Histórico";
+  const total=hist.length,cor=hist.filter(h=>h.ok).length;
+  document.getElementById("lv-sub").textContent=total?`${total} exercício(s) feito(s) · ${Math.round(cor/total*100)}% de acerto.`:"";
+  const fl=document.getElementById("lv-filters");fl.innerHTML="";
+  if(total){
+    [["all","Todos"],["wrong","Só erros"],["right","Só acertos"]].forEach(([k,lb])=>{const c=document.createElement("button");c.className="chip"+(histFilter===k?" on":"");c.textContent=lb;c.onclick=()=>{histFilter=k;openHistory();};fl.appendChild(c);});
+    const rb=document.createElement("button");rb.className="btn sm amber";rb.textContent="Refazer erros";rb.onclick=redoWrong;fl.appendChild(rb);
+    const cb=document.createElement("button");cb.className="btn sm danger";cb.textContent="Limpar histórico";cb.onclick=()=>{if(confirm("Apagar todo o histórico? (não muda o progresso dos módulos)")){hist=[];Store.set("hist",hist);openHistory();updateNav();}};fl.appendChild(cb);
+  }
+  const list=document.getElementById("lv-list");list.innerHTML="";
+  let view=hist.filter(h=>histFilter==="all"?true:histFilter==="wrong"?!h.ok:h.ok);
+  if(!view.length){list.innerHTML='<div class="empty">Nada por aqui ainda.<br>Cada questão que você responde aparece no histórico — com data, acerto/erro e opção de refazer.</div>';window.scrollTo(0,0);return;}
+  const shown=view.slice(0,150);
+  shown.forEach((h,i)=>{const done=!!answers[h.id];const d=document.createElement("div");d.className="hitem";
+    d.innerHTML=`<div class="top"><span class="badge ${h.ok?"ok":"no"}">${h.ok?"✓ acertou":"✗ errou"}</span><span class="lab">${h.label}</span><span class="dt">${fmtDate(h.ts)}</span></div>
+      <div class="qx">${h.snap.q}</div>
+      <div class="acts"><button class="btn sm" onclick='redoHist(${i})'>Refazer</button>
+      <button class="btn sm ghost" onclick='toggleDone(${JSON.stringify(h.id)},${h.ok})'>${done?"Desmarcar feito":"Marcar feito"}</button></div>`;
+    list.appendChild(d);
+    d.querySelector(".acts button").setAttribute("data-k",i);});
+  // mapeia índice exibido -> entrada
+  window.__shown=shown;
+  if(view.length>150){const n=document.createElement("div");n.className="empty";n.textContent=`Mostrando os 150 mais recentes de ${view.length}.`;list.appendChild(n);}
+  window.scrollTo(0,0);
+}
+function redoHist(i){const h=window.__shown[i];if(!h)return;cur={title:"Refazendo",list:[itemFromSnap(h.id,h.label,h.cat,h.snap)],idx:0};showQuiz();}
+function redoWrong(){
+  const seen={},items=[];
+  hist.filter(h=>!h.ok).forEach(h=>{if(!seen[h.id]){seen[h.id]=1;items.push(itemFromSnap(h.id,h.label,h.cat,h.snap));}});
+  if(!items.length){alert("Você não tem erros no histórico. 👏");return;}
+  cur={title:"Refazendo erros",list:items,idx:0};showQuiz();
+}
+function toggleDone(id,ok){
+  if(answers[id])delete answers[id];else answers[id]={ok:!!ok,ts:Date.now()};
+  Store.set("answers",answers);updateStats();renderHome();openHistory();
+}
+
+async function resetAll(){if(!confirm("Zerar TUDO (feitas, histórico, marcadas e metas)?"))return;answers={};hist=[];flags={};daily={};streak=0;
+  await Store.set("answers",answers);await Store.set("hist",hist);await Store.set("flags",flags);await Store.set("daily",daily);
+  renderHome();updateStats();updateNav();pickToday();renderDaily();renderAnalytics();goHome();}
+
+/* ===== EXPORTAR / IMPORTAR PROGRESSO ===== */
+function exportProgress(){
+  const data={v:1,exportedAt:new Date().toISOString(),answers,hist,flags,daily,goal};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+  a.download="progresso-seropedica-"+dayKey()+".json";a.click();URL.revokeObjectURL(a.href);
+  toast("Progresso exportado! Guarde o arquivo. 💾");
+}
+function importProgress(ev){
+  const f=ev.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>{try{const d=JSON.parse(r.result);
+    if(!confirm("Importar e SUBSTITUIR o progresso atual por este arquivo?"))return;
+    answers=d.answers||{};hist=d.hist||[];flags=d.flags||{};daily=d.daily||{};goal=d.goal||20;
+    Store.set("answers",answers);Store.set("hist",hist);Store.set("flags",flags);Store.set("daily",daily);Store.set("goal",goal);
+    updateStats();updateNav();renderHome();pickToday();renderDaily();renderAnalytics();goHome();
+    toast("Progresso importado com sucesso! ✅",true);
+  }catch(e){alert("Arquivo inválido. Selecione um JSON exportado por este app.");}};
+  r.readAsText(f);ev.target.value="";
+}
+
+init();
+</script>
+</body>
+</html>
