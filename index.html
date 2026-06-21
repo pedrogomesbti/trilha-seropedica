@@ -186,6 +186,48 @@
   .conf button:hover{border-color:var(--brand)} .conf button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   /* Badge de dias de ofensiva */
   .stat.days b{color:var(--violet)}
+
+  /* ===== SIMULADOS + BOLETIM ===== */
+  .bignav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 2px}
+  @media (max-width:640px){.bignav{grid-template-columns:1fr}}
+  .bigcard{border:none;border-radius:18px;padding:20px;cursor:pointer;text-align:left;color:#fff;box-shadow:var(--shadow);font-family:"Inter";position:relative;overflow:hidden;transition:transform .08s}
+  .bigcard:active{transform:translateY(1px)}
+  .bigcard.sims{background:linear-gradient(135deg,#13303a,#0c6b70)}
+  .bigcard.perf{background:linear-gradient(135deg,#5B4BA6,#3F3479)}
+  .bigcard .bi{font-size:26px}
+  .bigcard h3{font-family:"Space Grotesk";font-size:18px;margin:6px 0 4px;font-weight:700}
+  .bigcard p{margin:0;font-size:12.8px;opacity:.92;line-height:1.4;max-width:36ch}
+  .bigcard .pill2{display:inline-block;margin-top:12px;background:rgba(255,255,255,.2);border-radius:9px;padding:6px 12px;font-size:12.5px;font-weight:600;font-family:"Space Grotesk"}
+  /* lista de simulados */
+  .simlist{display:grid;gap:11px;margin-top:6px}
+  .simcard{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:14px 16px;box-shadow:var(--shadow)}
+  .simcard .snum{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--brand),var(--brand-d));color:#fff;display:grid;place-items:center;font-family:"Space Grotesk";font-weight:700;font-size:16px;flex:none}
+  .simcard.reta .snum{background:linear-gradient(135deg,var(--amber),#C77A00)}
+  .simcard .sinfo{flex:1;min-width:0}
+  .simcard .sinfo h5{margin:0;font-size:15px;font-weight:600}
+  .simcard .sinfo .smeta{font-size:12px;color:var(--muted);margin-top:3px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .simcard .sbest{font-family:"Space Grotesk";font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;background:var(--soft);border:1px solid var(--line)}
+  .simcard .sbest.ok{background:var(--right-bg);border-color:#BfE4CE;color:var(--right)}
+  .simcard .sbest.mid{background:#FFF6E4;border-color:#F0C24A;color:#9A6510}
+  .simcard .sbest.no{background:var(--wrong-bg);border-color:#F0CACA;color:var(--wrong)}
+  .simcard .sact{flex:none;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+  /* boletim */
+  .boletim{display:grid;gap:10px;margin-top:6px}
+  .bgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:6px 0 4px}
+  @media (max-width:520px){.bgrid{grid-template-columns:repeat(2,1fr)}}
+  .bstat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 8px;text-align:center;box-shadow:var(--shadow)}
+  .bstat b{font-family:"Space Grotesk";font-size:20px;display:block;line-height:1}
+  .bstat small{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;display:block;margin-top:5px}
+  .brow{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:12px 14px;box-shadow:var(--shadow)}
+  .brow .bt{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+  .brow .bt .bn{margin-left:auto;font-family:"Space Grotesk";font-weight:700}
+  .brow .spark{display:flex;align-items:flex-end;gap:4px;height:34px;margin-top:9px}
+  .brow .spark i{flex:1;background:var(--brand);border-radius:3px 3px 0 0;min-height:3px;opacity:.85}
+  .brow .spark i.last{background:var(--amber)}
+  .brow .bsub{font-size:11.5px;color:var(--muted);margin-top:7px}
+  .emptyb{text-align:center;color:var(--muted);padding:28px 12px;font-size:13.5px;line-height:1.6}
+  /* recursos de IA ficam ocultos no GitHub Pages (estático, sem backend) */
+  #deepbtn{display:none!important}
 </style>
 </head>
 <body>
@@ -211,8 +253,8 @@
   <section id="home">
     <div class="hero">
       <div class="eyebrow">Prova: 1º de agosto de 2026 · rumo ao 1º lugar</div>
-      <h2>Gere questões infinitas.<br>Marque, revise, acompanhe.</h2>
-      <p>Crie questões inéditas com IA, treine <b id="hero-count">—</b> prontas, marque as que quer rever depois e acompanhe o histórico de tudo que já fez. Cada exercício é contado automaticamente.</p>
+      <h2>Treine, simule a prova<br>e acompanhe sua nota.</h2>
+      <p>Pratique <b id="hero-count">—</b> questões por matéria, faça <b>5 simulados completos</b> no padrão da banca, marque as que quer rever e acompanhe seu desempenho rumo ao 1º lugar.</p>
     </div>
 
     <div class="countdown" id="countdown">
@@ -231,22 +273,19 @@
       <div class="dgoal"><button onclick="changeGoal(-5)" aria-label="Diminuir meta">−</button><button onclick="changeGoal(5)" aria-label="Aumentar meta">+</button></div>
     </div>
 
-    <div class="gen">
-      <div class="lbl">★ Gerador de questões com IA</div>
-      <h3>Questões novas, na hora, sobre o que você quiser</h3>
-      <p>Escolha o tema e a dificuldade. A IA cria questões inéditas com gabarito comentado. <b>Funciona dentro do app do Claude.</b></p>
-      <div class="fields">
-        <div class="fld tema"><label>Tema</label><select id="g-tema"></select></div>
-        <div class="fld"><label>Dificuldade</label>
-          <select id="g-dif">
-            <option value="média">Média</option>
-            <option value="difícil, com pegadinhas" selected>Difícil</option>
-            <option value="muito difícil, nível de quem disputa o 1º lugar">Muito difícil</option>
-          </select></div>
-        <div class="fld"><label>Quantidade</label><select id="g-qtd"><option>3</option><option selected>4</option><option>5</option></select></div>
-        <button class="btn white" id="g-btn" onclick="generateAndStart()">Gerar e praticar</button>
-      </div>
-      <div class="genmsg" id="g-msg"></div>
+    <div class="bignav">
+      <button class="bigcard sims" onclick="openSimulados()">
+        <div class="bi">📝</div>
+        <h3>Simulados completos</h3>
+        <p>5 provas inteiras no peso do edital. Faça como se fosse o dia da prova e veja sua nota.</p>
+        <span class="pill2">Fazer simulado →</span>
+      </button>
+      <button class="bigcard perf" onclick="openDesempenho()">
+        <div class="bi">📊</div>
+        <h3>Desempenho &amp; notas</h3>
+        <p>Boletim por simulado, evolução, matérias a reforçar e revisão das suas erradas.</p>
+        <span class="pill2">Ver boletim →</span>
+      </button>
     </div>
 
     <div class="nav2">
@@ -273,7 +312,7 @@
         <div class="lbl">Comece por aqui</div>
         <h3 id="today-title">…</h3>
         <small id="today-sub"></small>
-        <div class="act row"><button class="btn" id="today-btn">Praticar</button><button class="btn white" onclick="startSimulado()">Simulado 40</button></div>
+        <div class="act row"><button class="btn" id="today-btn">Praticar</button><button class="btn white" onclick="openSimulados()">Simulados</button></div>
       </div>
     </div>
 
@@ -296,6 +335,40 @@
       <button class="reset" onclick="resetAll()">Zerar tudo</button>
       <input type="file" id="importfile" accept="application/json" style="display:none" onchange="importProgress(event)">
     </footer>
+  </section>
+
+  <!-- SIMULADOS -->
+  <section class="listview" id="simulados">
+    <div class="lvtop">
+      <button class="back" onclick="goHome()">← Início</button>
+      <h3>📝 Simulados completos</h3>
+    </div>
+    <p class="lvsub">Cada simulado é uma prova inteira, montada a partir do banco no peso do edital (Português, Raciocínio Lógico, Informática, Conhecimentos de TI, Direito e conteúdo local). As questões são fixas — dá pra repetir e comparar sua evolução.</p>
+    <div class="simlist" id="simlist"></div>
+    <p class="lvsub" style="margin-top:14px">Dica: faça 1 simulado por semana cronometrando ~3 min/questão e revise <b>todas</b> as erradas no Desempenho.</p>
+  </section>
+
+  <!-- DESEMPENHO / BOLETIM -->
+  <section class="listview" id="desempenho">
+    <div class="lvtop">
+      <button class="back" onclick="goHome()">← Início</button>
+      <h3>📊 Desempenho &amp; notas</h3>
+    </div>
+    <div class="bgrid">
+      <div class="bstat"><b id="d-ans">0</b><small>Questões</small></div>
+      <div class="bstat"><b id="d-acc">—</b><small>Acerto geral</small></div>
+      <div class="bstat"><b id="d-sims">0</b><small>Simulados</small></div>
+      <div class="bstat"><b id="d-best">—</b><small>Melhor nota</small></div>
+    </div>
+    <div class="filters">
+      <button class="btn sm amber" onclick="redoWrong()">↻ Rever todas as erradas</button>
+      <button class="btn sm ghost" onclick="openSimulados()">Fazer um simulado</button>
+    </div>
+    <div class="seclab"><h4>Boletim dos simulados</h4><div class="ln"></div></div>
+    <div class="boletim" id="boletim"></div>
+    <div class="seclab"><h4>Matérias a reforçar</h4><div class="ln"></div></div>
+    <div class="analytics" id="d-analytics"></div>
+    <p class="lvsub" id="d-analytics-empty" style="display:none">Responda algumas questões (ou faça um simulado) para o app calcular onde focar.</p>
   </section>
 
   <!-- LISTA: marcadas OU histórico -->
@@ -395,6 +468,9 @@ const MODULES=[
   {q:"Toda proparoxítona é acentuada. Assinale a proparoxítona:",o:["caju","sofá","lâmpada","aqui"],a:2,e:"\u201Clâmpada\u201D é proparoxítona (todas são acentuadas)."},
   {q:"Assinale a palavra corretamente acentuada:",o:["ruim","saída","juis","caida"],a:1,e:"Em \u201Csaída\u201D, o \u2018i\u2019 tônico em hiato é acentuado."},
   {q:"A crase é FACULTATIVA diante de:",o:["nome de cidade sem especificação","pronome possessivo feminino (à/a minha casa)","horas determinadas","palavra masculina"],a:1,e:"Antes de possessivo feminino, a crase é facultativa."},
+  {q:"NUNCA ocorre crase antes de palavra:",o:["feminina específica","masculina","determinada por artigo","com horário"],a:1,e:"Antes de palavra masculina, em regra, não há crase."},
+  {q:"Assinale a opção com crase obrigatória:",o:["Entreguei o ofício a ele.","Vou a pé ao trabalho.","Refiro-me à norma da banca.","Cheguei a casa cedo."],a:2,e:"à norma: feminino específico que aceita artigo, logo há crase."},
+  {q:"Em 'Dirigiu-se ___ sala para falar ___ diretora', completa-se com:",o:["a / a","à / à","à / a","a / à"],a:1,e:"à sala e à diretora: ambas femininas e específicas, logo crase."},
   {q:"\u201CFui ___ Bahia e voltei ___ Pernambuco.\u201D",o:["a / à","à / a","a / a","à / à"],a:1,e:"\u201Cà Bahia\u201D (vou à / volto da → crase); \u201Ca Pernambuco\u201D (vou a / volto de → sem crase)."},
   {q:"Recebe acento o monossílabo tônico:",o:["de","se","pé","com"],a:2,e:"\u201Cpé\u201D é monossílabo tônico terminado em -é."},
   {q:"NÃO ocorre crase antes de:",o:["palavra feminina específica","verbo no infinitivo","horas determinadas","\u2018aquela\u2019"],a:1,e:"Antes de verbo não há artigo: \u201Ccomeçou a estudar\u201D (sem crase)."}
@@ -526,7 +602,11 @@ const MODULES=[
   {q:"Garantir que a informação não foi alterada é o pilar da:",o:["confidencialidade","integridade","disponibilidade","autenticidade"],a:1,e:"Integridade = dados íntegros, sem alteração indevida."},
   {q:"Manter o serviço acessível quando necessário é a:",o:["confidencialidade","integridade","disponibilidade","irretratabilidade"],a:2,e:"Disponibilidade = acesso quando preciso."},
   {q:"Um certificado digital (ICP-Brasil) é emitido por uma:",o:["operadora de telefonia","Autoridade Certificadora (AC)","ANPD","CPU"],a:1,e:"A AC valida e emite certificados digitais."},
-  {q:"Impedir que o autor negue a autoria de uma ação é o(a):",o:["disponibilidade","não-repúdio (irretratabilidade)","confidencialidade","redundância"],a:1,e:"O não-repúdio comprova a autoria."}
+  {q:"Impedir que o autor negue a autoria de uma ação é o(a):",o:["disponibilidade","não-repúdio (irretratabilidade)","confidencialidade","redundância"],a:1,e:"O não-repúdio comprova a autoria."},
+  {q:"Para CONFERIR uma assinatura digital, o destinatário usa a:",o:["chave privada do remetente","chave pública do remetente","própria chave privada","mesma chave simétrica"],a:1,e:"Assina-se com a privada; verifica-se com a pública do remetente."},
+  {q:"O ataque que se interpõe na comunicação para interceptar/alterar dados é o:",o:["phishing","man-in-the-middle (MITM)","brute force","SQL injection"],a:1,e:"No MITM o atacante fica 'no meio' da comunicação."},
+  {q:"O princípio do MENOR privilégio recomenda:",o:["dar acesso total por padrão","conceder apenas os acessos necessários à função","compartilhar senhas de admin","desativar logs"],a:1,e:"Cada usuário/processo recebe só o acesso indispensável."},
+  {q:"Adicionar um valor aleatório à senha antes do hash, contra rainbow tables, é o:",o:["salt","token","cookie","proxy"],a:0,e:"O 'salt' deixa hashes iguais diferentes e dificulta tabelas pré-computadas."}
  ]},
  {id:"ti-lgpd",t:"TI — Ameaças, Defesas e LGPD",cat:"ti",day:"30/06",qs:[
   {q:"O malware que criptografa arquivos e exige resgate é o:",o:["spyware","ransomware","adware","worm"],a:1,e:"Ransomware cifra os dados e cobra resgate."},
@@ -541,7 +621,11 @@ const MODULES=[
   {q:"O \u2018encarregado\u2019 (DPO), na LGPD, atua como:",o:["dono dos dados","canal entre controlador, titulares e ANPD","hacker ético","fornecedor de nuvem"],a:1,e:"O DPO é o ponto de contato/comunicação."},
   {q:"Programa que se replica e se espalha sozinho pela rede é o:",o:["worm","cavalo de Troia","planilha","driver"],a:0,e:"Worm se autopropaga; trojan se disfarça."},
   {q:"Atualizações que corrigem falhas de segurança são chamadas de:",o:["patches/correções","cookies","macros","scripts maliciosos"],a:0,e:"Patches corrigem vulnerabilidades."},
-  {q:"A cópia de segurança dos dados, para recuperação, é o:",o:["backup","cache","spool","log"],a:0,e:"O backup permite restaurar dados após incidentes."}
+  {q:"A cópia de segurança dos dados, para recuperação, é o:",o:["backup","cache","spool","log"],a:0,e:"O backup permite restaurar dados após incidentes."},
+  {q:"Pela LGPD, o tratamento de dados pessoais exige, em regra, uma das bases legais; a mais comum é:",o:["o anonimato","o consentimento do titular","a vontade do operador","o sigilo absoluto"],a:1,e:"O consentimento é uma das bases; há outras (ex.: cumprimento de obrigação legal)."},
+  {q:"Direito do titular previsto na LGPD:",o:["vender os próprios dados","acessar, corrigir e eliminar seus dados","criptografar servidores da empresa","fiscalizar o controlador"],a:1,e:"O titular pode acessar, corrigir, eliminar e portar seus dados."},
+  {q:"Vazamento de dados pessoais que possa gerar risco deve ser comunicado à:",o:["Receita Federal","ANPD e aos titulares afetados","Polícia Civil","operadora de telefonia"],a:1,e:"A LGPD prevê comunicação à ANPD e aos titulares em incidentes relevantes."},
+  {q:"Golpe que usa páginas/e-mails falsos imitando instituições para roubar dados é o:",o:["pharming/phishing","backup incremental","hash","firewall"],a:0,e:"Phishing engana o usuário; pharming redireciona para sites falsos."}
  ]},
  {id:"ti-bd1",t:"TI — Banco de Dados e SQL",cat:"ti",day:"01/07",qs:[
   {q:"Comando SQL para consultar dados:",o:["INSERT","SELECT","UPDATE","DELETE"],a:1,e:"SELECT recupera dados."},
@@ -584,7 +668,10 @@ const MODULES=[
   {q:"O poder de a Administração rever seus próprios atos (anular/revogar) é a:",o:["autotutela","tutela","hierarquia","discricionariedade"],a:0,e:"Autotutela (Súmulas 346 e 473 do STF)."},
   {q:"Editar normas (decretos) para a fiel execução da lei é o poder:",o:["disciplinar","regulamentar/normativo","de polícia","vinculado"],a:1,e:"O poder regulamentar edita atos normativos."},
   {q:"No ato discricionário, há margem de:",o:["nenhuma escolha","conveniência e oportunidade (mérito)","ilegalidade permitida","incompetência"],a:1,e:"Discricionário: juízo de mérito dentro da lei."},
-  {q:"Distribuir e escalonar funções entre órgãos e agentes é o poder:",o:["hierárquico","de polícia","regulamentar","vinculado"],a:0,e:"O poder hierárquico organiza, ordena e fiscaliza."}
+  {q:"Distribuir e escalonar funções entre órgãos e agentes é o poder:",o:["hierárquico","de polícia","regulamentar","vinculado"],a:0,e:"O poder hierárquico organiza, ordena e fiscaliza."},
+  {q:"O princípio que exige tratar os iguais de forma igual, sem favorecimentos, é a:",o:["eficiência","impessoalidade/isonomia","publicidade","motivação"],a:1,e:"Impessoalidade: a Administração serve ao interesse público, sem privilégios."},
+  {q:"Usar o poder de polícia para finalidade diversa da prevista na lei configura:",o:["exercício regular","desvio de finalidade (abuso de poder)","ato vinculado","autotutela"],a:1,e:"Desvio de finalidade é espécie de abuso de poder e vicia o ato."},
+  {q:"A exigência de concurso público para investidura em cargo efetivo decorre do princípio da:",o:["eficiência apenas","impessoalidade e isonomia","hierarquia","supremacia do particular"],a:1,e:"O concurso garante acesso impessoal e isonômico aos cargos (art. 37, II)."}
  ]},
  {id:"dir-adm2",t:"Direito Adm. — Atos Administrativos",cat:"dir",day:"04/07",qs:[
   {q:"São requisitos do ato administrativo:",o:["competência, finalidade, forma, motivo e objeto","só forma e objeto","legalidade e eficiência","atomicidade e isolamento"],a:0,e:"Cinco requisitos: competência, finalidade, forma, motivo, objeto."},
@@ -684,7 +771,10 @@ const MODULES=[
   {q:"Assegura conhecer/retificar dados pessoais em bancos públicos o:",o:["habeas corpus","habeas data","mandado de segurança","mandado de injunção"],a:1,e:"O habeas data trata de informações pessoais."},
   {q:"Combate a falta de norma que inviabilize direito constitucional o:",o:["mandado de injunção","habeas corpus","habeas data","ação civil pública"],a:0,e:"O mandado de injunção combate a omissão normativa."},
   {q:"Os direitos e garantias fundamentais, em regra, têm aplicação:",o:["diferida","imediata","facultativa","retroativa"],a:1,e:"Art. 5º, §1º: aplicação imediata."},
-  {q:"Anula ato lesivo ao patrimônio público, proposta pelo cidadão, a:",o:["ação popular","reclamação","habeas data","mandado de segurança"],a:0,e:"A ação popular é manejada pelo cidadão."}
+  {q:"Anula ato lesivo ao patrimônio público, proposta pelo cidadão, a:",o:["ação popular","reclamação","habeas data","mandado de segurança"],a:0,e:"A ação popular é manejada pelo cidadão."},
+  {q:"São Poderes da União, independentes e harmônicos entre si (art. 2º):",o:["Executivo, Legislativo e Judiciário","Executivo, Legislativo e Ministério Público","Federal, Estadual e Municipal","Civil, Militar e Eleitoral"],a:0,e:"Art. 2º: Legislativo, Executivo e Judiciário."},
+  {q:"O remédio constitucional gratuito que protege a liberdade de locomoção é o:",o:["mandado de segurança","habeas corpus","habeas data","mandado de injunção"],a:1,e:"O habeas corpus protege o direito de ir e vir."},
+  {q:"A dignidade da pessoa humana, na CF/88, é classificada como:",o:["objetivo fundamental","fundamento da República","direito social","cláusula pétrea revogável"],a:1,e:"Art. 1º, III: fundamento da República."}
  ]},
  {id:"dir-const2",t:"Direito Const. — Nacionalidade, Municípios e Administração",cat:"dir",day:"13/07",qs:[
   {q:"Instrumentos de soberania popular direta (art. 14):",o:["só o voto","plebiscito, referendo e iniciativa popular","só referendo","só iniciativa popular"],a:1,e:"Art. 14: plebiscito, referendo e iniciativa popular."},
@@ -712,7 +802,10 @@ const MODULES=[
   {q:"O Poder Legislativo do município é exercido pela:",o:["Assembleia Legislativa","Câmara Municipal (de Vereadores)","Prefeitura","Justiça Eleitoral"],a:1,e:"A Câmara Municipal exerce o Legislativo local."},
   {q:"Seropédica integra qual região do estado do Rio?",o:["Região dos Lagos","Região Metropolitana / Baixada Fluminense","Norte Fluminense","Região Serrana"],a:1,e:"Situa-se na Região Metropolitana (Baixada Fluminense)."},
   {q:"Uma marca histórica e econômica de Seropédica é:",o:["a indústria automobilística","a presença da UFRRJ e a tradição agrícola","o turismo de praia","a mineração de ferro"],a:1,e:"A UFRRJ e a vocação rural/agrícola marcam o município."},
-  {q:"A norma fundamental que organiza o município de Seropédica é a:",o:["Constituição Federal apenas","Lei Orgânica do Município","CLT","Lei de Licitações"],a:1,e:"A Lei Orgânica estrutura o município (confirme detalhes na lei oficial)."}
+  {q:"A norma fundamental que organiza o município de Seropédica é a:",o:["Constituição Federal apenas","Lei Orgânica do Município","CLT","Lei de Licitações"],a:1,e:"A Lei Orgânica estrutura o município (confirme detalhes na lei oficial)."},
+  {q:"A fiscalização contábil e financeira da Câmara/Prefeitura conta com o auxílio do:",o:["Tribunal de Contas (do Estado)","Tribunal do Júri","Cartório de Registro","Banco Central"],a:0,e:"O controle externo é exercido pelo Legislativo com auxílio do Tribunal de Contas."},
+  {q:"Os vereadores são eleitos pelo sistema:",o:["majoritário simples","proporcional","de nomeação pelo prefeito","por concurso"],a:1,e:"Para o Legislativo (vereadores) usa-se o sistema proporcional."},
+  {q:"O mandato do Prefeito e dos Vereadores é de:",o:["2 anos","4 anos","5 anos","8 anos"],a:1,e:"Os mandatos municipais são de 4 anos."}
  ]},
  {id:"loc-reg",t:"Regimento Interno da Câmara",cat:"loc",day:"16–17/07",qs:[
   {q:"Disciplina o funcionamento interno da Câmara o:",o:["Estatuto do Servidor","Regimento Interno","Código Tributário","Plano Diretor"],a:1,e:"O Regimento organiza sessões, comissões e processo legislativo."},
@@ -741,7 +834,11 @@ const MODULES=[
   {q:"Se 3 operários fazem uma obra em 12 dias, 6 operários (mesmo ritmo) fazem em:",o:["24","6","9","3"],a:1,e:"Grandezas inversas: dobro de operários → metade do tempo = 6."},
   {q:"A disjunção \u2018p ou q\u2019 é falsa APENAS quando:",o:["ambos V","ambos F","p V e q F","p F e q V"],a:1,e:"A disjunção só é falsa se ambos forem falsos."},
   {q:"2 está para 5 assim como 8 está para:",o:["10","15","20","25"],a:2,e:"2/5 = 8/x → x = 20 (proporção)."},
-  {q:"A média aritmética de 10, 20 e 30 é:",o:["15","20","25","30"],a:1,e:"(10+20+30)/3 = 20."}
+  {q:"A média aritmética de 10, 20 e 30 é:",o:["15","20","25","30"],a:1,e:"(10+20+30)/3 = 20."},
+  {q:"A negação de “Todo servidor é eficiente” é:",o:["Nenhum servidor é eficiente","Algum servidor não é eficiente","Todo servidor é ineficiente","Poucos são eficientes"],a:1,e:"Negar ‘todo A é B’ → ‘existe A que não é B’."},
+  {q:"Se “todo analista é concursado” e “João é analista”, então:",o:["João pode não ser concursado","João é concursado","nenhum analista é concursado","João é vereador"],a:1,e:"Silogismo válido: a conclusão segue das premissas."},
+  {q:"Um produto de R$ 80 com acréscimo de 25% passa a custar:",o:["R$ 90","R$ 100","R$ 105","R$ 120"],a:1,e:"25% de 80 = 20; 80 + 20 = 100."},
+  {q:"A contrapositiva de “Se estudo, então passo” é:",o:["Se passo, então estudo","Se não passo, então não estudo","Se não estudo, então não passo","Se estudo, então não passo"],a:1,e:"Contrapositiva de p→q é ~q→~p (equivalente)."}
  ]},
  {id:"ger-inf",t:"Informática (noções)",cat:"ger",day:"20/07",qs:[
   {q:"No Excel/Sheets, soma um intervalo a função:",o:["=MÉDIA()","=SOMA()","=SE()","=PROCV()"],a:1,e:"=SOMA(A1:A10) soma o intervalo."},
@@ -779,6 +876,49 @@ const HIGH={t:"🔥 Essenciais — quase certo na prova",qs:[
 
 const TEMAS=["TI — Arquitetura e Sistemas Operacionais","TI — Administração de Linux e Windows","TI — Virtualização e Computação em Nuvem","TI — Redes, modelo OSI e TCP/IP","TI — Protocolos e portas","TI — Endereçamento IP, subnetting e equipamentos","TI — Segurança da Informação e criptografia","TI — LGPD (Lei 13.709/2018)","TI — Banco de dados, modelo ER e SQL","TI — Normalização e transações ACID","TI — Engenharia de software e métodos ágeis (Scrum)","TI — Testes, Git e orientação a objetos","TI — Governança de TI (ITIL e COBIT)","TI — Servidores, RAID, backup e monitoramento","TI — Web (HTML, CSS, JS) e API REST","TI — Contratações de TI e Lei 14.133/2021","Português — Interpretação de texto","Português — Crase e acentuação","Português — Pontuação","Português — Concordância","Português — Regência e colocação pronominal","Direito Administrativo","Direito Constitucional (arts. 1º a 41)","Município de Seropédica","Regimento Interno da Câmara de Seropédica","Matemática e Raciocínio Lógico","Informática (noções)"];
 
+/* ===== SIMULADOS COMPLETOS (provas inteiras, fixas) =====
+   Cada simulado é montado de forma DETERMINÍSTICA a partir do banco verificado,
+   no peso do edital (Língua Portuguesa, Raciocínio Lógico, Informática,
+   Conhecimentos Específicos de TI, Direito e conteúdo local). Mesmas questões
+   sempre → dá pra repetir e medir evolução. */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function seededShuffle(arr,seed){const r=mulberry32(seed);const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function poolCat(cat){const out=[];MODULES.forEach(m=>{if(m.cat!==cat)return;m.qs.forEach((q,qi)=>out.push({q,cat:m.cat,src:m.id+"_"+qi}));});return out;}
+function poolMod(id){const out=[];const m=MODULES.find(x=>x.id===id);if(m)m.qs.forEach((q,qi)=>out.push({q,cat:m.cat,src:m.id+"_"+qi}));return out;}
+function poolHigh(){return HIGH.qs.map((q,i)=>({q,cat:"hy",src:"hy_"+i}));}
+/* peso (blueprint) de cada simulado — total 40 questões, padrão de prova objetiva */
+const SIM_DEFS=[
+ {t:"Simulado 1 — Prova completa",sub:"Equilibrado, todas as áreas",plan:{PT:10,RLM:5,INFO:3,TI:12,DIR:6,LOC:2,HY:2}},
+ {t:"Simulado 2 — Prova completa",sub:"Foco em TI e Direito",plan:{PT:9,RLM:4,INFO:3,TI:13,DIR:7,LOC:2,HY:2}},
+ {t:"Simulado 3 — Prova completa",sub:"Mais Português e lógica",plan:{PT:11,RLM:6,INFO:3,TI:11,DIR:5,LOC:2,HY:2}},
+ {t:"Simulado 4 — Prova completa",sub:"Conteúdo local + geral",plan:{PT:9,RLM:5,INFO:4,TI:11,DIR:6,LOC:3,HY:2}},
+ {t:"Simulado 5 — Reta final (nível 1º lugar)",sub:"Mais difícil, com pegadinhas",reta:true,plan:{PT:8,RLM:4,INFO:2,TI:13,DIR:7,LOC:2,HY:4}}
+];
+const SIM_TRACKS={PT:["pt",2001],RLM:["mod:ger-mat",2002],INFO:["mod:ger-inf",2003],TI:["ti",2004],DIR:["dir",2005],LOC:["loc",2006],HY:["hy",2007]};
+const SIM_ORDER=["PT","RLM","INFO","TI","DIR","LOC","HY"];
+let _simCache=null,_simShuffles=null;
+function simShuffles(){
+  if(_simShuffles)return _simShuffles;
+  _simShuffles={};
+  for(const k in SIM_TRACKS){const [src,seed]=SIM_TRACKS[k];
+    const pool=src==="pt"||src==="ti"||src==="dir"||src==="loc"?poolCat(src):src==="hy"?poolHigh():poolMod(src.slice(4));
+    _simShuffles[k]=seededShuffle(pool,seed);}
+  return _simShuffles;
+}
+function buildSims(){
+  if(_simCache)return _simCache;
+  const sh=simShuffles();
+  _simCache=SIM_DEFS.map((def,si)=>{
+    const list=[];
+    SIM_ORDER.forEach(k=>{const need=def.plan[k]||0,arr=sh[k],n=arr.length;
+      const start=(si*(def.plan[k]||0))%(n||1);
+      for(let j=0;j<need;j++){const it=arr[(start+j)%n];list.push(it);}});
+    return {id:"sim"+(si+1),t:def.t,sub:def.sub,reta:!!def.reta,total:list.length,
+      items:list.map((it,pos)=>({q:it.q,id:"sim"+(si+1)+"_"+pos,label:`${def.t.split(" — ")[0]} · Q${pos+1}`,cat:it.cat}))};
+  });
+  return _simCache;
+}
+
 /* ===== ESTADO + PERSISTÊNCIA =====
    Persistência em 3 camadas: window.storage (app do Claude) → localStorage (navegador) → memória.
    Assim o progresso NÃO se perde ao recarregar a página fora do app. */
@@ -796,6 +936,7 @@ let answers={};            // {id:{ok,ts,conf}}  -> "feito"
 let hist=[];               // [{id,ts,ok,label,cat,snap,conf}] mais recente primeiro
 let flags={};              // {id:{label,cat,ts,snap}} -> para revisar
 let daily={};              // {"YYYY-MM-DD": nº de questões respondidas no dia}
+let simAttempts=[];        // [{simId,ts,total,correct,pct}] tentativas de simulado
 let goal=20;               // meta diária de questões
 let streak=0, cur=null, histFilter="all", curConf=0;
 const HISTCAP=600;
@@ -813,10 +954,11 @@ async function init(){
   const h=await Store.get("hist"); if(h)hist=h;
   const f=await Store.get("flags"); if(f)flags=f;
   const d=await Store.get("daily"); if(d)daily=d;
+  const sa=await Store.get("simAttempts"); if(sa)simAttempts=sa;
   const g=await Store.get("goal"); if(g)goal=g;
   const th=await Store.get("theme"); if(th==="dark")applyTheme("dark");
-  const ts=document.getElementById("g-tema"); TEMAS.forEach(t=>{const o=document.createElement("option");o.value=t;o.textContent=t;ts.appendChild(o);});
-  document.getElementById("hy-sub").textContent=HIGH.qs.length+" questões difíceis";
+  const ts=document.getElementById("g-tema"); if(ts)TEMAS.forEach(t=>{const o=document.createElement("option");o.value=t;o.textContent=t;ts.appendChild(o);});
+  const hys=document.getElementById("hy-sub");if(hys)hys.textContent=HIGH.qs.length+" questões difíceis";
   const hc=document.getElementById("hero-count");if(hc)hc.textContent=MODULES.reduce((s,m)=>s+m.qs.length,0);
   bindKeys();
   renderHome(); updateStats(); updateNav(); pickToday();
@@ -915,6 +1057,75 @@ function practiceCat(cat){
   cur={title:"Foco: "+(CATNAME[cat]||cat),list:list.slice(0,Math.min(15,list.length)),idx:0};showQuiz();
 }
 function prio(it){const a=answers[it.id];return !a?1:(!a.ok?0:2);}
+
+/* ===== SIMULADOS ===== */
+function simAttemptsFor(id){return simAttempts.filter(a=>a.simId===id).sort((x,y)=>x.ts-y.ts);}
+function bestPct(id){const a=simAttemptsFor(id);return a.length?Math.max(...a.map(x=>x.pct)):null;}
+function openSimulados(){
+  hideAll();document.getElementById("simulados").style.display="block";
+  const sims=buildSims(),box=document.getElementById("simlist");box.innerHTML="";
+  sims.forEach((s,i)=>{const atts=simAttemptsFor(s.id),best=bestPct(s.id),last=atts.length?atts[atts.length-1].pct:null;
+    const cls=best==null?"":best>=70?"ok":best>=50?"mid":"no";
+    const el=document.createElement("div");el.className="simcard"+(s.reta?" reta":"");
+    el.innerHTML=`<div class="snum">${s.reta?"🔥":(i+1)}</div>
+      <div class="sinfo"><h5>${s.t}</h5>
+        <div class="smeta"><span>${s.total} questões</span><span>· ${s.sub}</span>${atts.length?`<span class="sbest ${cls}">melhor ${best}%</span>`:'<span class="sbest">ainda não feito</span>'}</div></div>
+      <div class="sact"><button class="btn sm">${atts.length?"Refazer":"Começar"}</button>${atts.length?`<small style="font-size:10.5px;color:var(--muted)">${atts.length}x · última ${last}%</small>`:""}</div>`;
+    el.querySelector("button").onclick=()=>startSim(s.id);box.appendChild(el);});
+  window.scrollTo(0,0);
+}
+function startSim(id){const s=buildSims().find(x=>x.id===id);if(!s)return;
+  cur={title:s.t,list:s.items.map(it=>({q:it.q,id:it.id,label:it.label,cat:it.cat})),idx:0,simId:id,simName:s.t};showQuiz();}
+function recordSimAttempt(){
+  if(!cur||!cur.simId)return;
+  const answered=cur._origin.filter(it=>it._answered);
+  const total=cur._origin.length,correct=answered.filter(it=>it._wrong===false).length;
+  const pct=total?Math.round(correct/total*100):0;
+  simAttempts.unshift({simId:cur.simId,ts:Date.now(),total,correct,pct});
+  if(simAttempts.length>200)simAttempts=simAttempts.slice(0,200);
+  Store.set("simAttempts",simAttempts);
+  const prevBest=Math.max(0,...simAttempts.filter(a=>a.simId===cur.simId&&a.ts!==simAttempts[0].ts).map(a=>a.pct));
+  if(pct>=80)toast(`Nota ${pct}% no ${cur.simName.split(" — ")[0]}! 🏆 Nível aprovação.`,true);
+  else if(pct>prevBest&&prevBest>0)toast(`Novo recorde nesse simulado: ${pct}% (antes ${prevBest}%). 📈`,true);
+}
+
+/* ===== DESEMPENHO / BOLETIM ===== */
+function openDesempenho(){
+  hideAll();document.getElementById("desempenho").style.display="block";
+  const ids=Object.keys(answers),n=ids.length,c=ids.filter(k=>answers[k].ok).length;
+  document.getElementById("d-ans").textContent=n;
+  document.getElementById("d-acc").textContent=n?Math.round(c/n*100)+"%":"—";
+  document.getElementById("d-sims").textContent=simAttempts.length;
+  document.getElementById("d-best").textContent=simAttempts.length?Math.max(...simAttempts.map(a=>a.pct))+"%":"—";
+  // boletim por simulado
+  const box=document.getElementById("boletim");box.innerHTML="";const sims=buildSims();
+  sims.forEach(s=>{const atts=simAttemptsFor(s.id);
+    const row=document.createElement("div");row.className="brow";
+    if(!atts.length){row.innerHTML=`<div class="bt"><span>${s.t.split(" — ")[0]}</span><span class="bn" style="color:var(--muted);font-size:12px;font-weight:500">não feito</span></div>
+      <div class="bsub">${s.sub} · <a href="#" onclick="startSim('${s.id}');return false" style="color:var(--brand);font-weight:600">fazer agora →</a></div>`;}
+    else{const best=Math.max(...atts.map(a=>a.pct)),last=atts[atts.length-1].pct;
+      const recent=atts.slice(-8),maxp=Math.max(100,...recent.map(a=>a.pct));
+      const bars=recent.map((a,i)=>`<i class="${i===recent.length-1?'last':''}" style="height:${Math.max(8,Math.round(a.pct/maxp*100))}%" title="${a.pct}%"></i>`).join("");
+      const col=best>=70?"var(--right)":best>=50?"var(--amber)":"var(--wrong)";
+      row.innerHTML=`<div class="bt"><span>${s.t.split(" — ")[0]}</span><span class="bn" style="color:${col}">melhor ${best}%</span></div>
+        <div class="spark">${bars}</div>
+        <div class="bsub">${atts.length} tentativa(s) · última ${last}% · <a href="#" onclick="startSim('${s.id}');return false" style="color:var(--brand);font-weight:600">refazer →</a></div>`;}
+    box.appendChild(row);});
+  // matérias a reforçar (reaproveita catStats)
+  const s=catStats(),cats=Object.keys(s).filter(c2=>s[c2].a>=3),abox=document.getElementById("d-analytics"),emp=document.getElementById("d-analytics-empty");
+  abox.innerHTML="";
+  if(!cats.length){abox.style.display="none";emp.style.display="block";}
+  else{abox.style.display="grid";emp.style.display="none";
+    cats.map(cat=>({cat,att:s[cat].a,cor:s[cat].c,pct:Math.round(s[cat].c/s[cat].a*100)})).sort((x,y)=>x.pct-y.pct).forEach(o=>{
+      const weak=o.pct<60,col=o.pct>=70?"var(--right)":o.pct>=50?"var(--amber)":"var(--wrong)";
+      const el=document.createElement("div");el.className="arow"+(weak?" weak":"");el.style.cursor="pointer";el.tabIndex=0;
+      el.innerHTML=`<div class="at"><span class="pill ${o.cat}">${PILL[o.cat]||""}</span><span>${CATNAME[o.cat]||o.cat}</span><span class="pct" style="color:${col}">${o.pct}%</span></div>
+        <div class="abar"><i style="width:${o.pct}%;background:${col}"></i></div>
+        <div class="acnt">${o.cor}/${o.att} corretas · toque para treinar${weak?" 👈 foco aqui":""}</div>`;
+      el.onclick=()=>practiceCat(o.cat);el.onkeydown=e=>{if(e.key==="Enter")practiceCat(o.cat);};abox.appendChild(el);});}
+  window.scrollTo(0,0);
+}
+
 function updateNav(){
   document.getElementById("nav-flag").textContent=Object.keys(flags).length;
   document.getElementById("nav-hist").textContent=hist.length;
@@ -968,7 +1179,7 @@ async function generateAndStart(){
 }
 
 /* ===== QUIZ ===== */
-function hideAll(){["home","listview","quiz","summary"].forEach(id=>document.getElementById(id).style.display="none");}
+function hideAll(){["home","simulados","desempenho","listview","quiz","summary"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="none";});}
 function showQuiz(){hideAll();document.getElementById("quiz").style.display="block";cur._origin=cur.list.slice();window.scrollTo(0,0);renderQ();}
 function renderQ(){
   const it=cur.list[cur.idx],tag=document.getElementById("qtag");
@@ -1049,10 +1260,15 @@ function showSummary(){
   document.getElementById("ringval").textContent=pct+"%";
   const fill=document.getElementById("ringfill");fill.setAttribute("stroke",pct>=70?"#1E8E5A":pct>=50?"#D98A00":"#CF3D3D");fill.setAttribute("stroke-dashoffset",352);
   setTimeout(()=>{fill.style.transition="stroke-dashoffset 1s ease";fill.setAttribute("stroke-dashoffset",352-(352*pct/100));},50);
-  document.getElementById("sum-title").textContent=total===0?"Nada respondido ainda":pct>=70?"Mandou bem! 💪":pct>=50?"Quase lá — siga revisando":"Bora reforçar essa matéria";
-  document.getElementById("sum-sub").textContent=total===0
-    ?`Você pulou todas as ${skipped} questões — responda para contar acertos.`
-    :`Você acertou ${cor} de ${total} respondida(s) (${pct}%).`+(skipped?` · ${skipped} pulada(s) não contam.`:"");
+  if(cur.simId){
+    document.getElementById("sum-title").textContent=`Nota: ${pct}% no ${cur.simName.split(" — ")[0]}`;
+    document.getElementById("sum-sub").textContent=`Você acertou ${cor} de ${cur._origin.length} questões.`+(skipped?` (${skipped} em branco contam como erro no simulado.)`:"")+(pct>=70?" Acima do que costuma classificar! ✅":" Revise as erradas para subir a nota.");
+  }else{
+    document.getElementById("sum-title").textContent=total===0?"Nada respondido ainda":pct>=70?"Mandou bem! 💪":pct>=50?"Quase lá — siga revisando":"Bora reforçar essa matéria";
+    document.getElementById("sum-sub").textContent=total===0
+      ?`Você pulou todas as ${skipped} questões — responda para contar acertos.`
+      :`Você acertou ${cor} de ${total} respondida(s) (${pct}%).`+(skipped?` · ${skipped} pulada(s) não contam.`:"");
+  }
   document.getElementById("rev-btn").style.display=cur._origin.some(it=>it._wrong===true)?"inline-block":"none";
   // detalhamento por categoria desta sessão
   const sc={};answered.forEach(it=>{const c=CC[it.cat]||it.cat;(sc[c]=sc[c]||{a:0,c:0}).a++;if(!it._wrong)sc[c].c++;});
@@ -1061,7 +1277,8 @@ function showSummary(){
     const r=document.createElement("div");r.className="sumcat";
     r.innerHTML=`<span class="sn">${CATNAME[c]||PILL[c]||c}</span><span class="sb"><i style="width:${p}%;background:${col}"></i></span><span class="sp" style="color:${col}">${p}%</span>`;
     box.appendChild(r);});
-  if(pct>=90&&total>=5)toast("Excelente! 90%+ nessa rodada! 🏆",true);
+  if(cur.simId)recordSimAttempt();
+  else if(pct>=90&&total>=5)toast("Excelente! 90%+ nessa rodada! 🏆",true);
   renderHome();updateStats();updateNav();pickToday();renderDaily();renderAnalytics();window.scrollTo(0,0);
 }
 function goHome(){hideAll();document.getElementById("home").style.display="block";renderHome();updateStats();updateNav();pickToday();renderCountdown();renderDaily();renderAnalytics();window.scrollTo(0,0);}
@@ -1131,13 +1348,13 @@ function toggleDone(id,ok){
   Store.set("answers",answers);updateStats();renderHome();openHistory();
 }
 
-async function resetAll(){if(!confirm("Zerar TUDO (feitas, histórico, marcadas e metas)?"))return;answers={};hist=[];flags={};daily={};streak=0;
-  await Store.set("answers",answers);await Store.set("hist",hist);await Store.set("flags",flags);await Store.set("daily",daily);
+async function resetAll(){if(!confirm("Zerar TUDO (feitas, histórico, marcadas, metas e notas dos simulados)?"))return;answers={};hist=[];flags={};daily={};simAttempts=[];streak=0;
+  await Store.set("answers",answers);await Store.set("hist",hist);await Store.set("flags",flags);await Store.set("daily",daily);await Store.set("simAttempts",simAttempts);
   renderHome();updateStats();updateNav();pickToday();renderDaily();renderAnalytics();goHome();}
 
 /* ===== EXPORTAR / IMPORTAR PROGRESSO ===== */
 function exportProgress(){
-  const data={v:1,exportedAt:new Date().toISOString(),answers,hist,flags,daily,goal};
+  const data={v:1,exportedAt:new Date().toISOString(),answers,hist,flags,daily,goal,simAttempts};
   const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);
   a.download="progresso-seropedica-"+dayKey()+".json";a.click();URL.revokeObjectURL(a.href);
@@ -1147,8 +1364,8 @@ function importProgress(ev){
   const f=ev.target.files[0];if(!f)return;const r=new FileReader();
   r.onload=()=>{try{const d=JSON.parse(r.result);
     if(!confirm("Importar e SUBSTITUIR o progresso atual por este arquivo?"))return;
-    answers=d.answers||{};hist=d.hist||[];flags=d.flags||{};daily=d.daily||{};goal=d.goal||20;
-    Store.set("answers",answers);Store.set("hist",hist);Store.set("flags",flags);Store.set("daily",daily);Store.set("goal",goal);
+    answers=d.answers||{};hist=d.hist||[];flags=d.flags||{};daily=d.daily||{};goal=d.goal||20;simAttempts=d.simAttempts||[];
+    Store.set("answers",answers);Store.set("hist",hist);Store.set("flags",flags);Store.set("daily",daily);Store.set("goal",goal);Store.set("simAttempts",simAttempts);
     updateStats();updateNav();renderHome();pickToday();renderDaily();renderAnalytics();goHome();
     toast("Progresso importado com sucesso! ✅",true);
   }catch(e){alert("Arquivo inválido. Selecione um JSON exportado por este app.");}};
