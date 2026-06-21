@@ -186,93 +186,6 @@
   .conf button:hover{border-color:var(--brand)} .conf button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   /* Badge de dias de ofensiva */
   .stat.days b{color:var(--violet)}
-
-  /* ============================================================
-     REDESIGN MOBILE-FIRST (estilo iFood/Hits)
-     ============================================================ */
-  body{padding-bottom:78px}                 /* espaço p/ barra inferior */
-  .wrap{max-width:520px;padding:0 14px 40px}
-  /* Header compacto */
-  .hd{padding:10px 14px}
-  .brand h1{font-size:16px}
-  .hd-right .stats{display:none}            /* stats migram p/ o hero/perfil */
-  /* Hero card (banner principal estilo promo) */
-  .apphero{margin:14px 0 0;background:linear-gradient(135deg,var(--brand),var(--brand-d));color:#fff;border-radius:20px;padding:18px 18px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-  .apphero::after{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.08)}
-  .apphero .eg{font-family:"Space Grotesk";font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:#9fdedc;font-weight:600}
-  .apphero h2{font-family:"Space Grotesk";font-size:21px;line-height:1.12;margin:5px 0 12px;font-weight:700;letter-spacing:-.3px;position:relative}
-  .apphero .hrow{display:flex;gap:10px;position:relative;z-index:1}
-  .hchip{flex:1;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);border-radius:13px;padding:9px 10px;text-align:center;min-width:0}
-  .hchip b{font-family:"Space Grotesk";font-size:18px;display:block;line-height:1}
-  .hchip small{font-size:9.5px;text-transform:uppercase;letter-spacing:.4px;color:#cfeaea;display:block;margin-top:3px}
-  .hchip.fire b{color:#FFD79A}
-  /* Faixa de meta diária compacta */
-  .goalstrip{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:11px 14px;margin:12px 0 0;box-shadow:var(--shadow)}
-  /* Categorias em scroll horizontal */
-  .hscroll{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;padding:4px 2px 8px;margin:0 -2px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .hscroll::-webkit-scrollbar{display:none}
-  .cat{flex:none;width:74px;scroll-snap-align:start;background:none;border:none;cursor:pointer;font-family:"Inter";text-align:center;padding:0}
-  .cat .cthumb{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;font-size:27px;margin:0 auto 6px;box-shadow:var(--shadow);transition:transform .1s}
-  .cat:active .cthumb{transform:scale(.94)}
-  .cat .cname{font-size:11px;color:var(--ink);font-weight:600;line-height:1.15;display:block}
-  .cat .cprog{font-size:9.5px;color:var(--muted);display:block;margin-top:1px}
-  .cthumb.ti{background:#E6F3F2}.cthumb.pt{background:#EDEBF7}.cthumb.dir{background:#FBF0E4}.cthumb.loc{background:#E7F6EE}.cthumb.ger{background:#EEF1F2}.cthumb.all{background:linear-gradient(135deg,var(--amber),#C77A00)}
-  [data-theme="dark"] .cthumb.ti,[data-theme="dark"] .cthumb.pt,[data-theme="dark"] .cthumb.dir,[data-theme="dark"] .cthumb.loc,[data-theme="dark"] .cthumb.ger{background:var(--soft)}
-  /* Seção título + ver mais */
-  .shead{display:flex;align-items:baseline;justify-content:space-between;margin:22px 0 10px}
-  .shead h4{font-family:"Space Grotesk";font-size:16px;margin:0;font-weight:700;letter-spacing:-.2px}
-  .shead .more{font-size:12.5px;color:var(--brand);font-weight:600;background:none;border:none;cursor:pointer;font-family:"Inter"}
-  /* Cards de ação destacados (horizontal) */
-  .actcards{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 6px;margin:0 -2px;scrollbar-width:none}
-  .actcards::-webkit-scrollbar{display:none}
-  .actcard{flex:none;width:200px;scroll-snap-align:start;border-radius:18px;padding:16px;color:#fff;cursor:pointer;box-shadow:var(--shadow);border:none;text-align:left;font-family:"Inter";position:relative;overflow:hidden}
-  .actcard.ess{background:linear-gradient(135deg,#E8920A,#C2410C)}
-  .actcard.sim{background:linear-gradient(135deg,#5B4BA6,#3F3479)}
-  .actcard.cont{background:linear-gradient(135deg,var(--brand),var(--brand-d))}
-  .actcard .ad{font-family:"Space Grotesk";font-size:10px;letter-spacing:1px;text-transform:uppercase;opacity:.85}
-  .actcard .ah{font-family:"Space Grotesk";font-size:16px;font-weight:700;margin:5px 0 4px;line-height:1.15}
-  .actcard .as{font-size:11.5px;opacity:.9;line-height:1.35;min-height:30px}
-  .actcard .ago{margin-top:10px;display:inline-block;background:rgba(255,255,255,.22);border-radius:9px;padding:6px 12px;font-size:12.5px;font-weight:600;font-family:"Space Grotesk"}
-  /* Lista de matérias (cards estilo "loja/pedido") */
-  .modcard{display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:11px 13px;margin-bottom:10px;cursor:pointer;box-shadow:var(--shadow);transition:transform .08s,border-color .15s;width:100%;text-align:left;font-family:"Inter"}
-  .modcard:active{transform:scale(.99)} .modcard:hover{border-color:var(--brand)}
-  .modcard .mthumb{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:24px;flex:none;position:relative}
-  .mthumb.ti{background:#E6F3F2}.mthumb.pt{background:#EDEBF7}.mthumb.dir{background:#FBF0E4}.mthumb.loc{background:#E7F6EE}.mthumb.ger{background:#EEF1F2}
-  [data-theme="dark"] .mthumb.ti,[data-theme="dark"] .mthumb.pt,[data-theme="dark"] .mthumb.dir,[data-theme="dark"] .mthumb.loc,[data-theme="dark"] .mthumb.ger{background:var(--soft)}
-  .modcard .mthumb .mdone{position:absolute;right:-4px;bottom:-4px;width:20px;height:20px;border-radius:50%;background:var(--right);color:#fff;display:grid;place-items:center;font-size:11px;border:2px solid var(--card)}
-  .modcard .mbody{flex:1;min-width:0}
-  .modcard .mtitle{font-size:14px;font-weight:600;letter-spacing:-.1px;margin:0 0 3px;line-height:1.2}
-  .modcard .mmeta{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--muted);flex-wrap:wrap}
-  .modcard .mbar{height:5px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:7px}
-  .modcard .mbar i{display:block;height:100%;background:var(--brand);border-radius:4px;transition:width .4s}
-  .modcard .macc2{text-align:right;flex:none}
-  .modcard .macc2 b{font-family:"Space Grotesk";font-size:15px;display:block;line-height:1;color:var(--brand)}
-  .modcard .macc2 small{font-size:10px;color:var(--muted)}
-  .modcard .chev{color:var(--muted);font-size:18px;flex:none}
-  /* Barra de navegação inferior (iFood) */
-  .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--card);border-top:1px solid var(--line);display:flex;padding:6px 4px 8px;box-shadow:0 -2px 14px rgba(18,48,58,.06)}
-  .tabbar .tab{flex:1;background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 2px;color:var(--muted);font-family:"Inter";position:relative}
-  .tabbar .tab .ti2{font-size:21px;line-height:1}
-  .tabbar .tab .tl{font-size:10px;font-weight:600}
-  .tabbar .tab.on{color:var(--brand)}
-  .tabbar .tab .tbadge{position:absolute;top:0;right:50%;margin-right:-22px;background:var(--wrong);color:#fff;font-size:9px;font-weight:700;min-width:16px;height:16px;border-radius:9px;display:grid;place-items:center;padding:0 4px;font-family:"Space Grotesk"}
-  /* Perfil */
-  .profhead{text-align:center;padding:22px 0 8px}
-  .profhead .pav{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand-d));display:grid;place-items:center;color:#fff;font-family:"Space Grotesk";font-weight:700;font-size:30px;margin:0 auto 10px}
-  .profhead h3{font-family:"Space Grotesk";margin:0;font-size:18px}
-  .profhead p{color:var(--muted);font-size:13px;margin:3px 0 0}
-  .profstats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}
-  .pstat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 6px;text-align:center;box-shadow:var(--shadow)}
-  .pstat b{font-family:"Space Grotesk";font-size:18px;display:block;line-height:1}
-  .pstat small{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;display:block;margin-top:4px}
-  .prow{display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 15px;margin-bottom:9px;cursor:pointer;box-shadow:var(--shadow);width:100%;text-align:left;font-family:"Inter";color:var(--ink)}
-  .prow:hover{border-color:var(--brand)} .prow:active{transform:scale(.99)}
-  .prow .pic{font-size:20px;flex:none;width:24px;text-align:center}
-  .prow .pt2{flex:1;font-size:14px;font-weight:600}
-  .prow .ps{font-size:12px;color:var(--muted)}
-  .prow .pchev{color:var(--muted);font-size:17px}
-  .prow.danger .pt2{color:var(--wrong)}
-  @media (min-width:560px){.tabbar{max-width:520px;left:50%;transform:translateX(-50%);border-radius:18px 18px 0 0}}
 </style>
 </head>
 <body>
@@ -283,6 +196,12 @@
       <div><h1>Trilha Seropédica</h1><span>Banco de Questões · Analista de TI</span></div>
     </div>
     <div class="hd-right">
+      <div class="stats">
+        <div class="stat"><b id="st-ans">0</b><small>Feitas</small></div>
+        <div class="stat"><b id="st-acc">—</b><small>Acerto</small></div>
+        <div class="stat fire"><b id="st-str">0</b><small>Sequência</small></div>
+        <div class="stat days"><b id="st-days">0</b><small>Dias</small></div>
+      </div>
       <button class="iconbtn" id="themebtn" onclick="toggleTheme()" title="Alternar tema (claro/escuro)" aria-label="Alternar tema">🌙</button>
     </div>
   </div>
@@ -290,19 +209,19 @@
 
 <div class="wrap">
   <section id="home">
-    <div class="apphero">
-      <div class="eg" id="cd-sub">Prova: 1º de agosto de 2026</div>
-      <h2>Faltam <span id="cd-num">—</span> dias para o 1º lugar 🚀</h2>
-      <div style="height:6px;background:rgba(255,255,255,.25);border-radius:5px;overflow:hidden;margin:0 0 14px;position:relative;z-index:1"><i id="cd-fill" style="display:block;height:100%;width:0%;background:#fff;border-radius:5px;transition:width .6s"></i></div>
-      <div class="hrow">
-        <div class="hchip"><b id="st-ans">0</b><small>Feitas</small></div>
-        <div class="hchip"><b id="st-acc">—</b><small>Acerto</small></div>
-        <div class="hchip fire"><b id="st-str">0</b><small>Sequência</small></div>
-        <div class="hchip"><b id="st-days">0</b><small>Dias</small></div>
-      </div>
+    <div class="hero">
+      <div class="eyebrow">Prova: 1º de agosto de 2026 · rumo ao 1º lugar</div>
+      <h2>Gere questões infinitas.<br>Marque, revise, acompanhe.</h2>
+      <p>Crie questões inéditas com IA, treine <b id="hero-count">—</b> prontas, marque as que quer rever depois e acompanhe o histórico de tudo que já fez. Cada exercício é contado automaticamente.</p>
     </div>
 
-    <div class="daily" id="daily" style="margin-top:12px">
+    <div class="countdown" id="countdown">
+      <div><div class="cd-num" id="cd-num">—</div></div>
+      <div class="cd-txt"><b>dias até a prova</b><br><span id="cd-sub">1º de agosto de 2026</span></div>
+      <div class="cd-bar"><i id="cd-fill" style="width:0%"></i></div>
+    </div>
+
+    <div class="daily" id="daily">
       <div class="dring">
         <svg width="54" height="54"><circle cx="27" cy="27" r="22" fill="none" stroke="var(--line)" stroke-width="6"/>
           <circle id="dring-fill" cx="27" cy="27" r="22" fill="none" stroke="var(--right)" stroke-width="6" stroke-linecap="round" stroke-dasharray="138" stroke-dashoffset="138"/></svg>
@@ -312,50 +231,10 @@
       <div class="dgoal"><button onclick="changeGoal(-5)" aria-label="Diminuir meta">−</button><button onclick="changeGoal(5)" aria-label="Aumentar meta">+</button></div>
     </div>
 
-    <div class="shead"><h4>Praticar agora</h4></div>
-    <div class="actcards">
-      <button class="actcard cont" id="continue-card" onclick="continuePractice()">
-        <span class="ad">Continue de onde parou</span>
-        <span class="ah" id="today-title">…</span>
-        <span class="as" id="today-sub"></span>
-        <span class="ago" id="today-btn">Praticar →</span>
-      </button>
-      <button class="actcard ess" onclick="startHigh()">
-        <span class="ad">🔥 Alta probabilidade</span>
-        <span class="ah">Essenciais</span>
-        <span class="as" id="hy-sub">questões difíceis</span>
-        <span class="ago">Treinar →</span>
-      </button>
-      <button class="actcard sim" onclick="startSimulado()">
-        <span class="ad">⏱️ Modo prova</span>
-        <span class="ah">Simulado 40</span>
-        <span class="as">40 questões sorteadas de tudo</span>
-        <span class="ago">Começar →</span>
-      </button>
-    </div>
-
-    <div class="shead"><h4>Matérias</h4><button class="more" onclick="setTab('search')">Ver todas</button></div>
-    <div class="hscroll" id="cats"></div>
-
-    <div id="analytics-wrap" style="display:none">
-      <div class="shead"><h4>Seu desempenho</h4><small style="font-size:11px;color:var(--muted)">toque p/ treinar</small></div>
-      <div class="analytics" id="analytics"></div>
-    </div>
-
-    <div class="shead"><h4>Banco por matéria</h4><small style="font-size:11px;color:var(--muted)">ordem do plano</small></div>
-    <div class="mods" id="mods"></div>
-  </section>
-
-  <!-- BUSCAR -->
-  <section class="listview" id="search">
-    <div class="lvtop"><h3>Buscar</h3></div>
-    <div class="searchbar">
-      <input type="search" id="modsearch" placeholder="🔎 Buscar matéria ou questão…" oninput="renderSearch()" autocomplete="off">
-    </div>
-    <div class="gen" style="margin:14px 0 6px">
-      <div class="lbl">★ Gerador com IA</div>
-      <h3>Questões novas sobre o que você quiser</h3>
-      <p>Escolha tema e dificuldade. <b>Funciona dentro do app do Claude.</b></p>
+    <div class="gen">
+      <div class="lbl">★ Gerador de questões com IA</div>
+      <h3>Questões novas, na hora, sobre o que você quiser</h3>
+      <p>Escolha o tema e a dificuldade. A IA cria questões inéditas com gabarito comentado. <b>Funciona dentro do app do Claude.</b></p>
       <div class="fields">
         <div class="fld tema"><label>Tema</label><select id="g-tema"></select></div>
         <div class="fld"><label>Dificuldade</label>
@@ -369,31 +248,53 @@
       </div>
       <div class="genmsg" id="g-msg"></div>
     </div>
-    <div class="mods" id="search-mods"></div>
-  </section>
 
-  <!-- PERFIL -->
-  <section class="listview" id="profile">
-    <div class="profhead">
-      <div class="pav">S</div>
-      <h3>Trilha Seropédica</h3>
-      <p>Analista de TI · edital 001/2026</p>
+    <div class="nav2">
+      <button class="navbtn" onclick="openFlagged()">
+        <span class="ic">⭐</span>
+        <span><span class="t">Para revisar</span><span class="s">Questões que você marcou</span></span>
+        <span class="cnt" id="nav-flag">0</span>
+      </button>
+      <button class="navbtn" onclick="openHistory()">
+        <span class="ic">🕘</span>
+        <span><span class="t">Histórico de exercícios</span><span class="s">Tudo que você já respondeu</span></span>
+        <span class="cnt" id="nav-hist">0</span>
+      </button>
     </div>
-    <div class="profstats">
-      <div class="pstat"><b id="p-ans">0</b><small>Feitas</small></div>
-      <div class="pstat"><b id="p-acc">—</b><small>Acerto</small></div>
-      <div class="pstat"><b id="p-str">0</b><small>Seq.</small></div>
-      <div class="pstat"><b id="p-days">0</b><small>Dias</small></div>
+
+    <div class="twocol">
+      <div class="panel hy">
+        <div class="lbl">🔥 Quase certo na prova</div>
+        <h3>Essenciais — alta probabilidade</h3>
+        <small id="hy-sub">14 questões difíceis</small>
+        <div class="act"><button class="btn amber" onclick="startHigh()">Treinar essenciais</button></div>
+      </div>
+      <div class="panel today">
+        <div class="lbl">Comece por aqui</div>
+        <h3 id="today-title">…</h3>
+        <small id="today-sub"></small>
+        <div class="act row"><button class="btn" id="today-btn">Praticar</button><button class="btn white" onclick="startSimulado()">Simulado 40</button></div>
+      </div>
     </div>
-    <button class="prow" onclick="setTab('flags')"><span class="pic">⭐</span><span class="pt2">Para revisar<br><span class="ps">questões marcadas</span></span><span class="pchev" id="p-flag">0 ›</span></button>
-    <button class="prow" onclick="setTab('history')"><span class="pic">🕘</span><span class="pt2">Histórico<br><span class="ps">tudo que respondeu</span></span><span class="pchev" id="p-hist">0 ›</span></button>
-    <button class="prow" onclick="toggleTheme()"><span class="pic" id="p-theme-ic">🌙</span><span class="pt2">Tema<br><span class="ps">claro / escuro</span></span><span class="pchev">›</span></button>
-    <button class="prow" onclick="exportProgress()"><span class="pic">💾</span><span class="pt2">Exportar progresso<br><span class="ps">salvar backup .json</span></span><span class="pchev">›</span></button>
-    <button class="prow" onclick="document.getElementById('importfile').click()"><span class="pic">📥</span><span class="pt2">Importar progresso<br><span class="ps">restaurar backup</span></span><span class="pchev">›</span></button>
-    <button class="prow danger" onclick="resetAll()"><span class="pic">🗑️</span><span class="pt2">Zerar tudo<br><span class="ps">apaga feitas, histórico e metas</span></span><span class="pchev">›</span></button>
-    <input type="file" id="importfile" accept="application/json" style="display:none" onchange="importProgress(event)">
-    <footer style="margin-top:18px">
-      Questões alinhadas ao edital 001/2026 — não são cópias de provas anteriores. Confira dados locais na Lei Orgânica e no Regimento oficiais.
+
+    <div id="analytics-wrap" style="display:none">
+      <div class="seclab"><h4>Seu desempenho por matéria</h4><div class="ln"></div></div>
+      <div class="analytics" id="analytics"></div>
+    </div>
+
+    <div class="seclab"><h4>Banco por matéria · ordem do plano</h4><div class="ln"></div></div>
+    <div class="searchbar">
+      <input type="search" id="modsearch" placeholder="🔎 Buscar matéria ou questão…" oninput="renderHome()" autocomplete="off">
+    </div>
+    <div class="mods" id="mods"></div>
+
+    <footer>
+      Questões prontas e geradas no padrão da banca, alinhadas ao edital 001/2026 — não são cópias de provas anteriores.<br>
+      Confira dados locais (Seropédica/Regimento) na Lei Orgânica e no Regimento oficiais.<br>
+      <button class="reset" onclick="exportProgress()">Exportar progresso</button> ·
+      <button class="reset" onclick="document.getElementById('importfile').click()">Importar</button> ·
+      <button class="reset" onclick="resetAll()">Zerar tudo</button>
+      <input type="file" id="importfile" accept="application/json" style="display:none" onchange="importProgress(event)">
     </footer>
   </section>
 
@@ -450,14 +351,6 @@
     </div>
   </section>
 </div>
-
-<nav class="tabbar" id="tabbar">
-  <button class="tab on" id="tab-home" onclick="setTab('home')"><span class="ti2">🏠</span><span class="tl">Início</span></button>
-  <button class="tab" id="tab-search" onclick="setTab('search')"><span class="ti2">🔎</span><span class="tl">Buscar</span></button>
-  <button class="tab" id="tab-flags" onclick="setTab('flags')"><span class="tbadge" id="nav-flag" style="display:none">0</span><span class="ti2">⭐</span><span class="tl">Revisar</span></button>
-  <button class="tab" id="tab-history" onclick="setTab('history')"><span class="tbadge" id="nav-hist" style="display:none">0</span><span class="ti2">🕘</span><span class="tl">Histórico</span></button>
-  <button class="tab" id="tab-profile" onclick="setTab('profile')"><span class="ti2">👤</span><span class="tl">Perfil</span></button>
-</nav>
 
 <div id="toasts" aria-live="polite"></div>
 
@@ -909,7 +802,6 @@ const HISTCAP=600;
 const dayKey=ts=>{const d=new Date(ts||Date.now());return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");};
 const PILL={ti:"TI",pt:"Português",dir:"Direito",loc:"Local",ger:"Geral",hy:"Essenciais",ai:"IA"};
 const CC={ti:"ti",pt:"pt",dir:"dir",loc:"loc",ger:"ger",hy:"ger",ai:"pt"};
-const CAT_ICON={ti:"💻",pt:"📖",dir:"⚖️",loc:"🏛️",ger:"🧮",hy:"🔥",ai:"✨"};
 const qidOf=(mi,qi)=>MODULES[mi].id+"_"+qi;
 const snapOf=it=>({q:it.q.q,o:it.q.o,a:it.q.a,e:it.q.e});
 const itemFromSnap=(id,label,cat,snap)=>({q:{q:snap.q,o:snap.o,a:snap.a,e:snap.e},id,label,cat});
@@ -927,51 +819,13 @@ async function init(){
   document.getElementById("hy-sub").textContent=HIGH.qs.length+" questões difíceis";
   const hc=document.getElementById("hero-count");if(hc)hc.textContent=MODULES.reduce((s,m)=>s+m.qs.length,0);
   bindKeys();
-  renderHome(); renderCats(); updateStats(); updateNav(); pickToday();
+  renderHome(); updateStats(); updateNav(); pickToday();
   renderCountdown(); renderDaily(); renderAnalytics();
 }
 
-/* ===== CATEGORIAS (scroll horizontal estilo iFood) ===== */
-function renderCats(){
-  const box=document.getElementById("cats");if(!box)return;box.innerHTML="";
-  const cats=["all","ti","pt","dir","loc","ger"];
-  cats.forEach(c=>{
-    let a=0,t=0;MODULES.forEach((m,mi)=>{if(c!=="all"&&(CC[m.cat]||m.cat)!==c)return;const s=modStats(mi);a+=s.a;t+=s.total;});
-    const b=document.createElement("button");b.className="cat";
-    const name=c==="all"?"Todas":(CATNAME[c]?CATNAME[c].split(" ")[0]:PILL[c]);
-    const icon=c==="all"?"🎯":CAT_ICON[c];
-    b.innerHTML=`<span class="cthumb ${c}">${icon}</span><span class="cname">${name}</span><span class="cprog">${t?Math.round(a/t*100):0}%</span>`;
-    b.onclick=()=>{if(c==="all"){setTab('search');}else{practiceCat(c);}};
-    box.appendChild(b);
-  });
-}
-
 /* ===== TEMA (claro/escuro) ===== */
-function applyTheme(t){const dk=t==="dark";document.documentElement.setAttribute("data-theme",dk?"dark":"");
-  document.getElementById("themebtn").textContent=dk?"☀️":"🌙";
-  const pi=document.getElementById("p-theme-ic");if(pi)pi.textContent=dk?"☀️":"🌙";}
+function applyTheme(t){document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"");document.getElementById("themebtn").textContent=t==="dark"?"☀️":"🌙";}
 function toggleTheme(){const dark=document.documentElement.getAttribute("data-theme")==="dark";applyTheme(dark?"light":"dark");Store.set("theme",dark?"light":"dark");}
-
-/* ===== NAVEGAÇÃO POR ABAS (estilo iFood) ===== */
-function setActiveTab(name){document.querySelectorAll(".tabbar .tab").forEach(t=>t.classList.remove("on"));const el=document.getElementById("tab-"+name);if(el)el.classList.add("on");}
-function showTabbar(show){document.getElementById("tabbar").style.display=show?"flex":"none";}
-function setTab(name){
-  if(name==="home"){goHome();return;}
-  if(name==="flags"){openFlagged();return;}
-  if(name==="history"){openHistory();return;}
-  hideAll();showTabbar(true);setActiveTab(name);window.scrollTo(0,0);
-  if(name==="search"){document.getElementById("search").style.display="block";renderSearch();const i=document.getElementById("modsearch");if(i)setTimeout(()=>i.focus(),50);}
-  if(name==="profile"){document.getElementById("profile").style.display="block";renderProfile();}
-}
-function renderProfile(){
-  const ids=Object.keys(answers),n=ids.length,c=ids.filter(k=>answers[k].ok).length;
-  document.getElementById("p-ans").textContent=n;
-  document.getElementById("p-acc").textContent=n?Math.round(c/n*100)+"%":"—";
-  document.getElementById("p-str").textContent=streak;
-  document.getElementById("p-days").textContent=studyDayStreak();
-  document.getElementById("p-flag").textContent=Object.keys(flags).length+" ›";
-  document.getElementById("p-hist").textContent=hist.length+" ›";
-}
 
 /* ===== CONTAGEM REGRESSIVA ===== */
 function renderCountdown(){
@@ -1062,43 +916,28 @@ function practiceCat(cat){
 }
 function prio(it){const a=answers[it.id];return !a?1:(!a.ok?0:2);}
 function updateNav(){
-  const f=Object.keys(flags).length,h=hist.length;
-  const nf=document.getElementById("nav-flag"),nh=document.getElementById("nav-hist");
-  if(nf){nf.textContent=f>99?"99+":f;nf.style.display=f?"grid":"none";}
-  if(nh){nh.textContent=h>99?"99+":h;nh.style.display=h?"grid":"none";}
-  const pf=document.getElementById("p-flag"),ph=document.getElementById("p-hist");
-  if(pf)pf.textContent=f+" ›";if(ph)ph.textContent=h+" ›";
+  document.getElementById("nav-flag").textContent=Object.keys(flags).length;
+  document.getElementById("nav-hist").textContent=hist.length;
 }
 function modStats(mi){const m=MODULES[mi];let a=0,c=0;m.qs.forEach((_,qi)=>{const id=qidOf(mi,qi);if(answers[id]){a++;if(answers[id].ok)c++;}});return{a,c,total:m.qs.length,pct:a?Math.round(c/a*100):0,done:a===m.qs.length};}
-/* Card de matéria estilo iFood (miniatura + progresso) */
-function buildModCard(mi){
-  const m=MODULES[mi],s=modStats(mi),el=document.createElement("button");el.className="modcard";
-  el.innerHTML=`<span class="mthumb ${CC[m.cat]}">${CAT_ICON[m.cat]||"📘"}${s.done?'<span class="mdone">✓</span>':''}</span>
-    <span class="mbody"><span class="mtitle">${m.t}</span>
-      <span class="mmeta"><span class="pill ${CC[m.cat]}">${PILL[m.cat]}</span><span>${m.qs.length} questões</span><span>· dia ${m.day}</span></span>
-      <span class="mbar"><i style="width:${s.a?(s.a/s.total*100):0}%"></i></span></span>
-    <span class="macc2"><b>${s.a?s.pct+"%":"—"}</b><small>${s.a}/${s.total}</small></span>`;
-  el.onclick=()=>startModule(mi);
-  return el;
-}
 function renderHome(){
-  const box=document.getElementById("mods");if(!box)return;box.innerHTML="";
-  MODULES.forEach((m,mi)=>box.appendChild(buildModCard(mi)));
-}
-function renderSearch(){
-  const box=document.getElementById("search-mods");if(!box)return;box.innerHTML="";
+  const box=document.getElementById("mods");box.innerHTML="";
   const sb=document.getElementById("modsearch"),q=(sb?sb.value:"").trim().toLowerCase();
   let shown=0;
   MODULES.forEach((m,mi)=>{
-    const match=!q||m.t.toLowerCase().includes(q)||(PILL[m.cat]||"").toLowerCase().includes(q)||(CATNAME[CC[m.cat]]||"").toLowerCase().includes(q)||m.qs.some(x=>x.q.toLowerCase().includes(q));
-    if(!match)return;shown++;box.appendChild(buildModCard(mi));});
-  if(!shown)box.innerHTML='<div class="empty">Nenhuma matéria encontrada.<br>Tente outro termo ou gere questões com IA acima.</div>';
+    const match=!q||m.t.toLowerCase().includes(q)||(PILL[m.cat]||"").toLowerCase().includes(q)||m.qs.some(x=>x.q.toLowerCase().includes(q));
+    if(!match)return;shown++;
+    const s=modStats(mi);const el=document.createElement("div");el.className="mod"+(s.done?" done":"");el.tabIndex=0;
+    el.innerHTML=`<div class="mnum">${s.done?"✓":(mi+1)}</div><div class="minfo"><h5>${m.t}</h5>
+      <div class="meta"><span class="pill ${CC[m.cat]}">${PILL[m.cat]}</span><span>${m.qs.length} questões</span><span>· dia ${m.day}</span></div>
+      <div class="bar"><i style="width:${s.a?(s.a/s.total*100):0}%"></i></div></div>
+      <div class="macc"><b>${s.a?s.pct+"%":"—"}</b><small>${s.a}/${s.total}</small></div>`;
+    el.onclick=()=>startModule(mi);el.onkeydown=e=>{if(e.key==="Enter")startModule(mi);};box.appendChild(el);});
+  if(!shown)box.innerHTML='<div class="empty">Nenhuma matéria encontrada para essa busca.</div>';
 }
-let todayIdx=0;
-function pickToday(){let idx=MODULES.findIndex((_,mi)=>!modStats(mi).done);if(idx<0)idx=0;todayIdx=idx;const m=MODULES[idx];
-  document.getElementById("today-title").textContent=m.t.replace(/^[^—]*—\s*/,"");
-  document.getElementById("today-sub").textContent=`${m.qs.length} questões · módulo ${idx+1}`;}
-function continuePractice(){startModule(todayIdx);}
+function pickToday(){let idx=MODULES.findIndex((_,mi)=>!modStats(mi).done);if(idx<0)idx=0;const m=MODULES[idx];
+  document.getElementById("today-title").textContent=m.t;document.getElementById("today-sub").textContent=`${m.qs.length} questões · módulo ${idx+1}`;
+  document.getElementById("today-btn").onclick=()=>startModule(idx);}
 
 /* ===== montagem de itens ===== */
 function itemStatic(mi,qi){const m=MODULES[mi];return{q:m.qs[qi],id:qidOf(mi,qi),label:`${PILL[m.cat]} · ${m.t}`,cat:m.cat};}
@@ -1129,8 +968,8 @@ async function generateAndStart(){
 }
 
 /* ===== QUIZ ===== */
-function hideAll(){["home","search","profile","listview","quiz","summary"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="none";});}
-function showQuiz(){hideAll();showTabbar(false);document.getElementById("quiz").style.display="block";cur._origin=cur.list.slice();window.scrollTo(0,0);renderQ();}
+function hideAll(){["home","listview","quiz","summary"].forEach(id=>document.getElementById(id).style.display="none");}
+function showQuiz(){hideAll();document.getElementById("quiz").style.display="block";cur._origin=cur.list.slice();window.scrollTo(0,0);renderQ();}
 function renderQ(){
   const it=cur.list[cur.idx],tag=document.getElementById("qtag");
   tag.textContent=it.label;tag.className="qtag"+(it.cat==="ai"?" ai":"");
@@ -1203,7 +1042,7 @@ async function deepen(){
 }
 function nextQ(){if(cur.idx<cur.list.length-1){cur.idx++;renderQ();window.scrollTo(0,0);}else showSummary();}
 function showSummary(){
-  hideAll();showTabbar(false);document.getElementById("summary").style.display="block";
+  hideAll();document.getElementById("summary").style.display="block";
   const answered=cur._origin.filter(it=>it._answered);
   const total=answered.length, cor=answered.filter(it=>it._wrong===false).length;
   const skipped=cur._origin.length-total, pct=total?Math.round(cor/total*100):0;
@@ -1225,11 +1064,11 @@ function showSummary(){
   if(pct>=90&&total>=5)toast("Excelente! 90%+ nessa rodada! 🏆",true);
   renderHome();updateStats();updateNav();pickToday();renderDaily();renderAnalytics();window.scrollTo(0,0);
 }
-function goHome(){hideAll();showTabbar(true);setActiveTab("home");document.getElementById("home").style.display="block";renderHome();renderCats();updateStats();updateNav();pickToday();renderCountdown();renderDaily();renderAnalytics();window.scrollTo(0,0);}
+function goHome(){hideAll();document.getElementById("home").style.display="block";renderHome();updateStats();updateNav();pickToday();renderCountdown();renderDaily();renderAnalytics();window.scrollTo(0,0);}
 
 /* ===== PARA REVISAR (flags) ===== */
 function openFlagged(){
-  hideAll();showTabbar(true);setActiveTab("flags");document.getElementById("listview").style.display="block";
+  hideAll();document.getElementById("listview").style.display="block";
   document.getElementById("lv-title").textContent="⭐ Para revisar";
   const entries=Object.entries(flags).sort((a,b)=>b[1].ts-a[1].ts);
   document.getElementById("lv-sub").textContent=entries.length?`${entries.length} questão(ões) marcada(s) para estudar depois.`:"";
@@ -1254,7 +1093,7 @@ function practiceOne(id){const f=flags[id];if(!f)return;cur={title:"Revisão",li
 
 /* ===== HISTÓRICO ===== */
 function openHistory(){
-  hideAll();showTabbar(true);setActiveTab("history");document.getElementById("listview").style.display="block";
+  hideAll();document.getElementById("listview").style.display="block";
   document.getElementById("lv-title").textContent="🕘 Histórico";
   const total=hist.length,cor=hist.filter(h=>h.ok).length;
   document.getElementById("lv-sub").textContent=total?`${total} exercício(s) feito(s) · ${Math.round(cor/total*100)}% de acerto.`:"";
