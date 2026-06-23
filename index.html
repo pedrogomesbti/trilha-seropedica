@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trilha Seropédica — Banco de Questões · Analista de TI</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0C6B70">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Trilha Sero">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -244,6 +251,21 @@
   .revcard .rs{font-size:12.5px;opacity:.95;margin-top:2px}
   .revcard .rgo{flex:none;font-family:"Space Grotesk";font-weight:700;font-size:13px;background:rgba(255,255,255,.22);border-radius:9px;padding:8px 13px}
   .revcard.muted .rgo{background:var(--soft);color:var(--muted)}
+  /* gabarito comentado questão por questão */
+  .srq{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:11px;box-shadow:var(--shadow)}
+  .srq .srtag{display:flex;align-items:center;gap:8px;font-size:11px;margin-bottom:7px;flex-wrap:wrap}
+  .srq .srn{font-family:"Space Grotesk";font-weight:700;color:var(--muted)}
+  .srbadge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;font-family:"Space Grotesk"}
+  .srbadge.ok{background:var(--right-bg);color:var(--right)} .srbadge.no{background:var(--wrong-bg);color:var(--wrong)} .srbadge.sk{background:var(--soft);color:var(--muted);border:1px solid var(--line)}
+  .srq .srtext{font-size:14.5px;font-weight:500;line-height:1.45;margin-bottom:10px}
+  .srq .sropt{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;padding:8px 11px;border-radius:10px;border:1.5px solid var(--line);background:var(--soft);margin-bottom:6px}
+  .srq .sropt .k{font-family:"Space Grotesk";font-weight:700;flex:none;width:16px}
+  .srq .sropt .mk{margin-left:auto;font-weight:700;font-family:"Space Grotesk";font-size:11.5px;white-space:nowrap}
+  .srq .sropt.correct{background:var(--right-bg);border-color:var(--right)} .srq .sropt.correct .k,.srq .sropt.correct .mk{color:var(--right)}
+  .srq .sropt.wrong{background:var(--wrong-bg);border-color:var(--wrong)} .srq .sropt.wrong .k,.srq .sropt.wrong .mk{color:var(--wrong)}
+  .srq .srexpl{font-size:13px;line-height:1.5;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:4px}
+  .srq .srexpl b{font-family:"Space Grotesk"}
+  .srfilters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
 </style>
 </head>
 <body>
@@ -445,9 +467,21 @@
     <p id="sum-sub"></p>
     <div class="sumcats" id="sumcats"></div>
     <div class="row" style="justify-content:center">
+      <button class="btn white" onclick="reviewSession()">📖 Gabarito comentado</button>
       <button class="btn" onclick="reviewWrong()" id="rev-btn">Rever só os erros</button>
       <button class="btn amber" onclick="goHome()">Voltar ao início</button>
     </div>
+  </section>
+
+  <!-- GABARITO COMENTADO (questão por questão) -->
+  <section class="listview" id="sessreview">
+    <div class="lvtop">
+      <button class="back" onclick="showSummary()">← Resultado</button>
+      <h3>📖 Gabarito comentado</h3>
+    </div>
+    <p class="lvsub" id="sr-sub"></p>
+    <div id="sr-list"></div>
+    <div class="row" style="justify-content:center;margin-top:14px"><button class="btn amber" onclick="goHome()">Voltar ao início</button></div>
   </section>
 </div>
 
@@ -929,7 +963,17 @@ const MODULES=[
   {q:"Sobre backup e RAID, analise:<br>I - A regra 3-2-1 sugere 3 cópias, em 2 mídias, com 1 fora do local.<br>II - O RAID 1 espelha os dados.<br>III - O RAID 0 oferece redundância total contra falhas.<br>Estão corretas:",o:["Apenas I e II","Apenas II e III","Apenas I","I, II e III"],a:0,e:"O RAID 0 (striping) NÃO tem redundância: falha de 1 disco perde tudo."},
   {q:"Sobre aplicações web e APIs REST, assinale a INCORRETA:",o:["O HTML estrutura a página e o CSS cuida do estilo.","O método GET é usado para recuperar dados.","O método POST normalmente cria um novo recurso.","O REST funciona exclusivamente sobre o protocolo FTP."],a:3,e:"REST trafega sobre HTTP/HTTPS, usando seus métodos."},
   {q:"Sobre banco de dados, analise:<br>I - A 1ª Forma Normal exige valores atômicos (sem campos multivalorados).<br>II - As propriedades ACID são Atomicidade, Consistência, Isolamento e Durabilidade.<br>III - A chave estrangeira (FK) referencia a chave primária de outra tabela.<br>Assinale a CORRETA:",o:["Apenas I e II","Apenas III","Apenas II e III","I, II e III"],a:3,e:"Todas corretas."},
-  {q:"Sobre equipamentos de rede, assinale a INCORRETA:",o:["O switch encaminha quadros com base no endereço MAC.","O roteador opera na camada de Rede e interliga redes distintas.","O firewall filtra o tráfego conforme regras de segurança.","O hub encaminha o quadro apenas para a porta do destinatário."],a:3,e:"O hub repete o sinal para TODAS as portas; quem filtra por porta é o switch."}
+  {q:"Sobre equipamentos de rede, assinale a INCORRETA:",o:["O switch encaminha quadros com base no endereço MAC.","O roteador opera na camada de Rede e interliga redes distintas.","O firewall filtra o tráfego conforme regras de segurança.","O hub encaminha o quadro apenas para a porta do destinatário."],a:3,e:"O hub repete o sinal para TODAS as portas; quem filtra por porta é o switch."},
+  {q:"Sobre protocolos e portas, analise:<br>I - O HTTPS usa a porta 443.<br>II - O DNS resolve nomes de domínio em endereços IP.<br>III - O DHCP atribui endereços IP automaticamente aos hosts.<br>Assinale a CORRETA:",o:["Apenas I e II","Apenas III","Apenas II e III","I, II e III"],a:3,e:"Todas corretas — conceitos básicos de redes."},
+  {q:"Sobre virtualização e contêineres, assinale a INCORRETA:",o:["Um hipervisor tipo 1 (bare-metal) roda direto sobre o hardware.","Contêineres compartilham o kernel do host, sendo mais leves que VMs.","Cada contêiner exige um sistema operacional completo e dedicado.","O Kubernetes é usado para orquestrar contêineres."],a:2,e:"Contêineres NÃO têm SO completo: compartilham o kernel do host (diferente das VMs)."},
+  {q:"Sobre orientação a objetos, analise:<br>I - A herança permite a uma classe reaproveitar atributos e métodos de outra.<br>II - O encapsulamento esconde os detalhes internos do objeto.<br>III - O polimorfismo é a incapacidade de um método assumir formas diferentes.<br>Assinale a CORRETA:",o:["Apenas I e II","Apenas III","Apenas II e III","I, II e III"],a:0,e:"Polimorfismo é a CAPACIDADE de assumir formas diferentes; I e II corretas."},
+  {q:"Sobre testes de software e versionamento, assinale a INCORRETA:",o:["O teste unitário valida a menor parte do código isoladamente.","O teste de integração verifica a interação entre módulos.","O comando git commit registra alterações no repositório local.","O comando git push baixa as alterações do repositório remoto para o local."],a:3,e:"git push ENVIA commits ao remoto; quem baixa é o git pull."},
+  {q:"Sobre controle de acesso e autenticação, analise:<br>I - A autenticação multifator (MFA) combina fatores, como senha e código no celular.<br>II - O princípio do menor privilégio concede apenas os acessos necessários.<br>III - O certificado digital é emitido por uma Autoridade Certificadora (AC).<br>Estão corretas:",o:["Apenas I","Apenas II e III","Apenas I e III","I, II e III"],a:3,e:"Todas corretas."},
+  {q:"Sobre normalização de dados, assinale a INCORRETA:",o:["A 1ª Forma Normal exige valores atômicos.","A 2ª Forma Normal elimina dependências parciais da chave.","A 3ª Forma Normal elimina dependências transitivas.","A normalização tem por objetivo aumentar a redundância dos dados."],a:3,e:"A normalização REDUZ redundância e anomalias, não aumenta."},
+  {q:"Sobre endereçamento IP, analise:<br>I - O IPv6 possui 128 bits.<br>II - 127.0.0.1 é o endereço de loopback (localhost).<br>III - A máscara /30 fornece 2 endereços úteis para hosts.<br>Assinale a CORRETA:",o:["Apenas I e II","Apenas III","Apenas II e III","I, II e III"],a:3,e:"Todas corretas (/30 tem 4 endereços, menos rede e broadcast = 2)."},
+  {q:"Sobre HTTP e APIs REST, assinale a INCORRETA:",o:["O método GET recupera dados sem alterá-los.","O método POST normalmente cria um recurso.","O método PUT atualiza ou substitui um recurso.","O código HTTP 404 indica que a requisição foi bem-sucedida."],a:3,e:"O 404 indica 'não encontrado'; o sucesso é o código 200 (OK)."},
+  {q:"Sobre governança e serviços de TI, analise:<br>I - O ITIL trata o serviço de TI ao longo de seu ciclo de vida.<br>II - O COBIT separa governança (direção) de gestão (execução).<br>III - O SLA é um acordo de nível de serviço entre provedor e cliente.<br>Estão corretas:",o:["Apenas I","Apenas II e III","Apenas I e III","I, II e III"],a:3,e:"Todas corretas."},
+  {q:"Sobre ameaças e defesas, assinale a INCORRETA:",o:["O worm se replica e se espalha sozinho pela rede.","O cavalo de Troia (trojan) se disfarça de software legítimo.","O ransomware criptografa arquivos e exige resgate.","O firewall é um malware que infecta o sistema operacional."],a:3,e:"O firewall é defesa (filtra tráfego), não é malware."}
  ]},
  {id:"dir-banca",t:"Direito — Estilo banca (afirmativas e INCORRETA)",cat:"dir",day:"reta final",qs:[
   {q:"Sobre os princípios da Administração Pública (art. 37 da CF), assinale a INCORRETA:",o:["LIMPE: Legalidade, Impessoalidade, Moralidade, Publicidade e Eficiência.","A legalidade impõe à Administração agir conforme a lei.","A publicidade, em regra, dá transparência aos atos.","A eficiência autoriza o gestor a agir contra a lei se isso for mais rápido."],a:3,e:"A eficiência não afasta a legalidade; o gestor sempre age dentro da lei."},
@@ -1195,7 +1239,7 @@ function tickSim(){const clk=document.getElementById("qclock"),t=document.getEle
   if(left<=0){clearSimTimer();if(cur&&cur.simId){toast("⏰ Tempo esgotado! Veja seu resultado.",false);showSummary();}}}
 function clearSimTimer(){if(simTimer){clearInterval(simTimer);simTimer=null;}const clk=document.getElementById("qclock");if(clk)clk.style.display="none";}
 function recordSimAttempt(){
-  if(!cur||!cur.simId)return;
+  if(!cur||!cur.simId||cur._recorded)return;cur._recorded=true;   // evita registrar a mesma tentativa 2x
   const answered=cur._origin.filter(it=>it._answered);
   const total=cur._origin.length,correct=answered.filter(it=>it._wrong===false).length;
   const pct=total?Math.round(correct/total*100):0;
@@ -1323,7 +1367,31 @@ async function generateAndStart(){
 }
 
 /* ===== QUIZ ===== */
-function hideAll(){["home","simulados","desempenho","listview","quiz","summary"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="none";});}
+function hideAll(){["home","simulados","desempenho","listview","quiz","summary","sessreview"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="none";});}
+/* ===== GABARITO COMENTADO (questão por questão da última rodada) ===== */
+let srFilter="all";
+function reviewSession(){
+  if(!cur||!cur._origin){goHome();return;}
+  hideAll();document.getElementById("sessreview").style.display="block";
+  const origin=cur._origin,ans=origin.filter(it=>it._answered),cor=ans.filter(it=>!it._wrong).length;
+  document.getElementById("sr-sub").textContent=`${cor} de ${ans.length} corretas. Veja a resposta certa e o comentário de cada questão.`;
+  const wrap=document.getElementById("sr-list");
+  const filt=origin.filter(it=>srFilter==="wrong"?it._wrong===true:srFilter==="right"?it._wrong===false&&it._answered:true);
+  let html=`<div class="srfilters">`+[["all","Todas"],["wrong","Só erros"],["right","Só acertos"]].map(([k,lb])=>`<button class="chip${srFilter===k?" on":""}" onclick="srFilter='${k}';reviewSession()">${lb}</button>`).join("")+`</div>`;
+  const keys=["A","B","C","D"];
+  filt.forEach((it,i)=>{
+    const idx=origin.indexOf(it)+1,correct=it.q.a,chosen=it._answered?it._choice:-1;
+    const badge=!it._answered?'<span class="srbadge sk">em branco</span>':it._wrong?'<span class="srbadge no">✗ errou</span>':'<span class="srbadge ok">✓ acertou</span>';
+    let opts="";it.q.o.forEach((txt,j)=>{
+      let cls="",mk="";if(j===correct){cls=" correct";mk='<span class="mk">✓ correta</span>';}
+      if(j===chosen&&j!==correct){cls=" wrong";mk='<span class="mk">✗ sua resposta</span>';}
+      opts+=`<div class="sropt${cls}"><span class="k">${keys[j]}</span><span>${txt}</span>${mk}</div>`;});
+    html+=`<div class="srq"><div class="srtag"><span class="srn">Q${idx}</span><span class="lab" style="color:var(--brand-d);font-weight:600">${it.label||""}</span>${badge}</div>
+      <div class="srtext">${it.q.q}</div><div class="sropts">${opts}</div>
+      <div class="srexpl"><b>Comentário:</b> ${it.q.e||""}</div></div>`;});
+  if(!filt.length)html+='<div class="empty">Nenhuma questão neste filtro.</div>';
+  wrap.innerHTML=html;window.scrollTo(0,0);
+}
 function showQuiz(){hideAll();document.getElementById("quiz").style.display="block";cur._origin=cur.list.slice();window.scrollTo(0,0);renderQ();}
 function renderQ(){
   const it=cur.list[cur.idx],tag=document.getElementById("qtag");
@@ -1522,6 +1590,9 @@ function importProgress(ev){
 }
 
 init();
+
+/* PWA: registra o service worker (instalável + offline). Ignora erros (ex.: file://). */
+if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").catch(()=>{});});}
 </script>
 </body>
 </html>
