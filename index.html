@@ -228,6 +228,11 @@
   .emptyb{text-align:center;color:var(--muted);padding:28px 12px;font-size:13.5px;line-height:1.6}
   /* recursos de IA ficam ocultos no GitHub Pages (estático, sem backend) */
   #deepbtn{display:none!important}
+  /* cronômetro do simulado */
+  .qclock{font-family:"Space Grotesk";font-weight:700;font-size:14px;color:var(--brand);background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:5px 10px;white-space:nowrap;flex:none}
+  .qclock.warn{color:var(--amber);border-color:#F0C24A;background:#FFF6E4}
+  .qclock.crit{color:var(--wrong);border-color:#F0CACA;background:var(--wrong-bg);animation:pulseclk 1s ease-in-out infinite}
+  @keyframes pulseclk{0%,100%{opacity:1}50%{opacity:.55}}
 </style>
 </head>
 <body>
@@ -343,7 +348,7 @@
       <button class="back" onclick="goHome()">← Início</button>
       <h3>📝 Simulados completos</h3>
     </div>
-    <p class="lvsub">Cada simulado é uma prova inteira, montada a partir do banco no peso do edital (Português, Raciocínio Lógico, Informática, Conhecimentos de TI, Direito e conteúdo local). As questões são fixas — dá pra repetir e comparar sua evolução.</p>
+    <p class="lvsub">Cada simulado é uma prova inteira (40 questões) montada no peso do edital — Português, Raciocínio Lógico, Informática, Conhecimentos de TI, Direito e conteúdo local. <b>Cronometrado em 2h</b> (3 min/questão), como no dia da prova. As questões são fixas: dá pra repetir e comparar a evolução.</p>
     <div class="simlist" id="simlist"></div>
     <p class="lvsub" style="margin-top:14px">Dica: faça 1 simulado por semana cronometrando ~3 min/questão e revise <b>todas</b> as erradas no Desempenho.</p>
   </section>
@@ -386,6 +391,7 @@
     <div class="qtop">
       <button class="back" onclick="goHome()">← Início</button>
       <div class="prog"><div class="bar"><i id="qprog" style="width:0%"></i></div></div>
+      <div class="qclock" id="qclock" style="display:none">⏱ <span id="qclock-t">--:--</span></div>
       <button class="flagbtn" id="flagbtn" onclick="toggleFlag()">☆ Revisar</button>
       <div class="qcount" id="qcount">1 / 5</div>
     </div>
@@ -446,6 +452,9 @@ const MODULES=[
  ]},
  {id:"ti-arq",t:"TI — Arquitetura e Sistemas Operacionais",cat:"ti",day:"17/06",qs:[
   {q:"Executa operações aritméticas e lógicas na CPU a:",o:["ULA","memória cache","unidade de controle","BIOS"],a:0,e:"A ULA faz cálculos; a UC coordena instruções."},
+  {q:"O registrador que guarda o endereço da PRÓXIMA instrução a executar é o:",o:["acumulador","contador de programa (PC)","registrador de status","ponteiro de pilha"],a:1,e:"O PC (Program Counter) aponta a próxima instrução."},
+  {q:"A parte do SO que roda com privilégios totais de hardware é o:",o:["modo usuário","kernel (modo núcleo)","shell","navegador"],a:1,e:"O kernel opera em modo núcleo/supervisor; aplicativos, em modo usuário."},
+  {q:"O escalonamento que dá a cada processo uma fatia fixa de tempo (quantum) é o:",o:["FIFO","Round Robin (circular)","SJF (menor primeiro)","por prioridade fixa"],a:1,e:"Round Robin reveza a CPU em quanta iguais — base da multitarefa."},
   {q:"Sobre a hierarquia de memória, a cache:",o:["é mais lenta que a RAM","é mais rápida e mais próxima da CPU que a RAM","substitui o disco","é não volátil como a ROM"],a:1,e:"A cache é menor, mais rápida e próxima do processador."},
   {q:"Um processo no estado <b>bloqueado</b> está:",o:["em execução na CPU","pronto, só aguardando a CPU","aguardando um evento/recurso (ex.: E/S)","encerrado"],a:2,e:"Bloqueado espera recurso/evento; \u201cpronto\u201d espera só a CPU."},
   {q:"Usar parte do disco como extensão da RAM é a:",o:["memória virtual (paginação)","escalonamento","deadlock","multitarefa"],a:0,e:"Memória virtual usa o disco (swap) para simular mais RAM."},
@@ -506,6 +515,9 @@ const MODULES=[
  ]},
  {id:"ti-redes",t:"TI — Redes: OSI e TCP/IP",cat:"ti",day:"22/06",qs:[
   {q:"Quantas camadas tem o modelo OSI?",o:["4","5","7","8"],a:2,e:"OSI: 7 camadas (Física a Aplicação)."},
+  {q:"A unidade de dados (PDU) da camada de Transporte é o:",o:["quadro","pacote","segmento","bit"],a:2,e:"Transporte=segmento; Rede=pacote; Enlace=quadro."},
+  {q:"No TCP/IP, a resolução de nomes em IP (DNS) atua na camada de:",o:["Enlace","Internet","Transporte","Aplicação"],a:3,e:"O DNS é um serviço da camada de Aplicação."},
+  {q:"O equipamento que segmenta domínios de colisão e encaminha quadros por MAC é o:",o:["hub","switch","repetidor","modem"],a:1,e:"O switch cria um domínio de colisão por porta; o hub, um único para todos."},
   {q:"Roteamento e IP ocorrem na camada:",o:["Enlace","Rede","Transporte","Aplicação"],a:1,e:"A camada de Rede (3) cuida de IP e roteamento."},
   {q:"A camada de Transporte é responsável por:",o:["converter sinais em bits","entrega fim-a-fim e confiabilidade (TCP/UDP)","rotear pacotes","apresentar dados"],a:1,e:"Transporte (4): comunicação fim-a-fim."},
   {q:"O TCP/IP clássico possui quantas camadas?",o:["3","4","5","7"],a:1,e:"4 camadas: Acesso à Rede, Internet, Transporte, Aplicação."},
@@ -520,6 +532,9 @@ const MODULES=[
  ]},
  {id:"ti-protoc",t:"TI — Protocolos e Portas",cat:"ti",day:"23/06",qs:[
   {q:"A porta padrão do HTTPS é:",o:["21","80","443","53"],a:2,e:"HTTPS=443; HTTP=80; FTP=21; DNS=53."},
+  {q:"A porta padrão do protocolo SMTP (envio de e-mail) é a:",o:["25","110","143","443"],a:0,e:"SMTP=25; POP3=110; IMAP=143."},
+  {q:"O protocolo que mapeia um IP para o endereço físico (MAC) na rede local é o:",o:["DNS","ARP","DHCP","ICMP"],a:1,e:"O ARP resolve IP→MAC dentro da mesma rede."},
+  {q:"O protocolo de e-mail que mantém as mensagens no servidor e sincroniza vários dispositivos é o:",o:["POP3","IMAP","SMTP","SNMP"],a:1,e:"IMAP sincroniza e mantém no servidor; POP3 costuma baixar e remover."},
   {q:"Protocolo orientado à conexão e confiável:",o:["UDP","TCP","ICMP","IP"],a:1,e:"TCP usa 3-way handshake; UDP é rápido e sem garantia."},
   {q:"Atribui IPs automaticamente o protocolo:",o:["DNS","DHCP","FTP","SMTP"],a:1,e:"DHCP distribui IPs; DNS traduz nomes."},
   {q:"Traduz nomes de domínio em IPs o:",o:["DHCP","DNS","SSH","HTTP"],a:1,e:"DNS resolve nomes para IP (porta 53)."},
@@ -644,6 +659,9 @@ const MODULES=[
  ]},
  {id:"ti-bd2",t:"TI — Normalização e Transações (ACID)",cat:"ti",day:"02/07",qs:[
   {q:"O objetivo da normalização é:",o:["aumentar redundância","reduzir redundância e anomalias","apagar tabelas","acelerar a internet"],a:1,e:"Normalizar elimina redundância/inconsistência."},
+  {q:"O nível de isolamento (ACID) mais alto, que evita leituras-fantasma, é o:",o:["Read Uncommitted","Read Committed","Repeatable Read","Serializable"],a:3,e:"Serializable é o mais restritivo; isola totalmente as transações."},
+  {q:"O modelo NoSQL mais indicado para dados altamente conectados (redes sociais) é o de:",o:["chave-valor","documento","grafos","colunar"],a:2,e:"Bancos de grafos representam bem relacionamentos complexos."},
+  {q:"Uma chave candidata que NÃO foi escolhida como primária é a chave:",o:["estrangeira","alternativa","parcial","artificial"],a:1,e:"As candidatas restantes viram chaves alternativas."},
   {q:"As propriedades de uma transação confiável formam:",o:["CRUD","ACID","HTTP","REST"],a:1,e:"ACID: Atomicidade, Consistência, Isolamento, Durabilidade."},
   {q:"\u201cTudo ou nada\u201d na transação é a:",o:["Atomicidade","Consistência","Isolamento","Durabilidade"],a:0,e:"Atomicidade: se uma parte falha, desfaz tudo."},
   {q:"Bancos não relacionais (documento, chave-valor) são:",o:["SQL puro","NoSQL","DDL","OLAP"],a:1,e:"NoSQL abrange modelos não relacionais."}
@@ -689,6 +707,9 @@ const MODULES=[
  ]},
  {id:"ti-eng1",t:"TI — Engenharia de Software e Ágil",cat:"ti",day:"06/07",qs:[
   {q:"No Scrum, prioriza o backlog e representa o negócio o:",o:["Scrum Master","Product Owner","Desenvolvedor","Gerente"],a:1,e:"O PO prioriza o Product Backlog."},
+  {q:"Escrever o teste ANTES do código de produção é a prática de:",o:["TDD (desenvolvimento orientado a testes)","cascata","code review","deploy contínuo"],a:0,e:"No TDD, escreve-se o teste que falha, depois o código que o faz passar."},
+  {q:"No Kanban, limitar a quantidade de itens em andamento é o:",o:["sprint","limite de WIP (trabalho em progresso)","burndown","backlog"],a:1,e:"O limite de WIP evita sobrecarga e revela gargalos."},
+  {q:"O gráfico do Scrum que mostra o trabalho restante ao longo da sprint é o:",o:["organograma","burndown da sprint","diagrama ER","fluxograma"],a:1,e:"O burndown acompanha o esforço restante até o fim da sprint."},
   {q:"O período fixo que entrega um incremento é a:",o:["daily","sprint","release","milestone"],a:1,e:"A Sprint entrega um incremento."},
   {q:"Requisito não funcional é, por exemplo:",o:["cadastrar usuário","emitir nota","responder em até 2s (desempenho)","calcular total"],a:2,e:"Não funcionais tratam de qualidade."},
   {q:"A diferença do ágil para o cascata é:",o:["entregar tudo no final","ciclos curtos e iterativos","não documentar","dispensar o cliente"],a:1,e:"Ágil é iterativo; cascata é sequencial."},
@@ -733,6 +754,9 @@ const MODULES=[
  ]},
  {id:"ti-infra",t:"TI — Infra, Web e Lei 14.133",cat:"ti",day:"09/07",qs:[
   {q:"O RAID que espelha os dados é o:",o:["RAID 0","RAID 1","RAID 5","RAID 10 apenas"],a:1,e:"RAID 1 espelha; RAID 0 só distribui; RAID 5 usa paridade."},
+  {q:"O RAID 5 (distribuição com paridade) exige no mínimo:",o:["2 discos","3 discos","4 discos","1 disco"],a:1,e:"São necessários ao menos 3 discos para paridade distribuída."},
+  {q:"Na arquitetura web, processa a lógica de negócio e acessa o banco de dados o:",o:["front-end","back-end","CDN","navegador"],a:1,e:"O back-end (servidor) processa regras e dados; o front-end é a interface."},
+  {q:"A modalidade da Lei 14.133/2021 para contratações complexas, com fase de negociação, é o:",o:["convite","tomada de preços","diálogo competitivo","leilão"],a:2,e:"O diálogo competitivo é a nova modalidade para soluções inovadoras/complexas."},
   {q:"Em API REST, cria um recurso o método:",o:["GET","POST","DELETE","HEAD"],a:1,e:"POST cria; GET lê; PUT atualiza; DELETE remove."},
   {q:"A regra de backup \u201c3-2-1\u201d recomenda:",o:["1 cópia em 3 lugares","3 cópias, 2 mídias, 1 fora do local","3 backups por dia","backup só na nuvem"],a:1,e:"3 cópias, 2 mídias, 1 off-site."},
   {q:"A estrutura de uma página web é definida por:",o:["CSS","JavaScript","HTML","SQL"],a:2,e:"HTML estrutura; CSS estiliza; JS interage."},
@@ -936,7 +960,8 @@ let answers={};            // {id:{ok,ts,conf}}  -> "feito"
 let hist=[];               // [{id,ts,ok,label,cat,snap,conf}] mais recente primeiro
 let flags={};              // {id:{label,cat,ts,snap}} -> para revisar
 let daily={};              // {"YYYY-MM-DD": nº de questões respondidas no dia}
-let simAttempts=[];        // [{simId,ts,total,correct,pct}] tentativas de simulado
+let simAttempts=[];        // [{simId,ts,total,correct,pct,durationMs}] tentativas de simulado
+let simTimer=null,simStart=0,simEnd=0;   // cronômetro do simulado
 let goal=20;               // meta diária de questões
 let streak=0, cur=null, histFilter="all", curConf=0;
 const HISTCAP=600;
@@ -1075,13 +1100,24 @@ function openSimulados(){
   window.scrollTo(0,0);
 }
 function startSim(id){const s=buildSims().find(x=>x.id===id);if(!s)return;
-  cur={title:s.t,list:s.items.map(it=>({q:it.q,id:it.id,label:it.label,cat:it.cat})),idx:0,simId:id,simName:s.t};showQuiz();}
+  const budget=s.total*180000;  // 3 min por questão (40q → 2h)
+  cur={title:s.t,list:s.items.map(it=>({q:it.q,id:it.id,label:it.label,cat:it.cat})),idx:0,simId:id,simName:s.t,budget};
+  showQuiz();startSimTimer(budget);}
+/* ===== CRONÔMETRO ===== */
+function fmtClock(ms){ms=Math.max(0,ms);const s=Math.round(ms/1000);return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");}
+function startSimTimer(budgetMs){simStart=Date.now();simEnd=simStart+budgetMs;const clk=document.getElementById("qclock");if(clk)clk.style.display="block";tickSim();simTimer=setInterval(tickSim,1000);}
+function tickSim(){const clk=document.getElementById("qclock"),t=document.getElementById("qclock-t");if(!clk||!t)return;
+  const left=simEnd-Date.now();t.textContent=fmtClock(left);
+  clk.className="qclock"+(left<=60000?" crit":left<=300000?" warn":"");
+  if(left<=0){clearSimTimer();if(cur&&cur.simId){toast("⏰ Tempo esgotado! Veja seu resultado.",false);showSummary();}}}
+function clearSimTimer(){if(simTimer){clearInterval(simTimer);simTimer=null;}const clk=document.getElementById("qclock");if(clk)clk.style.display="none";}
 function recordSimAttempt(){
   if(!cur||!cur.simId)return;
   const answered=cur._origin.filter(it=>it._answered);
   const total=cur._origin.length,correct=answered.filter(it=>it._wrong===false).length;
   const pct=total?Math.round(correct/total*100):0;
-  simAttempts.unshift({simId:cur.simId,ts:Date.now(),total,correct,pct});
+  const durationMs=simStart?Math.min(Date.now()-simStart,cur.budget||0):0;
+  simAttempts.unshift({simId:cur.simId,ts:Date.now(),total,correct,pct,durationMs});
   if(simAttempts.length>200)simAttempts=simAttempts.slice(0,200);
   Store.set("simAttempts",simAttempts);
   const prevBest=Math.max(0,...simAttempts.filter(a=>a.simId===cur.simId&&a.ts!==simAttempts[0].ts).map(a=>a.pct));
@@ -1103,13 +1139,14 @@ function openDesempenho(){
     const row=document.createElement("div");row.className="brow";
     if(!atts.length){row.innerHTML=`<div class="bt"><span>${s.t.split(" — ")[0]}</span><span class="bn" style="color:var(--muted);font-size:12px;font-weight:500">não feito</span></div>
       <div class="bsub">${s.sub} · <a href="#" onclick="startSim('${s.id}');return false" style="color:var(--brand);font-weight:600">fazer agora →</a></div>`;}
-    else{const best=Math.max(...atts.map(a=>a.pct)),last=atts[atts.length-1].pct;
+    else{const lastA=atts[atts.length-1],best=Math.max(...atts.map(a=>a.pct)),last=lastA.pct;
       const recent=atts.slice(-8),maxp=Math.max(100,...recent.map(a=>a.pct));
       const bars=recent.map((a,i)=>`<i class="${i===recent.length-1?'last':''}" style="height:${Math.max(8,Math.round(a.pct/maxp*100))}%" title="${a.pct}%"></i>`).join("");
       const col=best>=70?"var(--right)":best>=50?"var(--amber)":"var(--wrong)";
+      const tempo=lastA.durationMs?` · ⏱ ${fmtClock(lastA.durationMs)}`:"";
       row.innerHTML=`<div class="bt"><span>${s.t.split(" — ")[0]}</span><span class="bn" style="color:${col}">melhor ${best}%</span></div>
         <div class="spark">${bars}</div>
-        <div class="bsub">${atts.length} tentativa(s) · última ${last}% · <a href="#" onclick="startSim('${s.id}');return false" style="color:var(--brand);font-weight:600">refazer →</a></div>`;}
+        <div class="bsub">${atts.length} tentativa(s) · última ${last}%${tempo} · <a href="#" onclick="startSim('${s.id}');return false" style="color:var(--brand);font-weight:600">refazer →</a></div>`;}
     box.appendChild(row);});
   // matérias a reforçar (reaproveita catStats)
   const s=catStats(),cats=Object.keys(s).filter(c2=>s[c2].a>=3),abox=document.getElementById("d-analytics"),emp=document.getElementById("d-analytics-empty");
@@ -1253,6 +1290,8 @@ async function deepen(){
 }
 function nextQ(){if(cur.idx<cur.list.length-1){cur.idx++;renderQ();window.scrollTo(0,0);}else showSummary();}
 function showSummary(){
+  const _simDur=cur&&cur.simId&&simStart?Math.min(Date.now()-simStart,cur.budget||0):0;
+  clearSimTimer();
   hideAll();document.getElementById("summary").style.display="block";
   const answered=cur._origin.filter(it=>it._answered);
   const total=answered.length, cor=answered.filter(it=>it._wrong===false).length;
@@ -1262,7 +1301,7 @@ function showSummary(){
   setTimeout(()=>{fill.style.transition="stroke-dashoffset 1s ease";fill.setAttribute("stroke-dashoffset",352-(352*pct/100));},50);
   if(cur.simId){
     document.getElementById("sum-title").textContent=`Nota: ${pct}% no ${cur.simName.split(" — ")[0]}`;
-    document.getElementById("sum-sub").textContent=`Você acertou ${cor} de ${cur._origin.length} questões.`+(skipped?` (${skipped} em branco contam como erro no simulado.)`:"")+(pct>=70?" Acima do que costuma classificar! ✅":" Revise as erradas para subir a nota.");
+    document.getElementById("sum-sub").textContent=`Você acertou ${cor} de ${cur._origin.length} questões`+(_simDur?` em ${fmtClock(_simDur)}`:"")+`.`+(skipped?` (${skipped} em branco contam como erro no simulado.)`:"")+(pct>=70?" Acima do que costuma classificar! ✅":" Revise as erradas para subir a nota.");
   }else{
     document.getElementById("sum-title").textContent=total===0?"Nada respondido ainda":pct>=70?"Mandou bem! 💪":pct>=50?"Quase lá — siga revisando":"Bora reforçar essa matéria";
     document.getElementById("sum-sub").textContent=total===0
@@ -1281,7 +1320,7 @@ function showSummary(){
   else if(pct>=90&&total>=5)toast("Excelente! 90%+ nessa rodada! 🏆",true);
   renderHome();updateStats();updateNav();pickToday();renderDaily();renderAnalytics();window.scrollTo(0,0);
 }
-function goHome(){hideAll();document.getElementById("home").style.display="block";renderHome();updateStats();updateNav();pickToday();renderCountdown();renderDaily();renderAnalytics();window.scrollTo(0,0);}
+function goHome(){clearSimTimer();hideAll();document.getElementById("home").style.display="block";renderHome();updateStats();updateNav();pickToday();renderCountdown();renderDaily();renderAnalytics();window.scrollTo(0,0);}
 
 /* ===== PARA REVISAR (flags) ===== */
 function openFlagged(){
