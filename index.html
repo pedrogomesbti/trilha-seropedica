@@ -333,7 +333,7 @@
     <div class="mods" id="mods"></div>
 
     <footer>
-      Questões prontas e geradas no padrão da banca, alinhadas ao edital 001/2026 — não são cópias de provas anteriores.<br>
+      Conteúdo alinhado ao <b>Edital 001/2026 — Câmara Municipal de Seropédica/RJ</b>, cargo <b>Analista de Tecnologia da Informação</b> (banca Instituto Consulpam). Estrutura da prova: 10 Língua Portuguesa + 10 Conhecimentos Gerais + 20 Conhecimentos Específicos = 40 questões (2,5 pts cada; mínimo 50 pts). Não são cópias de provas anteriores.<br>
       Confira dados locais (Seropédica/Regimento) na Lei Orgânica e no Regimento oficiais.<br>
       <button class="reset" onclick="exportProgress()">Exportar progresso</button> ·
       <button class="reset" onclick="document.getElementById('importfile').click()">Importar</button> ·
@@ -348,7 +348,7 @@
       <button class="back" onclick="goHome()">← Início</button>
       <h3>📝 Simulados completos</h3>
     </div>
-    <p class="lvsub">Cada simulado é uma prova inteira (40 questões) montada no peso do edital — Português, Raciocínio Lógico, Informática, Conhecimentos de TI, Direito e conteúdo local. <b>Cronometrado em 2h</b> (3 min/questão), como no dia da prova. As questões são fixas: dá pra repetir e comparar a evolução.</p>
+    <p class="lvsub">Cada simulado segue a <b>estrutura oficial do edital</b> (cargo Analista de Tecnologia da Informação): <b>10 Língua Portuguesa + 10 Conhecimentos Gerais</b> (Informática, Matemática/RLM, Direito Adm. e Const., Município de Seropédica e Regimento) <b>+ 20 Conhecimentos Específicos de TI</b> = 40 questões, 2,5 pts cada (mínimo 50 pts p/ aprovação). <b>Cronometrado em 3h</b>, como no dia da prova. As questões são fixas: dá pra repetir e comparar a evolução.</p>
     <div class="simlist" id="simlist"></div>
     <p class="lvsub" style="margin-top:14px">Dica: faça 1 simulado por semana cronometrando ~3 min/questão e revise <b>todas</b> as erradas no Desempenho.</p>
   </section>
@@ -486,6 +486,9 @@ const MODULES=[
  ]},
  {id:"ti-linux",t:"TI — Administração Linux e Windows",cat:"ti",day:"19/06",qs:[
   {q:"Altera permissões de um arquivo no Linux o comando:",o:["chown","chmod","grep","mv"],a:1,e:"chmod altera permissões; chown muda o dono."},
+  {q:"Um arquivo de comandos do shell executados em sequência, para automação, é um:",o:["script (shell script)","driver","kernel","firmware"],a:0,e:"Shell scripts automatizam tarefas repetitivas no Linux."},
+  {q:"A primeira linha de um script que indica o interpretador (ex.: #!/bin/bash) é o:",o:["shebang","comentário comum","variável de ambiente","pipe"],a:0,e:"O shebang (#!) define qual interpretador executa o script."},
+  {q:"O operador que encadeia a saída de um comando como entrada de outro no shell é o:",o:["pipe (|)","ponto e vírgula (;)","til (~)","cifrão ($)"],a:0,e:"O pipe | conecta a saída de um comando à entrada do próximo."},
   {q:"A permissão octal 755 significa:",o:["dono rwx; grupo e outros r-x","ninguém tem permissão","só o dono lê","leitura p/ todos, escrita p/ ninguém"],a:0,e:"7=rwx, 5=r-x, 5=r-x."},
   {q:"Arquivos de configuração ficam tradicionalmente em:",o:["/home","/etc","/var","/bin"],a:1,e:"/etc guarda configurações."},
   {q:"Agenda tarefas automáticas no Linux o:",o:["cron","apt","bash","ssh"],a:0,e:"O cron agenda tarefas periódicas (crontab)."},
@@ -644,6 +647,9 @@ const MODULES=[
  ]},
  {id:"ti-bd1",t:"TI — Banco de Dados e SQL",cat:"ti",day:"01/07",qs:[
   {q:"Comando SQL para consultar dados:",o:["INSERT","SELECT","UPDATE","DELETE"],a:1,e:"SELECT recupera dados."},
+  {q:"No modelo Entidade-Relacionamento, uma característica de uma entidade (ex.: nome, CPF) é um:",o:["relacionamento","atributo","índice","gatilho"],a:1,e:"Entidades têm atributos; relacionamentos ligam entidades."},
+  {q:"O número de ocorrências de uma entidade associadas a outra (1:1, 1:N, N:N) é a:",o:["cardinalidade","normalização","integridade referencial","granularidade"],a:0,e:"A cardinalidade expressa quantas ocorrências se relacionam."},
+  {q:"O software que armazena, gerencia e controla o acesso ao banco de dados é o:",o:["navegador","SGBD","compilador","firewall"],a:1,e:"SGBD: MySQL, PostgreSQL, Oracle, SQL Server."},
   {q:"CREATE, ALTER e DROP pertencem a:",o:["DML","DDL","DCL","TCL"],a:1,e:"DDL define a estrutura."},
   {q:"Identifica unicamente cada registro a:",o:["chave estrangeira","chave primária","índice","cardinalidade"],a:1,e:"A PK identifica a linha; a FK referencia outra tabela."},
   {q:"GRANT e REVOKE pertencem a:",o:["DDL","DML","DCL","DQL"],a:2,e:"DCL controla privilégios de acesso."},
@@ -816,6 +822,9 @@ const MODULES=[
  ]},
  {id:"loc-sero",t:"Município de Seropédica",cat:"loc",day:"14–15/07",qs:[
   {q:"Seropédica resultou do desmembramento de:",o:["Nova Iguaçu","Itaguaí","Rio de Janeiro","Paracambi"],a:1,e:"Criada pela Lei estadual 2.446/1995, desmembrada de Itaguaí."},
+  {q:"É tributo de competência MUNICIPAL, EXCETO:",o:["IPTU","ISS","contribuição de melhoria","IPVA"],a:3,e:"IPVA é estadual; municipais: IPTU, ISS, ITBI, taxas e contribuição de melhoria."},
+  {q:"O imposto municipal que incide sobre serviços de qualquer natureza é o:",o:["ICMS","ISS (ISSQN)","IPVA","IR"],a:1,e:"O ISS (ISSQN) é imposto municipal sobre serviços."},
+  {q:"A divulgação oficial dos atos da administração municipal, atendendo à publicidade, é feita no:",o:["Diário Oficial da União","órgão/Boletim Oficial do Município","jornal esportivo","mural de escola"],a:1,e:"Os atos oficiais são publicados no órgão oficial do Município."},
   {q:"NÃO faz divisa com Seropédica:",o:["Itaguaí","Japeri","Mangaratiba","Queimados"],a:2,e:"Limítrofes: Itaguaí, Paracambi, Japeri, Queimados, Nova Iguaçu e Rio de Janeiro."},
   {q:"São símbolos oficiais do município:",o:["só a bandeira","bandeira, hino e brasão","só o brasão","bandeira e moeda própria"],a:1,e:"Bandeira, Hino e Brasão (confirme na Lei Orgânica)."},
   {q:"Os instrumentos de planejamento orçamentário são:",o:["PPA, LDO e LOA","só a LOA","PIB, IPCA e Selic","CLT, CF e LRF"],a:0,e:"PPA, LDO e LOA."},
@@ -853,6 +862,10 @@ const MODULES=[
   {q:"A média de 4, 8 e 12 é:",o:["6","8","9","12"],a:1,e:"(4+8+12)/3 = 8."}
  ,
   {q:"20% de 350 é:",o:["35","60","70","80"],a:2,e:"10% de 350 = 35; 20% = 70."},
+  {q:"A mediana do conjunto {3, 5, 8, 10, 12} é:",o:["5","8","10","9"],a:1,e:"Mediana é o valor central do rol ordenado."},
+  {q:"3 operários fazem um muro em 12 dias; 6 operários, no mesmo ritmo, fazem em:",o:["24 dias","6 dias","9 dias","3 dias"],a:1,e:"Grandezas inversas: dobro de operários, metade do tempo."},
+  {q:"1,5 km equivale a:",o:["150 m","1.500 m","15.000 m","15 m"],a:1,e:"1 km = 1.000 m, logo 1,5 km = 1.500 m."},
+  {q:"A área de um retângulo de 4 m por 3 m é:",o:["7 m²","12 m²","14 m²","24 m²"],a:1,e:"Área = base × altura = 4 × 3 = 12 m²."},
   {q:"A negação de \u201CAlgum aluno passou\u201D é:",o:["Todos passaram","Nenhum aluno passou","Algum não passou","Muitos passaram"],a:1,e:"Negar \u2018algum A é B\u2019 → \u2018nenhum A é B\u2019."},
   {q:"A conjunção \u2018p e q\u2019 só é verdadeira quando:",o:["pelo menos um é V","ambos são V","ambos são F","p é F"],a:1,e:"A conjunção é V apenas se p e q forem V."},
   {q:"Se 3 operários fazem uma obra em 12 dias, 6 operários (mesmo ritmo) fazem em:",o:["24","6","9","3"],a:1,e:"Grandezas inversas: dobro de operários → metade do tempo = 6."},
@@ -866,6 +879,10 @@ const MODULES=[
  ]},
  {id:"ger-inf",t:"Informática (noções)",cat:"ger",day:"20/07",qs:[
   {q:"No Excel/Sheets, soma um intervalo a função:",o:["=MÉDIA()","=SOMA()","=SE()","=PROCV()"],a:1,e:"=SOMA(A1:A10) soma o intervalo."},
+  {q:"São navegadores de internet:",o:["Word, Excel e PowerPoint","Chrome, Edge e Firefox","Windows, Linux e Ubuntu","Thunderbird, Outlook e Gmail"],a:1,e:"Navegadores: Google Chrome, Microsoft Edge e Mozilla Firefox."},
+  {q:"Aplicativo usado para enviar e receber e-mails (cliente de correio) é o:",o:["Mozilla Thunderbird","Microsoft Excel","Google Chrome","WhatsApp"],a:0,e:"Thunderbird e Outlook são clientes de e-mail."},
+  {q:"E-mail acessado pronto pelo navegador, sem instalar nada, é exemplo de nuvem do tipo:",o:["IaaS","PaaS","SaaS","On-premises"],a:2,e:"SaaS entrega o software pronto pela internet."},
+  {q:"Suíte de escritório da Microsoft com editor de textos, planilhas e apresentações é o:",o:["Microsoft Office","Google Chrome","Windows 11","Photoshop"],a:0,e:"Office (Word/Excel/PowerPoint); o equivalente Google é o Workspace."},
   {q:"Em fluxograma, o losango representa:",o:["um processo","uma decisão (condição)","o início","entrada de dados"],a:1,e:"Losango = decisão; retângulo = processo."},
   {q:"Repete um bloco de comandos a estrutura de:",o:["decisão (if)","repetição (for/while)","atribuição","comentário"],a:1,e:"Laços (for, while) repetem instruções."},
   {q:"Filtra o tráfego de rede bloqueando acessos indevidos o:",o:["antivírus","firewall","navegador","driver"],a:1,e:"O firewall controla o tráfego conforme regras."}
@@ -910,16 +927,21 @@ function seededShuffle(arr,seed){const r=mulberry32(seed);const a=arr.slice();fo
 function poolCat(cat){const out=[];MODULES.forEach(m=>{if(m.cat!==cat)return;m.qs.forEach((q,qi)=>out.push({q,cat:m.cat,src:m.id+"_"+qi}));});return out;}
 function poolMod(id){const out=[];const m=MODULES.find(x=>x.id===id);if(m)m.qs.forEach((q,qi)=>out.push({q,cat:m.cat,src:m.id+"_"+qi}));return out;}
 function poolHigh(){return HIGH.qs.map((q,i)=>({q,cat:"hy",src:"hy_"+i}));}
-/* peso (blueprint) de cada simulado — total 40 questões, padrão de prova objetiva */
+/* Estrutura OFICIAL da prova (Anexo II do edital 001/2026, nível superior):
+   10 Língua Portuguesa + 10 Conhecimentos Gerais (Informática, Matemática/RLM,
+   Direito Adm/Const, Município de Seropédica e Regimento) + 20 Conhecimentos
+   Específicos = 40 questões, 2,5 pts cada; mínimo p/ aprovação: 50 pts.
+   Os 10 gerais são distribuídos: Informática 2, RLM 2, Direito 3, Local 3. */
+const SIM_PLAN={PT:10,INFO:2,RLM:2,DIR:3,LOC:3,TI:20};
 const SIM_DEFS=[
- {t:"Simulado 1 — Prova completa",sub:"Equilibrado, todas as áreas",plan:{PT:10,RLM:5,INFO:3,TI:12,DIR:6,LOC:2,HY:2}},
- {t:"Simulado 2 — Prova completa",sub:"Foco em TI e Direito",plan:{PT:9,RLM:4,INFO:3,TI:13,DIR:7,LOC:2,HY:2}},
- {t:"Simulado 3 — Prova completa",sub:"Mais Português e lógica",plan:{PT:11,RLM:6,INFO:3,TI:11,DIR:5,LOC:2,HY:2}},
- {t:"Simulado 4 — Prova completa",sub:"Conteúdo local + geral",plan:{PT:9,RLM:5,INFO:4,TI:11,DIR:6,LOC:3,HY:2}},
- {t:"Simulado 5 — Reta final (nível 1º lugar)",sub:"Mais difícil, com pegadinhas",reta:true,plan:{PT:8,RLM:4,INFO:2,TI:13,DIR:7,LOC:2,HY:4}}
+ {t:"Simulado 1 — Prova completa",sub:"No peso oficial do edital",plan:SIM_PLAN},
+ {t:"Simulado 2 — Prova completa",sub:"No peso oficial do edital",plan:SIM_PLAN},
+ {t:"Simulado 3 — Prova completa",sub:"No peso oficial do edital",plan:SIM_PLAN},
+ {t:"Simulado 4 — Prova completa",sub:"No peso oficial do edital",plan:SIM_PLAN},
+ {t:"Simulado 5 — Reta final (nível 1º lugar)",sub:"Mesmo peso, seleção da reta final",reta:true,plan:SIM_PLAN}
 ];
-const SIM_TRACKS={PT:["pt",2001],RLM:["mod:ger-mat",2002],INFO:["mod:ger-inf",2003],TI:["ti",2004],DIR:["dir",2005],LOC:["loc",2006],HY:["hy",2007]};
-const SIM_ORDER=["PT","RLM","INFO","TI","DIR","LOC","HY"];
+const SIM_TRACKS={PT:["pt",2001],RLM:["mod:ger-mat",2002],INFO:["mod:ger-inf",2003],TI:["ti",2004],DIR:["dir",2005],LOC:["loc",2006]};
+const SIM_ORDER=["PT","INFO","RLM","DIR","LOC","TI"];
 let _simCache=null,_simShuffles=null;
 function simShuffles(){
   if(_simShuffles)return _simShuffles;
@@ -1100,7 +1122,7 @@ function openSimulados(){
   window.scrollTo(0,0);
 }
 function startSim(id){const s=buildSims().find(x=>x.id===id);if(!s)return;
-  const budget=s.total*180000;  // 3 min por questão (40q → 2h)
+  const budget=s.total*270000;  // 4,5 min/questão → 40q = 3h (duração oficial do edital)
   cur={title:s.t,list:s.items.map(it=>({q:it.q,id:it.id,label:it.label,cat:it.cat})),idx:0,simId:id,simName:s.t,budget};
   showQuiz();startSimTimer(budget);}
 /* ===== CRONÔMETRO ===== */
