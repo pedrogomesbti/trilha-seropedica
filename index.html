@@ -376,7 +376,7 @@
 
     <footer>
       Conteúdo alinhado ao <b>Edital 001/2026 — Câmara Municipal de Seropédica/RJ</b>, cargo <b>Analista de Tecnologia da Informação</b> (banca Instituto Consulpam). Estrutura da prova: 10 Língua Portuguesa + 10 Conhecimentos Gerais + 20 Conhecimentos Específicos = 40 questões (2,5 pts cada; mínimo 50 pts). Não são cópias de provas anteriores.<br>
-      Confira dados locais (Seropédica/Regimento) na Lei Orgânica e no Regimento oficiais.<br>
+      Conteúdo local baseado nos documentos oficiais: <b>Lei Orgânica do Município (Lei 1/1997)</b> e <b>Regimento Interno da Câmara (Resolução 019/2000, reformado pela Resolução 018/2025)</b>.<br>
       <button class="reset" onclick="exportProgress()">Exportar progresso</button> ·
       <button class="reset" onclick="document.getElementById('importfile').click()">Importar</button> ·
       <button class="reset" onclick="resetAll()">Zerar tudo</button>
@@ -948,6 +948,26 @@ const MODULES=[
   {q:"Em planilhas, toda fórmula começa com o sinal:",o:["+","=","@","#"],a:1,e:"As fórmulas iniciam com \u2018=\u2019."},
   {q:"Conjunto finito de passos para resolver um problema é um:",o:["algoritmo","navegador","pixel","cookie"],a:0,e:"Algoritmo é a sequência finita de passos."},
   {q:"O atalho que salva o documento na maioria dos programas é:",o:["Ctrl+S","Ctrl+B","Ctrl+A","Ctrl+L"],a:0,e:"Ctrl+S (salvar)."}
+ ]},
+ {id:"loc-lo",t:"Lei Orgânica de Seropédica (texto oficial)",cat:"loc",day:"Lei Orgânica",qs:[
+  {q:"Segundo a Lei Orgânica (art. 5º), são símbolos do Município de Seropédica:",o:["apenas a Bandeira","a Bandeira, o Hino e o Brasão","a Bandeira e o Hino","o Brasão e a moeda própria"],a:1,e:"Art. 5º: a Bandeira, o Hino e o Brasão."},
+  {q:"De acordo com a Lei Orgânica (art. 27, §1º), o número de Vereadores da Câmara de Seropédica é fixado em:",o:["7 (sete)","9 (nove)","11 (onze)","13 (treze)"],a:1,e:"Art. 27, §1º: fixado em 9 (nove) vereadores."},
+  {q:"Conforme a Lei Orgânica, os Vereadores são eleitos pelo sistema ___, com mandato de ___ anos.",o:["majoritário; 4","proporcional; 4","proporcional; 2","majoritário; 8"],a:1,e:"Art. 27: sistema proporcional; mandato de 4 anos."},
+  {q:"São Poderes do Município de Seropédica, independentes e harmônicos entre si:",o:["o Legislativo e o Executivo","o Legislativo, o Executivo e o Judiciário","apenas o Executivo","o Executivo e o Ministério Público"],a:0,e:"No Município há dois Poderes: Legislativo e Executivo (não existe Judiciário municipal)."},
+  {q:"Segundo a Lei Orgânica (art. 11), compete ao Município, entre outras:",o:["legislar sobre direito penal","legislar sobre assuntos de interesse local e instituir tributos municipais","emitir moeda","declarar guerra"],a:1,e:"Art. 11: legislar sobre interesse local; instituir e arrecadar tributos municipais."},
+  {q:"Sobre o Processo Legislativo Municipal (Lei Orgânica, art. 50), analise:<br>I - Compreende a elaboração de emendas à Lei Orgânica.<br>II - Inclui leis complementares e leis ordinárias.<br>III - Inclui resoluções e decretos legislativos.<br>Assinale a CORRETA:",o:["Apenas I e II","Apenas III","Apenas II e III","I, II e III"],a:3,e:"Art. 50: emendas à LO, leis complementares, ordinárias, delegadas, resoluções e decretos legislativos."},
+  {q:"A Lei Orgânica Municipal poderá ser emendada mediante proposta de, no mínimo (art. 51):",o:["1/5 dos membros da Câmara","1/3 dos membros da Câmara","metade mais um dos vereadores","todos os vereadores"],a:1,e:"Art. 51, I: proposta de 1/3, no mínimo, dos membros da Câmara (ou do Prefeito)."},
+  {q:"Sobre a Lei Orgânica de Seropédica, assinale a INCORRETA:",o:["É a norma fundamental que organiza o Município.","O Município está em união indissolúvel ao Estado do RJ e à República Federativa do Brasil.","O número de Vereadores é fixado em 21.","São símbolos do Município a Bandeira, o Hino e o Brasão."],a:2,e:"O número de Vereadores é 9 (art. 27, §1º), não 21."}
+ ]},
+ {id:"loc-ri",t:"Regimento Interno da Câmara (Resolução 018/2025)",cat:"loc",day:"Regimento",qs:[
+  {q:"Conforme o Regimento Interno (art. 18, Res. 018/2025), a Mesa Diretora é composta por:",o:["Presidente e Secretário apenas","Presidente, Vice-Presidente, 1º Secretário e 2º Secretário","Presidente, Relator e Tesoureiro","Prefeito, Presidente e Vice"],a:1,e:"Art. 18: Presidente, Vice-Presidente, 1º Secretário e 2º Secretário."},
+  {q:"Segundo o Regimento Interno (art. 18), o mandato da Mesa Diretora é de:",o:["1 (um) ano","2 (dois) anos","4 (quatro) anos","6 (seis) meses"],a:1,e:"Art. 18 (Res. 018/2025): mandato de 2 anos."},
+  {q:"Sobre as sessões da Câmara (Regimento Interno), analise:<br>I - Há sessões ordinárias.<br>II - Há sessões extraordinárias e solenes.<br>III - Há sessões permanentes.<br>Assinale a CORRETA:",o:["Apenas I","Apenas I e II","Apenas II e III","I, II e III"],a:3,e:"O Regimento prevê sessões ordinárias, solenes, extraordinárias e permanentes."},
+  {q:"No Regimento Interno, as comissões que existem de forma estável (não temporária) são as comissões:",o:["temporárias","permanentes","de inquérito apenas","externas"],a:1,e:"As Comissões Permanentes são estáveis; as CPIs são temporárias."},
+  {q:"A legislatura municipal tem duração de ___, correspondendo cada ano a uma ___.",o:["2 anos; sessão legislativa","4 anos; sessão legislativa","4 anos; comissão","1 ano; sessão solene"],a:1,e:"Legislatura de 4 anos; cada ano corresponde a uma Sessão Legislativa."},
+  {q:"A posse dos Vereadores, no primeiro ano da legislatura, ocorre em:",o:["1º de janeiro","15 de fevereiro","1º de março","31 de dezembro"],a:0,e:"Art. 3º do Regimento: a Câmara se instala em 1º de janeiro para a posse dos Vereadores."},
+  {q:"O ato normativo usado para tratar de matéria interna da própria Câmara (como reformar o Regimento) é a:",o:["lei complementar","resolução","medida provisória","emenda constitucional"],a:1,e:"Assuntos internos do Legislativo são tratados por Resolução (ex.: Res. 018/2025)."},
+  {q:"Sobre o Regimento Interno da Câmara de Seropédica, assinale a INCORRETA:",o:["Disciplina o funcionamento interno da Câmara (sessões, comissões e processo legislativo).","A Mesa Diretora dirige os trabalhos legislativos.","A Mesa Diretora tem mandato de 2 anos.","O Regimento é aprovado e alterado pelo Prefeito Municipal por decreto."],a:3,e:"O Regimento é matéria interna da Câmara, alterado por RESOLUÇÃO (ex.: Res. 018/2025), não por decreto do Prefeito."}
  ]},
  {id:"ti-banca",t:"TI — Estilo banca (afirmativas e INCORRETA)",cat:"ti",day:"reta final",qs:[
   {q:"Sobre os pilares da segurança da informação (CID), assinale a alternativa INCORRETA:",o:["A confidencialidade garante que a informação só seja acessada por quem tem autorização.","A integridade assegura que a informação não seja alterada de forma indevida.","A disponibilidade garante o acesso à informação quando necessário.","O não-repúdio significa que o autor pode livremente negar a autoria de uma ação."],a:3,e:"O não-repúdio (irretratabilidade) é o oposto: IMPEDE negar a autoria."},
