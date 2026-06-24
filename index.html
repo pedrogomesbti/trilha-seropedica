@@ -434,6 +434,7 @@
       <button class="back" onclick="goHome()">← Início</button>
       <div class="prog"><div class="bar"><i id="qprog" style="width:0%"></i></div></div>
       <div class="qclock" id="qclock" style="display:none">⏱ <span id="qclock-t">--:--</span></div>
+      <button class="flagbtn" id="newqbtn" onclick="regenQuiz()" style="display:none" title="Embaralha ordem e alternativas das questões deste tema">🔄 Novas</button>
       <button class="flagbtn" id="flagbtn" onclick="toggleFlag()">☆ Revisar</button>
       <div class="qcount" id="qcount">1 / 5</div>
     </div>
@@ -469,6 +470,7 @@
     <div class="row" style="justify-content:center">
       <button class="btn white" onclick="reviewSession()">📖 Gabarito comentado</button>
       <button class="btn" onclick="reviewWrong()" id="rev-btn">Rever só os erros</button>
+      <button class="btn" onclick="regenQuiz()" id="sum-newq" style="display:none">🔄 Gerar novas questões</button>
       <button class="btn amber" onclick="goHome()">Voltar ao início</button>
     </div>
   </section>
@@ -1287,14 +1289,18 @@ function renderAnalytics(){
 }
 /* Treina uma categoria: prioriza erradas e não respondidas dessa matéria */
 function practiceCat(cat){
-  let wrong=[],unans=[],done=[];
-  MODULES.forEach((m,mi)=>{if((CC[m.cat]||m.cat)!==cat)return;m.qs.forEach((_,qi)=>{const it=itemStatic(mi,qi),a=answers[it.id];
-    if(!a)unans.push(it);else if(!a.ok)wrong.push(it);else done.push(it);});});
-  const list=[...wrong,...unans,...done];if(!list.length)return;
-  for(let i=list.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[list[i],list[j]]=[list[j],list[i]];}
-  // mantém erradas/não respondidas no topo após embaralhar leve: reordena por prioridade
-  list.sort((x,y)=>prio(x)-prio(y));
-  cur={title:"Foco: "+(CATNAME[cat]||cat),list:list.slice(0,Math.min(15,list.length)),idx:0};showQuiz();
+  const build=()=>{
+    let wrong=[],unans=[],done=[];
+    MODULES.forEach((m,mi)=>{if((CC[m.cat]||m.cat)!==cat)return;m.qs.forEach((_,qi)=>{const it=itemStatic(mi,qi),a=answers[it.id];
+      if(!a)unans.push(it);else if(!a.ok)wrong.push(it);else done.push(it);});});
+    const list=[...wrong,...unans,...done];
+    for(let i=list.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[list[i],list[j]]=[list[j],list[i]];}
+    // mantém erradas/não respondidas no topo após embaralhar leve: reordena por prioridade
+    list.sort((x,y)=>prio(x)-prio(y));
+    return withShuffledOpts(list.slice(0,Math.min(15,list.length)));
+  };
+  const list=build();if(!list.length)return;
+  cur={title:"Foco: "+(CATNAME[cat]||cat),list,idx:0,_regen:build};showQuiz();
 }
 function prio(it){const a=answers[it.id];return !a?1:(!a.ok?0:2);}
 
@@ -1435,8 +1441,24 @@ function studyOrder(items){
   const tier=it=>{const a=answers[it.id];return !a?0:(a.ok?2:1);};
   return items.map(it=>({it,t:tier(it),r:Math.random()})).sort((a,b)=>a.t-b.t||a.r-b.r).map(x=>x.it);
 }
-function startModule(mi){cur={title:MODULES[mi].t,list:studyOrder(MODULES[mi].qs.map((_,qi)=>itemStatic(mi,qi))),idx:0};showQuiz();}
-function startHigh(){cur={title:HIGH.t,list:studyOrder(HIGH.qs.map((q,i)=>({q,id:"hy_"+i,label:"🔥 Essenciais · alta probabilidade",cat:"hy"}))),idx:0};showQuiz();}
+/* Embaralha as ALTERNATIVAS de uma questão, devolvendo uma CÓPIA (nunca altera o
+   banco). A resposta certa muda de posição → você não decora "é a letra B" e
+   precisa saber de verdade. O id continua o mesmo, então nota/revisão seguem certas. */
+function shuffleOpts(q){
+  const idx=q.o.map((_,i)=>i);
+  for(let i=idx.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]];}
+  return {...q,o:idx.map(i=>q.o[i]),a:idx.indexOf(q.a)};
+}
+function withShuffledOpts(items){return items.map(it=>({...it,q:shuffleOpts(it.q)}));}
+/* Regenera a rodada atual com nova ordem + alternativas embaralhadas (mesmo tema/banco). */
+function regenQuiz(){
+  if(!cur||!cur._regen)return;
+  cur.list=cur._regen();cur.idx=0;
+  showQuiz();
+  toast("Novas questões! Ordem e alternativas embaralhadas. 🔄",true);
+}
+function startModule(mi){const build=()=>withShuffledOpts(studyOrder(MODULES[mi].qs.map((_,qi)=>itemStatic(mi,qi))));cur={title:MODULES[mi].t,list:build(),idx:0,_regen:build};showQuiz();}
+function startHigh(){const build=()=>withShuffledOpts(studyOrder(HIGH.qs.map((q,i)=>({q,id:"hy_"+i,label:"🔥 Essenciais · alta probabilidade",cat:"hy"}))));cur={title:HIGH.t,list:build(),idx:0,_regen:build};showQuiz();}
 function startSimulado(){let p=[];MODULES.forEach((m,mi)=>m.qs.forEach((_,qi)=>p.push(itemStatic(mi,qi))));HIGH.qs.forEach((q,i)=>p.push({q,id:"hy_"+i,label:"🔥 Essenciais",cat:"hy"}));
   for(let i=p.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[p[i],p[j]]=[p[j],p[i]];}cur={title:"Simulado",list:p.slice(0,Math.min(40,p.length)),idx:0};showQuiz();}
 function reviewWrong(){if(!cur||!cur._origin)return;const w=cur._origin.filter(it=>it._wrong===true);if(!w.length){goHome();return;}cur={title:cur.title+" · erros",list:w,idx:0};showQuiz();}
@@ -1499,6 +1521,7 @@ function renderQ(){
   document.getElementById("expl").className="expl";document.getElementById("expl").innerHTML="";
   document.getElementById("deepbtn").style.display="none";
   curConf=it._conf||0;renderConf();
+  document.getElementById("newqbtn").style.display=(cur._regen&&!cur.simId)?"inline-block":"none";
   document.getElementById("conf").style.display=it._answered?"none":"flex";
   const last=cur.idx===cur.list.length-1;
   document.getElementById("prev").style.display=cur.idx>0?"inline-block":"none";
@@ -1581,6 +1604,7 @@ function showSummary(){
       :`Você acertou ${cor} de ${total} respondida(s) (${pct}%).`+(skipped?` · ${skipped} pulada(s) não contam.`:"");
   }
   document.getElementById("rev-btn").style.display=cur._origin.some(it=>it._wrong===true)?"inline-block":"none";
+  document.getElementById("sum-newq").style.display=(cur._regen&&!cur.simId)?"inline-block":"none";
   // detalhamento por categoria desta sessão
   const sc={};answered.forEach(it=>{const c=CC[it.cat]||it.cat;(sc[c]=sc[c]||{a:0,c:0}).a++;if(!it._wrong)sc[c].c++;});
   const box=document.getElementById("sumcats");box.innerHTML="";
