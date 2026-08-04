@@ -2,7 +2,7 @@
    App estático: cache-first do shell + fontes, para funcionar offline. */
 /* Bumpar esta versão a cada mudança no index.html: o activate abaixo apaga os
    caches antigos, senão o cache-first continua servindo a versão anterior. */
-const CACHE = "trilha-v6";
+const CACHE = "trilha-v7";
 const ASSETS = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg"];
 
 self.addEventListener("install", (e) => {
