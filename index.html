@@ -451,9 +451,9 @@
   <section class="listview" id="plano">
     <div class="lvtop">
       <button class="back" onclick="goHome()">← Início</button>
-      <h3>🗓️ Plano completo · 26 dias</h3>
+      <h3>🗓️ Plano completo · 25 dias</h3>
     </div>
-    <p class="lvsub">De <b>03/08</b> a <b>28/08/2026</b>, <b>2h por dia</b>, sem folga. Prova no sábado <b>29/08, às 15h</b> — portões fecham <b>14:40</b>.<br>
+    <p class="lvsub">De <b>04/08</b> a <b>28/08/2026</b>, <b>2h por dia</b>, sem folga. Prova no sábado <b>29/08, às 15h</b> — portões fecham <b>14:40</b>.<br>
     Cada dia tem 15 min de revisão espaçada, <b>20 min de matemática</b> (todo dia, um assunto por vez), 55 min no assunto principal, 25 min numa matéria de peso e 5 min de fechamento. Os <b>3 domingos são simulados de 3h</b>.<br>
     Marque cada bloco no ✓ conforme for fazendo — fica salvo.</p>
     <div id="plano-list"></div>
@@ -584,145 +584,139 @@
 
    Nos 3 domingos o dia é de SIMULADO e leva 3h, não 2h — é ensaio de prova. */
 const PLANO=[
- {d:"2026-08-03",t:"Algoritmos I — Fluxograma",bl:[
+ {d:"2026-08-04",t:"Algoritmos I — Fluxograma",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
    {m:20,t:"Matemática: Razão e Proporção: o que é razão, proporção e a propriedade fundamental",go:"mod:ger-mat",yt:"razão e proporção aula concurso"},
    {m:55,t:"Símbolos do fluxograma, contagem de entradas e saídas, caminhos da decisão",go:"mod:ti-algo",yt:"fluxograma algoritmo símbolos"},
    {m:25,t:"Português: interpretação de texto",go:"mod:pt-interp2",yt:"interpretação de texto concurso"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-04",t:"Algoritmos II — Pseudocódigo",bl:[
+ {d:"2026-08-05",t:"Algoritmos II — Pseudocódigo",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
    {m:20,t:"Matemática: Divisão proporcional (direta e inversa)",go:"mod:ger-mat",yt:"divisão proporcional direta e inversa"},
    {m:55,t:"Pseudocódigo: variáveis, tipos, se/senão, operadores lógicos E/OU",go:"mod:ti-algo",yt:"pseudocódigo portugol aula"},
    {m:25,t:"Português: acentuação e crase",go:"mod:pt-crase",yt:"crase regras aula"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-05",t:"Algoritmos III — Laços e traçado",bl:[
+ {d:"2026-08-06",t:"Algoritmos III — Laços e traçado",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
    {m:20,t:"Matemática: Regra de três simples (direta e inversa)",go:"mod:ger-mat",yt:"regra de três simples e inversa"},
    {m:55,t:"enquanto x repita x para; contar iterações e atribuições; valor final da variável",go:"mod:ti-algo",yt:"estrutura de repetição enquanto para repita"},
    {m:25,t:"Local: Lei Orgânica de Seropédica",go:"mod:loc-lo",yt:"lei orgânica municipal concurso"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-06",t:"Algoritmos IV — Recursão",bl:[
+ {d:"2026-08-07",t:"Algoritmos IV — Recursão",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
    {m:20,t:"Matemática: Regra de três composta (3 grandezas)",go:"mod:ger-mat",yt:"regra de três composta exercícios"},
    {m:55,t:"Contar chamadas recursivas; caso-base; tabela T(n) do Fibonacci",go:"mod:ti-algo",yt:"recursividade algoritmos aula"},
    {m:25,t:"Português: pontuação",go:"mod:pt-pont",yt:"pontuação vírgula regras concurso"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-07",t:"Algoritmos V — Ordenação e leitura de código",bl:[
+ {d:"2026-08-08",t:"Algoritmos V — Ordenação e leitura de código",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
    {m:20,t:"Matemática: Porcentagem (de, aumento e desconto)",go:"mod:ger-mat",yt:"porcentagem para concurso aula"},
    {m:55,t:"Bubble x Selection x Insertion; ler código Python e JavaScript e achar a saída",go:"mod:ti-algo",yt:"bubble sort selection sort insertion sort"},
    {m:25,t:"Direito Administrativo: princípios e poderes",go:"mod:dir-adm1",yt:"princípios da administração pública"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-08",t:"Formatos da banca I — Asserção-razão",bl:[
+ {d:"2026-08-09",t:"SIMULADO — prova completa cronometrada (3h)",sim:true,bl:[
+   {m:180,t:"Simulado completo: 40 questões no peso do edital, 3h corridas",go:"sim"},
+   {m:0,t:"Depois: gabarito comentado de TODAS as erradas, sem exceção",go:"wrong"}]},
+ {d:"2026-08-10",t:"Formatos da banca I — Asserção-razão",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
    {m:20,t:"Matemática: Porcentagens sucessivas (a pegadinha do 'volta ao valor original')",go:"mod:ger-mat",yt:"aumento e desconto sucessivo porcentagem"},
    {m:55,t:"O formato PORQUE em 3 passos — 15% da prova da CONAB, 7,5% da de Limoeiro",go:"mod:ti-banca",yt:"questão asserção razão como resolver"},
    {m:25,t:"Local: Regimento Interno da Câmara",go:"mod:loc-ri",yt:"regimento interno câmara municipal"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-09",t:"SIMULADO — prova completa cronometrada (3h)",sim:true,bl:[
-   {m:180,t:"Simulado completo: 40 questões no peso do edital, 3h corridas",go:"sim"},
-   {m:0,t:"Depois: gabarito comentado de TODAS as erradas, sem exceção",go:"wrong"}]},
- {d:"2026-08-10",t:"Formatos da banca II — Colunas, V/F e EXCETO",bl:[
+ {d:"2026-08-11",t:"Formatos da banca II — Colunas, V/F e EXCETO",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
    {m:20,t:"Matemática: Juros simples (J = C·i·t)",go:"mod:ger-mat",yt:"juros simples aula concurso"},
    {m:55,t:"Relacionar colunas, sequência V/F, EXCETO e preenchimento de lacuna",go:"mod:ti-banca2",yt:"questões de concurso relacionar colunas dicas"},
    {m:25,t:"Português: concordância",go:"mod:pt-conc",yt:"concordância verbal e nominal"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-11",t:"Banco de Dados I — ER e chaves",bl:[
+ {d:"2026-08-12",t:"Banco de Dados I — ER e chaves",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
    {m:20,t:"Matemática: Média aritmética (e como achar o termo que falta)",go:"mod:ger-mat",yt:"média aritmética exercícios concurso"},
    {m:55,t:"Modelo ER, chave primária x estrangeira, cardinalidade, contar PK/FK num diagrama",go:"mod:ti-bd1",yt:"modelo entidade relacionamento chave primária estrangeira"},
    {m:25,t:"Direito Constitucional: art. 5º",go:"mod:dir-const1",yt:"artigo 5 constituição direitos e garantias"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-12",t:"Banco de Dados II — Normalização",bl:[
+ {d:"2026-08-13",t:"Banco de Dados II — Normalização",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
    {m:20,t:"Matemática: Média ponderada",go:"mod:ger-mat",yt:"média ponderada exercícios"},
    {m:55,t:"1FN, 2FN e 3FN: dada a tabela, dizer em que forma normal ela está",go:"mod:ti-bd2",yt:"normalização banco de dados 1FN 2FN 3FN"},
    {m:25,t:"Português: regência e colocação pronominal",go:"mod:pt-reg",yt:"regência verbal e colocação pronominal"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-13",t:"Banco de Dados III — ACID e SQL",bl:[
+ {d:"2026-08-14",t:"Banco de Dados III — ACID e SQL",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
    {m:20,t:"Matemática: Moda e mediana (e quando a mediana é a média de dois)",go:"mod:ger-mat",yt:"média moda e mediana estatística"},
    {m:55,t:"ACID por relacionar colunas, transações, SQL DDL/DML/DCL, índices",go:"mod:ti-bd2",yt:"propriedades ACID transações banco de dados"},
    {m:25,t:"Local: Seropédica (história, geografia, símbolos)",go:"mod:loc-sero",yt:"história do município de Seropédica"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-14",t:"Segurança I — Criptografia",bl:[
+ {d:"2026-08-15",t:"Segurança I — Criptografia",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: PA — termo geral an = a1 + (n−1)·r  (caiu literal em Limoeiro)",go:"mod:ger-mat",yt:"progressão aritmética termo geral"},
+   {m:20,t:"Matemática: PA — termo geral  an = a1 + (n−1)·r   (caiu literal em Limoeiro)",go:"mod:ger-mat",yt:"progressão aritmética termo geral"},
    {m:55,t:"Tríade CID; simétrica x assimétrica; qual chave cifra e qual decifra",go:"mod:ti-seg1",yt:"criptografia simétrica e assimétrica"},
    {m:25,t:"Português: interpretação de texto",go:"mod:pt-interp",yt:"interpretação de texto concurso"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-15",t:"Segurança II — Hash e assinatura digital",bl:[
+ {d:"2026-08-16",t:"SIMULADO — prova completa cronometrada (3h)",sim:true,bl:[
+   {m:180,t:"Simulado completo: 40 questões no peso do edital, 3h corridas",go:"sim"},
+   {m:0,t:"Depois: gabarito comentado de TODAS as erradas, sem exceção",go:"wrong"}]},
+ {d:"2026-08-17",t:"Segurança II — Hash e assinatura digital",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
    {m:20,t:"Matemática: PA — soma dos n termos  Sn = n·(a1 + an)/2",go:"mod:ger-mat",yt:"progressão aritmética soma dos termos"},
    {m:55,t:"Hash (MD5/SHA), assinatura digital x certificado digital, integridade x autenticidade",go:"mod:ti-seg1",yt:"função hash assinatura digital certificado digital"},
    {m:25,t:"Direito Administrativo: atos administrativos",go:"mod:dir-adm2",yt:"atos administrativos requisitos atributos"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-16",t:"SIMULADO — prova completa cronometrada (3h)",sim:true,bl:[
-   {m:180,t:"Simulado completo: 40 questões no peso do edital, 3h corridas",go:"sim"},
-   {m:0,t:"Depois: gabarito comentado de TODAS as erradas, sem exceção",go:"wrong"}]},
- {d:"2026-08-17",t:"Segurança III — Firewall, IDS/IPS e LGPD",bl:[
+ {d:"2026-08-18",t:"Segurança III — Firewall, IDS/IPS e LGPD",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
    {m:20,t:"Matemática: PA — revisão e questões no estilo da banca",go:"mod:ger-mat",yt:"progressão aritmética exercícios concurso"},
    {m:55,t:"Firewall (stateless/stateful/proxy), IDS x IPS, malware, LGPD 13.709/2018",go:"mod:ti-lgpd",yt:"firewall IDS IPS diferença"},
    {m:25,t:"Local: Regimento (Mesa Diretora, comissões, sessões)",go:"mod:loc-reg",yt:"mesa diretora e comissões câmara municipal"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-18",t:"Redes I — OSI, TCP/IP e portas",bl:[
+ {d:"2026-08-19",t:"Redes I — OSI, TCP/IP e portas",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: PG — termo geral e soma",go:"mod:ger-mat",yt:"progressão geométrica aula concurso"},
+   {m:20,t:"Matemática: PG e sequências lógicas — termo geral, soma e como achar o padrão",go:"mod:ger-mat",yt:"progressão geométrica e sequência lógica concurso"},
    {m:55,t:"As 7 camadas, TCP x UDP, e a tabela de portas (a pegadinha 443 x 433)",go:"mod:ti-protoc",yt:"modelo OSI e TCP/IP camadas"},
    {m:25,t:"Português: fonologia e formação de palavras",go:"mod:pt-edital",yt:"fonologia e formação de palavras"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-19",t:"Redes II — IP e subnetting",bl:[
+ {d:"2026-08-20",t:"Redes II — IP e subnetting",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Sequências lógicas (achar o padrão)",go:"mod:ger-mat",yt:"sequência lógica concurso"},
+   {m:20,t:"Matemática: Conjuntos e o princípio da inclusão-exclusão",go:"mod:ger-mat",yt:"diagrama de venn união interseção problemas"},
    {m:55,t:"Classes, máscara, sub-redes, switch x roteador x firewall",go:"mod:ti-ip",yt:"endereçamento IP e sub-redes aula"},
    {m:25,t:"Direito Constitucional: Municípios (arts. 29 a 31)",go:"mod:dir-const2",yt:"municípios constituição federal artigo 29"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-20",t:"Sistemas Operacionais e arquitetura",bl:[
+ {d:"2026-08-21",t:"Sistemas Operacionais e arquitetura",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Conjuntos e o princípio da inclusão-exclusão",go:"mod:ger-mat",yt:"diagrama de venn união interseção problemas"},
+   {m:20,t:"Matemática: Combinatória — princípio multiplicativo (placas e senhas)",go:"mod:ger-mat",yt:"princípio fundamental da contagem"},
    {m:55,t:"Kernel, processos, gerência de memória, permissões Linux, comandos",go:"mod:ti-linux",yt:"gerência de processos e memória sistema operacional"},
    {m:25,t:"Português: semântica e figuras de linguagem",go:"mod:pt-reforco",yt:"figuras de linguagem concurso"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-21",t:"Engenharia de Software e testes",bl:[
-   {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Combinatória — princípio multiplicativo (placas e senhas)",go:"mod:ger-mat",yt:"princípio fundamental da contagem"},
-   {m:55,t:"Ciclo de vida, ágil x tradicional, requisito funcional x não-funcional, erro x defeito x falha",go:"mod:ti-eng1",yt:"requisito funcional e não funcional erro defeito falha"},
-   {m:25,t:"Local: Lei Orgânica (competências do Município)",go:"mod:loc-lo",yt:"competências do município constituição"},
-   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-22",t:"Git, orientação a objetos e Web",bl:[
+ {d:"2026-08-22",t:"Engenharia de Software e testes",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
    {m:20,t:"Matemática: Arranjo, permutação e combinação (quando a ordem importa)",go:"mod:ger-mat",yt:"arranjo permutação e combinação"},
-   {m:55,t:"Git (commit, branch, merge x rebase), POO (encapsulamento, herança, polimorfismo), HTML/CSS/JS e API REST",go:"mod:ti-eng2",yt:"git merge rebase e pilares da orientação a objetos"},
-   {m:25,t:"Direito: licitações e Lei 14.133/2021",go:"mod:dir-adm3",yt:"lei 14133 licitações resumo"},
+   {m:55,t:"Ciclo de vida, ágil x tradicional, requisito funcional x não-funcional, erro x defeito x falha",go:"mod:ti-eng1",yt:"requisito funcional e não funcional erro defeito falha"},
+   {m:25,t:"Local: Lei Orgânica (competências do Município)",go:"mod:loc-lo",yt:"competências do município constituição"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
  {d:"2026-08-23",t:"SIMULADO — prova completa cronometrada (3h)",sim:true,bl:[
    {m:180,t:"Simulado completo: 40 questões no peso do edital, 3h corridas",go:"sim"},
    {m:0,t:"Depois: gabarito comentado de TODAS as erradas, sem exceção",go:"wrong"}]},
- {d:"2026-08-24",t:"Governança — ITIL, COBIT e PMBOK",bl:[
+ {d:"2026-08-24",t:"Git, orientação a objetos e Web",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
    {m:20,t:"Matemática: Probabilidade (favoráveis/total, e a resposta em %)",go:"mod:ger-mat",yt:"probabilidade básica concurso"},
+   {m:55,t:"Git (commit, branch, merge x rebase), POO (encapsulamento, herança, polimorfismo), HTML/CSS/JS e API REST",go:"mod:ti-eng2",yt:"git merge rebase e pilares da orientação a objetos"},
+   {m:25,t:"Direito: licitações e Lei 14.133/2021",go:"mod:dir-adm3",yt:"lei 14133 licitações resumo"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-25",t:"Governança — ITIL, COBIT e PMBOK",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Sistemas lineares e álgebra básica (traduzir texto em equação)",go:"mod:ger-mat",yt:"sistema de equações do primeiro grau problemas"},
    {m:55,t:"Ciclo de vida ITIL, COBIT e PMBOK (projeto x programa x portfólio)",go:"mod:ti-gov",yt:"ITIL COBIT PMBOK governança de TI"},
    {m:25,t:"Português: reforço geral",go:"mod:pt-banca",yt:"português para concurso revisão"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-25",t:"Nuvem, virtualização e infraestrutura",bl:[
+ {d:"2026-08-26",t:"Nuvem, virtualização e infraestrutura",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Sistemas lineares e álgebra básica (traduzir texto em equação)",go:"mod:ger-mat",yt:"sistema de equações do primeiro grau problemas"},
+   {m:20,t:"Matemática: Geometria plana e espacial (áreas e volumes)",go:"mod:ger-mat",yt:"áreas e volumes geometria concurso"},
    {m:55,t:"IaaS/PaaS/SaaS por associação de colunas, RAID, backup completo x incremental x diferencial",go:"mod:ti-infra",yt:"IaaS PaaS SaaS e backup incremental diferencial"},
    {m:25,t:"Local: Regimento (processo legislativo)",go:"mod:loc-ri",yt:"processo legislativo municipal"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-26",t:"Revisão dirigida — seus erros",bl:[
-   {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Geometria plana e espacial (áreas e volumes)",go:"mod:ger-mat",yt:"áreas e volumes geometria concurso"},
-   {m:55,t:"Refazer TODAS as questões que você errou até aqui",go:"wrong"},
-   {m:25,t:"Essenciais — alta probabilidade de cair",go:"high"},
-   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-27",t:"Revisão dirigida — marcadas e pontos fracos",bl:[
+ {d:"2026-08-27",t:"Revisão dirigida — erros, marcadas e pontos fracos",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
    {m:20,t:"Matemática: Trigonometria no triângulo retângulo (seno, cosseno, tangente)",go:"mod:ger-mat",yt:"trigonometria no triângulo retângulo"},
-   {m:55,t:"Questões marcadas com estrela + a matéria com pior acerto no Desempenho",go:"flag"},
+   {m:55,t:"Refazer TODAS as erradas, depois as marcadas com estrela e a matéria com pior acerto no Desempenho",go:"wrong"},
    {m:25,t:"Essenciais — alta probabilidade de cair",go:"high"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
  {d:"2026-08-28",t:"Véspera — leve, sem matéria nova",bl:[
@@ -739,7 +733,7 @@ let planTime={};   // segundos estudados por dia (cronômetro)   // {"AAAA-MM-DD
    Usado nas questões de traçado de algoritmo (módulo ti-algo). */
 const C=s=>'<span class="code">'+s+'</span>';
 const MODULES=[
- {id:"ti-algo",t:"Algoritmos — Fluxograma, Pseudocódigo e Traçado",cat:"ger",day:"03–07/08",qs:[
+ {id:"ti-algo",t:"Algoritmos — Fluxograma, Pseudocódigo e Traçado",cat:"ger",day:"04–08/08",qs:[
   {q:"Em um fluxograma, o símbolo em forma de LOSANGO representa:",o:["uma operação de entrada de dados","uma decisão","o início ou o fim do algoritmo","um processamento ou cálculo"],a:1,e:"LOSANGO = DECISÃO: dele saem sempre 2 caminhos (verdadeiro/falso). Guarde o resto: <b>elipse/retângulo arredondado</b> = início/fim; <b>paralelogramo</b> = entrada ou saída de dados; <b>retângulo</b> = processamento/atribuição. A pegadinha da banca é oferecer 'entrada de dados' (que é o paralelogramo) como distrator."},
   {q:"Sobre as formas de representar um algoritmo, assinale a alternativa CORRETA.",o:["A descrição narrativa usa fluxogramas, o que é vantajoso por ser uma linguagem próxima à do computador.","A descrição narrativa é expressa em linguagem natural, e sua desvantagem é ser ambígua e distante da linguagem do computador.","O fluxograma é expresso em linguagem natural e por isso não admite símbolos gráficos padronizados.","O pseudocódigo é uma representação exclusivamente gráfica, sem uso de palavras."],a:1,e:"São 3 formas: <b>descrição narrativa</b> (linguagem natural, ambígua), <b>fluxograma</b> (gráfico, com símbolos) e <b>pseudocódigo/portugol</b> (texto estruturado, o mais próximo do código). A banca troca as definições de lugar — leia sempre QUAL forma está sendo definida antes de olhar o resto da alternativa."},
   {q:"Analise o pseudocódigo a seguir:<br>" + C("algoritmo &quot;Fatorial&quot;<br>var<br>&nbsp;&nbsp;num, resultado: inteiro<br>inicio<br>&nbsp;&nbsp;leia(num)<br>&nbsp;&nbsp;resultado &lt;- 1<br>&nbsp;&nbsp;enquanto (num &gt; 1) faca<br>&nbsp;&nbsp;&nbsp;&nbsp;resultado &lt;- resultado * num<br>&nbsp;&nbsp;&nbsp;&nbsp;num &lt;- num - 1<br>&nbsp;&nbsp;fimenquanto<br>&nbsp;&nbsp;escreva(resultado)<br>fimalgoritmo") + "<br>Considerando uma execução correta, o total de ATRIBUIÇÕES executadas caso o usuário informe o valor 4 para “num” é:",o:["6","7","8","9"],a:1,e:"Conte só as setas <b>&lt;-</b>. Fora do laço: <b>resultado &lt;- 1</b> = 1 atribuição. O laço roda enquanto num&gt;1, ou seja, com num = 4, 3, 2 → <b>3 voltas</b>, e cada volta tem 2 atribuições (resultado e num) = 6. Total: 1 + 6 = <b>7</b>. Cuidado: <b>leia(num)</b> NÃO é atribuição (é entrada), e a volta com num=1 não acontece porque a condição já é falsa."},
@@ -1617,9 +1611,9 @@ function renderPlanCard(){
   const di=planIdx();
   if(di<0){                       // fora da janela do plano (antes de 03/08 ou depois da prova)
     wrap.innerHTML='<div class="ptop"><div><div class="plbl">Plano de estudos</div>'+
-      '<h3>26 dias · 2h por dia</h3></div>'+
+      '<h3>25 dias · 2h por dia</h3></div>'+
       '<button class="btn sm white" onclick="openPlano()">Ver plano completo</button></div>'+
-      '<p class="psub">O plano diário cobre de 03/08 a 28/08/2026. Hoje está fora dessa janela — use o plano completo para se situar.</p>';
+      '<p class="psub">O plano diário começa em 04/08 e vai até 28/08/2026. Hoje está fora dessa janela — abra o plano completo para se situar.</p>';
     return;
   }
   const p=PLANO[di],done=Object.values(planDone[p.d]||{}).filter(Boolean).length;
