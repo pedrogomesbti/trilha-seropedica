@@ -16,10 +16,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{--ink:#12303A;--paper:#F2F5F4;--card:#FFFFFF;--brand:#0C6B70;--brand-d:#094B4F;--amber:#D98A00;--violet:#5B4BA6;
-    --right:#1E8E5A;--right-bg:#E7F6EE;--wrong:#CF3D3D;--wrong-bg:#FBEAEA;--muted:#5B6B72;--line:#DBE5E3;--soft:#F6FAF9;
+    --right:#1E8E5A;--right-bg:#E7F6EE;--wrong:#CF3D3D;--wrong-bg:#FBEAEA;--muted:#5B6B72;--line:#DBE5E3;--soft:#F6FAF9;--code-bg:#F2F7F6;
     --shadow:0 1px 2px rgba(18,48,58,.06),0 8px 24px rgba(18,48,58,.05);}
   [data-theme="dark"]{--ink:#E6EEF0;--paper:#0E1A1F;--card:#16262C;--brand:#3BA7AC;--brand-d:#6FC9CD;--amber:#F0A92B;--violet:#9B8BE0;
-    --right:#3FCB85;--right-bg:#0F2E22;--wrong:#F0686A;--wrong-bg:#341A1C;--muted:#90A4AC;--line:#27393F;--soft:#13232A;
+    --right:#3FCB85;--right-bg:#0F2E22;--wrong:#F0686A;--wrong-bg:#341A1C;--muted:#90A4AC;--line:#27393F;--soft:#13232A;--code-bg:#0E1B21;
     --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);}
   *{box-sizing:border-box} html{-webkit-text-size-adjust:100%}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
@@ -101,6 +101,10 @@
   .qcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
   .qtag{font-size:11px;color:var(--brand);font-weight:600;text-transform:uppercase;letter-spacing:.6px;font-family:"Space Grotesk"}.qtag.ai{color:var(--violet)}
   .qtext{font-size:17px;line-height:1.5;margin:8px 0 18px;font-weight:500}
+  /* bloco de pseudocódigo/código dentro do enunciado e do comentário */
+  .code{display:block;margin:12px 0;padding:12px 14px;border-radius:10px;border:1px solid var(--line);
+        background:var(--code-bg);font-family:ui-monospace,"Cascadia Code",Consolas,"Courier New",monospace;
+        font-size:13.5px;line-height:1.6;font-weight:400;white-space:normal;overflow-x:auto}
   .opts{display:grid;gap:9px}
   .opt{display:flex;gap:12px;align-items:flex-start;text-align:left;background:var(--soft);border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;cursor:pointer;font-size:14.5px;color:var(--ink);transition:border-color .12s,background .12s;width:100%}
   .opt:hover:not([disabled]){border-color:var(--brand);background:#fff} .opt[disabled]{cursor:default}
@@ -177,6 +181,38 @@
   .arow .abar i{display:block;height:100%;border-radius:5px;transition:width .5s}
   .arow .acnt{font-size:11px;color:var(--muted);margin-top:5px}
   .weak{border-color:#F0C24A;background:color-mix(in srgb,var(--amber) 8%,var(--card))}
+
+  /* ===== PLANO DE ESTUDOS ===== */
+  .plancard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:16px}
+  .ptop{display:flex;align-items:flex-start;gap:12px;justify-content:space-between;flex-wrap:wrap}
+  .plbl{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--brand)}
+  .plancard h3{margin:2px 0 0;font-size:18px}
+  .psub{color:var(--muted);font-size:13px;margin:8px 0 0;line-height:1.5}
+  .pbar{height:6px;border-radius:99px;background:var(--line);margin:12px 0;overflow:hidden}
+  .pbar i{display:block;height:100%;background:var(--brand);border-radius:99px;transition:width .3s}
+  .pblks{display:flex;flex-direction:column;gap:7px}
+  .pblk{display:flex;align-items:center;gap:10px;padding:9px 11px;border:1px solid var(--line);border-radius:11px;background:var(--soft)}
+  .pblk.pdone{opacity:.55}
+  .pblk.pdone .pbt{text-decoration:line-through}
+  .pchk{flex:0 0 24px;width:24px;height:24px;border-radius:7px;border:1.5px solid var(--line);background:var(--card);
+        cursor:pointer;font-size:14px;font-weight:800;color:var(--right);line-height:1;padding:0}
+  .pblk.pdone .pchk{background:var(--right-bg);border-color:var(--right)}
+  .pbi{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+  .pbm{font-size:11px;font-weight:800;color:var(--brand);letter-spacing:.03em}
+  .pbt{font-size:13.5px;line-height:1.4}
+  .pbgo{flex:0 0 auto;border:1px solid var(--line);background:var(--card);border-radius:9px;padding:6px 11px;
+        font-size:12.5px;font-weight:700;cursor:pointer;color:var(--ink)}
+  .pbgo:hover{border-color:var(--brand);color:var(--brand)}
+  .pdoneMsg{margin:12px 0 0;font-size:13px;font-weight:700;color:var(--right)}
+  .pday{border:1px solid var(--line);border-radius:14px;padding:13px 15px;margin-bottom:11px;background:var(--card)}
+  .pday.ptoday{border-color:var(--brand);box-shadow:0 0 0 3px var(--right-bg)}
+  .pday.ppast{opacity:.62}
+  .pday.psim{background:var(--soft);border-style:dashed}
+  .pdh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .pdh b{font-size:13px;color:var(--brand);text-transform:capitalize}
+  .pdh span{font-size:15px;font-weight:700;flex:1;min-width:180px}
+  .pdh em{font-style:normal;font-size:12px;font-weight:800;color:var(--muted)}
+  @media(max-width:560px){.pbgo{padding:6px 9px}.pbt{font-size:13px}}
   /* Resumo por categoria */
   .sumcats{max-width:420px;margin:6px auto 22px;text-align:left;display:grid;gap:7px}
   .sumcat{display:flex;align-items:center;gap:8px;font-size:13px}
@@ -290,16 +326,18 @@
 <div class="wrap">
   <section id="home">
     <div class="hero">
-      <div class="eyebrow">Prova: 1º de agosto de 2026 · rumo ao 1º lugar</div>
+      <div class="eyebrow">Prova: 29 de agosto de 2026 · 15h às 18h · rumo ao 1º lugar</div>
       <h2>Treine, simule a prova<br>e acompanhe sua nota.</h2>
       <p>Pratique <b id="hero-count">—</b> questões por matéria, faça <b>5 simulados completos</b> no padrão da banca, marque as que quer rever e acompanhe seu desempenho rumo ao 1º lugar.</p>
     </div>
 
     <div class="countdown" id="countdown">
       <div><div class="cd-num" id="cd-num">—</div></div>
-      <div class="cd-txt"><b>dias até a prova</b><br><span id="cd-sub">1º de agosto de 2026</span></div>
+      <div class="cd-txt"><b>dias até a prova</b><br><span id="cd-sub">29 de agosto de 2026</span></div>
       <div class="cd-bar"><i id="cd-fill" style="width:0%"></i></div>
     </div>
+
+    <div class="plancard" id="plancard"></div>
 
     <div class="daily" id="daily">
       <div class="dring">
@@ -382,6 +420,18 @@
       <button class="reset" onclick="resetAll()">Zerar tudo</button>
       <input type="file" id="importfile" accept="application/json" style="display:none" onchange="importProgress(event)">
     </footer>
+  </section>
+
+  <!-- PLANO COMPLETO (26 dias) -->
+  <section class="listview" id="plano">
+    <div class="lvtop">
+      <button class="back" onclick="goHome()">← Início</button>
+      <h3>🗓️ Plano completo · 26 dias</h3>
+    </div>
+    <p class="lvsub">De <b>03/08</b> a <b>28/08/2026</b>, <b>2h por dia</b>, sem folga. Prova no sábado <b>29/08, às 15h</b> — portões fecham <b>14:40</b>.<br>
+    Cada dia tem 15 min de revisão espaçada, <b>20 min de matemática</b> (todo dia, um assunto por vez), 55 min no assunto principal, 25 min numa matéria de peso e 5 min de fechamento. Os <b>3 domingos são simulados de 3h</b>.<br>
+    Marque cada bloco no ✓ conforme for fazendo — fica salvo.</p>
+    <div id="plano-list"></div>
   </section>
 
   <!-- SIMULADOS -->
@@ -490,8 +540,201 @@
 <div id="toasts" aria-live="polite"></div>
 
 <script>
+
+/* ===== PLANO DE ESTUDOS — 26 dias, 2h/dia, de 03/08 a 28/08/2026 =====
+   Montado a partir de 3 provas reais da Consulpam (Limoeiro do Norte 2026 —
+   Analista de Sistemas; CISCOPAR 2023 — Analista em Informática; CONAB 2025 —
+   Analista de TI) cruzadas com o Anexo do Edital 001/2026.
+
+   Estrutura fixa de cada dia (120 min):
+     15 min  revisão espaçada (o que o SRS cobrar)
+     20 min  MATEMÁTICA — dose diária, um assunto por dia, sem pular
+     55 min  bloco principal (assunto da vez)
+     25 min  bloco secundário (Português / Direito / Local — as que valem 16 questões)
+      5 min  fechamento: anotar a pegadinha do dia
+
+   Por que matemática TODO dia em vez de um bloco de 4 dias: cálculo trava por
+   falta de contato recente, não por falta de horas seguidas. 20 min x 26 dias
+   valem mais que 9 horas amontoadas numa semana.
+
+   Nos 3 domingos o dia é de SIMULADO e leva 3h, não 2h — é ensaio de prova. */
+const PLANO=[
+ {d:"2026-08-03",t:"Algoritmos I — Fluxograma",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Razão e Proporção (o que é razão, proporção e a propriedade fundamental)",go:"mod:ger-mat"},
+   {m:55,t:"Símbolos do fluxograma, contagem de entradas e saídas, caminhos da decisão",go:"mod:ti-algo"},
+   {m:25,t:"Português: interpretação de texto",go:"mod:pt-interp2"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-04",t:"Algoritmos II — Pseudocódigo",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Divisão proporcional (direta e inversa)",go:"mod:ger-mat"},
+   {m:55,t:"Pseudocódigo: variáveis, tipos, se/senão, operadores lógicos E/OU",go:"mod:ti-algo"},
+   {m:25,t:"Português: acentuação e crase",go:"mod:pt-crase"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-05",t:"Algoritmos III — Laços e traçado",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Regra de três simples (direta e inversa)",go:"mod:ger-mat"},
+   {m:55,t:"enquanto x repita x para; contar iterações e atribuições; valor final da variável",go:"mod:ti-algo"},
+   {m:25,t:"Local: Lei Orgânica de Seropédica",go:"mod:loc-lo"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-06",t:"Algoritmos IV — Recursão",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Regra de três composta (3 grandezas)",go:"mod:ger-mat"},
+   {m:55,t:"Contar chamadas recursivas; caso-base; tabela T(n) do Fibonacci",go:"mod:ti-algo"},
+   {m:25,t:"Português: pontuação",go:"mod:pt-pont"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-07",t:"Algoritmos V — Ordenação e leitura de código",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Porcentagem (de, aumento e desconto)",go:"mod:ger-mat"},
+   {m:55,t:"Bubble x Selection x Insertion; ler código Python e JavaScript e achar a saída",go:"mod:ti-algo"},
+   {m:25,t:"Direito Administrativo: princípios e poderes",go:"mod:dir-adm1"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-08",t:"Formatos da banca I — Asserção-razão",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Porcentagens sucessivas (a pegadinha do 'volta ao valor original')",go:"mod:ger-mat"},
+   {m:55,t:"O formato PORQUE em 3 passos — 15% da prova da CONAB, 7,5% da de Limoeiro",go:"mod:ti-banca"},
+   {m:25,t:"Local: Regimento Interno da Câmara",go:"mod:loc-ri"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-09",t:"SIMULADO 1 — prova completa cronometrada (3h)",sim:true,bl:[
+   {m:180,t:"Simulado completo: 40 questões no peso do edital, 3h corridas",go:"sim"},
+   {m:0,t:"Depois: gabarito comentado de TODAS as erradas, sem exceção",go:"wrong"}]},
+ {d:"2026-08-10",t:"Formatos da banca II — Colunas, V/F e EXCETO",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Juros simples (J = C·i·t)",go:"mod:ger-mat"},
+   {m:55,t:"Relacionar colunas, sequência V/F, EXCETO e preenchimento de lacuna",go:"mod:ti-banca2"},
+   {m:25,t:"Português: concordância",go:"mod:pt-conc"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-11",t:"Banco de Dados I — ER e chaves",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Média aritmética (e como achar o termo que falta)",go:"mod:ger-mat"},
+   {m:55,t:"Modelo ER, chave primária x estrangeira, cardinalidade, contar PK/FK num diagrama",go:"mod:ti-bd1"},
+   {m:25,t:"Direito Constitucional: art. 5º",go:"mod:dir-const1"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-12",t:"Banco de Dados II — Normalização",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Média ponderada",go:"mod:ger-mat"},
+   {m:55,t:"1FN, 2FN e 3FN: dada a tabela, dizer em que forma normal ela está",go:"mod:ti-bd2"},
+   {m:25,t:"Português: regência e colocação pronominal",go:"mod:pt-reg"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-13",t:"Banco de Dados III — ACID e SQL",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Moda e mediana (e quando a mediana é a média de dois)",go:"mod:ger-mat"},
+   {m:55,t:"ACID por relacionar colunas, transações, SQL DDL/DML/DCL, índices",go:"mod:ti-bd2"},
+   {m:25,t:"Local: Seropédica (história, geografia, símbolos)",go:"mod:loc-sero"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-14",t:"Segurança I — Criptografia",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"MATEMÁTICA-CHAVE: PA — termo geral an = a1 + (n−1)·r  (caiu literal em Limoeiro)",go:"mod:ger-mat"},
+   {m:55,t:"Tríade CID; simétrica x assimétrica; qual chave cifra e qual decifra",go:"mod:ti-seg1"},
+   {m:25,t:"Português: interpretação de texto",go:"mod:pt-interp"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-15",t:"Segurança II — Hash e assinatura digital",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"MATEMÁTICA-CHAVE: PA — soma dos n termos Sn = n·(a1 + an)/2",go:"mod:ger-mat"},
+   {m:55,t:"Hash (MD5/SHA), assinatura digital x certificado digital, integridade x autenticidade",go:"mod:ti-seg1"},
+   {m:25,t:"Direito Administrativo: atos administrativos",go:"mod:dir-adm2"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-16",t:"SIMULADO 2 — prova completa cronometrada (3h)",sim:true,bl:[
+   {m:180,t:"Simulado completo: 40 questões no peso do edital, 3h corridas",go:"sim"},
+   {m:0,t:"Depois: gabarito comentado de TODAS as erradas, sem exceção",go:"wrong"}]},
+ {d:"2026-08-17",t:"Segurança III — Firewall, IDS/IPS e LGPD",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: PA — revisão e questões no estilo da banca",go:"mod:ger-mat"},
+   {m:55,t:"Firewall (stateless/stateful/proxy), IDS x IPS, malware, LGPD 13.709/2018",go:"mod:ti-lgpd"},
+   {m:25,t:"Local: Regimento (Mesa Diretora, comissões, sessões)",go:"mod:loc-reg"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-18",t:"Redes I — OSI, TCP/IP e portas",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: PG — termo geral e soma",go:"mod:ger-mat"},
+   {m:55,t:"As 7 camadas, TCP x UDP, e a tabela de portas (a pegadinha 443 x 433)",go:"mod:ti-protoc"},
+   {m:25,t:"Português: fonologia e formação de palavras",go:"mod:pt-edital"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-19",t:"Redes II — IP e subnetting",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Sequências lógicas (achar o padrão)",go:"mod:ger-mat"},
+   {m:55,t:"Classes, máscara, sub-redes, switch x roteador x firewall",go:"mod:ti-ip"},
+   {m:25,t:"Direito Constitucional: Municípios (arts. 29 a 31)",go:"mod:dir-const2"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-20",t:"Sistemas Operacionais e arquitetura",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Conjuntos e o princípio da inclusão-exclusão",go:"mod:ger-mat"},
+   {m:55,t:"Kernel, processos, gerência de memória, permissões Linux, comandos",go:"mod:ti-linux"},
+   {m:25,t:"Português: semântica e figuras de linguagem",go:"mod:pt-reforco"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-21",t:"Engenharia de Software e testes",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Combinatória — princípio multiplicativo (placas e senhas)",go:"mod:ger-mat"},
+   {m:55,t:"Ciclo de vida, ágil x tradicional, requisitos funcional x não-funcional, erro x defeito x falha",go:"mod:ti-eng1"},
+   {m:25,t:"Local: Lei Orgânica (competências do Município)",go:"mod:loc-lo"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-22",t:"Git, orientação a objetos e Web",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Arranjo, permutação e combinação (quando a ordem importa)",go:"mod:ger-mat"},
+   {m:55,t:"Git (commit, branch, merge x rebase), POO (encapsulamento, herança, polimorfismo), HTML/CSS/JS e API REST",go:"mod:ti-eng2"},
+   {m:25,t:"Direito: licitações e Lei 14.133/2021",go:"mod:dir-adm3"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-23",t:"SIMULADO 3 — prova completa cronometrada (3h)",sim:true,bl:[
+   {m:180,t:"Simulado completo: 40 questões no peso do edital, 3h corridas",go:"sim"},
+   {m:0,t:"Depois: gabarito comentado de TODAS as erradas, sem exceção",go:"wrong"}]},
+ {d:"2026-08-24",t:"Governança — ITIL, COBIT e PMBOK",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Probabilidade (favoráveis/total, e a resposta em %)",go:"mod:ger-mat"},
+   {m:55,t:"Ciclo de vida ITIL, COBIT e PMBOK (projeto x programa x portfólio)",go:"mod:ti-gov"},
+   {m:25,t:"Português: reforço geral",go:"mod:pt-banca"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-25",t:"Nuvem, virtualização e infraestrutura",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Sistemas lineares e álgebra básica (traduzir texto em equação)",go:"mod:ger-mat"},
+   {m:55,t:"IaaS/PaaS/SaaS por associação de colunas, RAID, backup completo x incremental x diferencial",go:"mod:ti-infra"},
+   {m:25,t:"Local: Regimento (processo legislativo)",go:"mod:loc-ri"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-26",t:"Revisão dirigida — seus erros",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Geometria plana e espacial (áreas e volumes)",go:"mod:ger-mat"},
+   {m:55,t:"Refazer TODAS as questões que você errou até aqui",go:"wrong"},
+   {m:25,t:"Essenciais — alta probabilidade de cair",go:"high"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-27",t:"Revisão dirigida — marcadas e pontos fracos",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:20,t:"Matemática: Trigonometria no triângulo retângulo (seno, cosseno, tangente)",go:"mod:ger-mat"},
+   {m:55,t:"Questões que você marcou com estrela + a matéria com pior acerto no Desempenho",go:"flag"},
+   {m:25,t:"Essenciais — alta probabilidade de cair",go:"high"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-28",t:"Véspera — leve, sem matéria nova",bl:[
+   {m:20,t:"Revisão espaçada: última rodada",go:"srs"},
+   {m:30,t:"Folha de fórmulas: PA, PG, juros, porcentagem, média, probabilidade, combinatória",go:"mod:ger-mat"},
+   {m:30,t:"Local: Seropédica e Regimento — é decoreba pura e vale 3 questões garantidas",go:"mod:loc-sero"},
+   {m:20,t:"Essenciais: última passada",go:"high"},
+   {m:20,t:"Logística: separar documento e caneta preta. PORTÕES FECHAM 14:40. Dormir cedo.",go:null}]}
+];
+let planDone={};   // {"AAAA-MM-DD":{indiceDoBloco:true}}
 /* ===== BANCO FIXO (ordem do plano) ===== */
+/* C() envolve um trecho de pseudocódigo/código-fonte num bloco monoespaçado.
+   Usado nas questões de traçado de algoritmo (módulo ti-algo). */
+const C=s=>'<span class="code">'+s+'</span>';
 const MODULES=[
+ {id:"ti-algo",t:"Algoritmos — Fluxograma, Pseudocódigo e Traçado",cat:"ger",day:"03–07/08",qs:[
+  {q:"Em um fluxograma, o símbolo em forma de LOSANGO representa:",o:["uma operação de entrada de dados","uma decisão (desvio condicional)","o início ou o fim do algoritmo","um processamento ou cálculo"],a:1,e:"LOSANGO = DECISÃO: dele saem sempre 2 caminhos (verdadeiro/falso). Guarde o resto: <b>elipse/retângulo arredondado</b> = início/fim; <b>paralelogramo</b> = entrada ou saída de dados; <b>retângulo</b> = processamento/atribuição. A pegadinha da banca é oferecer 'entrada de dados' (que é o paralelogramo) como distrator."},
+  {q:"Sobre as formas de representar um algoritmo, assinale a alternativa CORRETA.",o:["A descrição narrativa usa fluxogramas, o que é vantajoso por ser uma linguagem próxima à do computador.","A descrição narrativa é expressa em linguagem natural (por exemplo, o português), e sua desvantagem é que a linguagem natural é ambígua e distante da linguagem do computador.","O fluxograma é expresso em linguagem natural e por isso não admite símbolos gráficos padronizados.","O pseudocódigo é uma representação exclusivamente gráfica, sem uso de palavras."],a:1,e:"São 3 formas: <b>descrição narrativa</b> (linguagem natural, ambígua), <b>fluxograma</b> (gráfico, com símbolos) e <b>pseudocódigo/portugol</b> (texto estruturado, o mais próximo do código). A banca troca as definições de lugar — leia sempre QUAL forma está sendo definida antes de olhar o resto da alternativa."},
+  {q:"Analise o pseudocódigo a seguir:<br>" + C("algoritmo &quot;Fatorial&quot;<br>var<br>&nbsp;&nbsp;num, resultado: inteiro<br>inicio<br>&nbsp;&nbsp;leia(num)<br>&nbsp;&nbsp;resultado &lt;- 1<br>&nbsp;&nbsp;enquanto (num &gt; 1) faca<br>&nbsp;&nbsp;&nbsp;&nbsp;resultado &lt;- resultado * num<br>&nbsp;&nbsp;&nbsp;&nbsp;num &lt;- num - 1<br>&nbsp;&nbsp;fimenquanto<br>&nbsp;&nbsp;escreva(resultado)<br>fimalgoritmo") + "<br>Considerando uma execução correta, o total de ATRIBUIÇÕES executadas caso o usuário informe o valor 4 para “num” é:",o:["6","7","8","9"],a:1,e:"Conte só as setas <b>&lt;-</b>. Fora do laço: <b>resultado &lt;- 1</b> = 1 atribuição. O laço roda enquanto num&gt;1, ou seja, com num = 4, 3, 2 → <b>3 voltas</b>, e cada volta tem 2 atribuições (resultado e num) = 6. Total: 1 + 6 = <b>7</b>. Cuidado: <b>leia(num)</b> NÃO é atribuição (é entrada), e a volta com num=1 não acontece porque a condição já é falsa."},
+  {q:"Analise o pseudocódigo recursivo a seguir:<br>" + C("funcao Fatorial(n: inteiro): inteiro<br>inicio<br>&nbsp;&nbsp;se n == 0 entao<br>&nbsp;&nbsp;&nbsp;&nbsp;retorne 1<br>&nbsp;&nbsp;senao<br>&nbsp;&nbsp;&nbsp;&nbsp;retorne n * Fatorial(n - 1)<br>&nbsp;&nbsp;fimse<br>fimfuncao") + "<br>O total de CHAMADAS à função “Fatorial” realizadas, caso o usuário informe o valor 4, é:",o:["4","5","6","8"],a:1,e:"Liste as chamadas: Fatorial(4) → Fatorial(3) → Fatorial(2) → Fatorial(1) → Fatorial(0). São <b>5</b> chamadas. A regra prática: para Fatorial(n) são <b>n + 1</b> chamadas, porque o caso-base n=0 também é uma chamada. Quem responde 4 esqueceu de contar o caso-base; quem responde 6 contou uma a mais."},
+  {q:"Analise o pseudocódigo a seguir:<br>" + C("funcao Fib(n: inteiro): inteiro<br>inicio<br>&nbsp;&nbsp;se n &lt;= 0 entao retorne 0<br>&nbsp;&nbsp;senao se n == 1 entao retorne 1<br>&nbsp;&nbsp;senao retorne Fib(n - 1) + Fib(n - 2)<br>&nbsp;&nbsp;fimse<br>fimfuncao") + "<br>O total de CHAMADAS à função “Fib” realizadas, caso o usuário informe o valor 4, é:",o:["7","9","11","15"],a:1,e:"Aqui a recursão é DUPLA — não dá para usar regra de três. Use a fórmula T(n) = 1 + T(n−1) + T(n−2), com T(0) = T(1) = 1 (o caso-base é 1 chamada). Então: T(2) = 1+1+1 = <b>3</b>; T(3) = 1+3+1 = <b>5</b>; T(4) = 1+5+3 = <b>9</b>. Monte essa tabelinha crescendo do 0 até o n pedido — é muito mais rápido e seguro do que desenhar a árvore inteira."},
+  {q:"Considere o trecho de pseudocódigo:<br>" + C("x &lt;- 3<br>enquanto (x &lt;= 20) faca<br>&nbsp;&nbsp;x &lt;- x * 2<br>fimenquanto<br>escreva(x)") + "<br>O valor exibido por “escreva(x)” ao final da execução é:",o:["20","24","48","12"],a:1,e:"Trace passo a passo: x=3 (3≤20 → vira 6); x=6 (6≤20 → vira 12); x=12 (12≤20 → vira 24); x=24 → 24≤20 é FALSO, o laço para. Sai <b>24</b>. O erro clássico é parar em 12 (a última vez que a condição ainda valia) ou responder 20 (o limite do teste). O laço sempre executa o corpo MAIS UMA VEZ depois do último valor que satisfaz a condição."},
+  {q:"Sobre as estruturas de repetição, assinale a alternativa CORRETA.",o:["A estrutura “enquanto...faca” testa a condição ao FINAL, garantindo pelo menos uma execução do corpo.","A estrutura “repita...ate” testa a condição ao FINAL, garantindo pelo menos uma execução do corpo.","Tanto “enquanto” quanto “repita” garantem, sempre, pelo menos uma execução do corpo do laço.","A estrutura “para...faca” não admite um número previamente conhecido de repetições."],a:1,e:"<b>enquanto (while)</b> = teste no INÍCIO → pode executar ZERO vez. <b>repita...até (do-while)</b> = teste no FIM → executa NO MÍNIMO UMA vez. <b>para (for)</b> = número de repetições conhecido. Essa é a pegadinha favorita da banca: ela inverte o 'início'/'fim' entre as duas primeiras alternativas."},
+  {q:"Considere o pseudocódigo:<br>" + C("soma &lt;- 0<br>para i de 1 ate 10 faca<br>&nbsp;&nbsp;se (i % 3 = 0) entao<br>&nbsp;&nbsp;&nbsp;&nbsp;soma &lt;- soma + i<br>&nbsp;&nbsp;fimse<br>fimpara<br>escreva(soma)") + "<br>O valor exibido ao final é:",a:2,o:["9","15","18","30"],e:"O operador <b>%</b> devolve o RESTO da divisão. A condição “i % 3 = 0” seleciona os múltiplos de 3 entre 1 e 10: <b>3, 6 e 9</b>. Soma = 3+6+9 = <b>18</b>. Não confunda <b>%</b> (resto, também chamado MOD) com <b>div</b> (quociente inteiro): 17 div 5 = 3, mas 17 % 5 = 2."},
+  {q:"Um funcionário organiza produtos numa prateleira em ordem crescente de preço. Ele percorre a prateleira do primeiro ao último produto comparando SEMPRE PARES ADJACENTES e trocando-os quando o da direita for mais barato; a cada passagem completa o produto mais caro chega à última posição, e a passagem seguinte já ignora o final. O processo termina quando uma passagem inteira não faz nenhuma troca. O algoritmo de ordenação descrito é o:",o:["Selection Sort","Quick Sort","Bubble Sort","Merge Sort"],a:2,e:"A assinatura do <b>Bubble Sort</b> é a comparação de <b>pares ADJACENTES</b> com troca, fazendo o maior elemento “borbulhar” até o fim a cada passagem. Compare: o <b>Selection Sort</b> procura o MENOR de todo o restante e o coloca na posição certa (não compara adjacentes); o <b>Insertion Sort</b> insere o elemento atual na parte já ordenada; <b>Quick</b> e <b>Merge</b> usam divisão e conquista. A banca adora trocar as definições de Bubble e Selection entre si."},
+  {q:"Analise as sentenças a seguir sobre algoritmos de ordenação:<br>I- O Bubble Sort compara pares adjacentes e efetua trocas sucessivas até que nenhuma troca seja necessária.<br>II- O Selection Sort percorre o vetor selecionando, a cada passo, o menor elemento dentre os restantes e posicionando-o na sequência.<br>III- A complexidade de tempo expressa, de forma abstrata, o tempo de execução de um algoritmo como uma função do tamanho da entrada.<br>Estão CORRETAS:",o:["Apenas I e II.","Apenas I e III.","Apenas II e III.","I, II e III."],a:3,e:"Todas as três estão certas. <b>I</b> define corretamente o Bubble Sort (pares adjacentes). <b>II</b> define corretamente o Selection Sort (seleciona o menor). <b>III</b> é a definição-padrão de complexidade de tempo. Numa prova real da Consulpam essa mesma questão apareceu com as definições de I e II TROCADAS — por isso o hábito de conferir cada sentença isoladamente antes de olhar as alternativas."},
+  {q:"Avalie as sentenças a seguir:<br>Um algoritmo recursivo sempre precisa de um caso-base.<br><b>PORQUE</b><br>Sem uma condição de parada, as chamadas recursivas se sucederiam indefinidamente, esgotando a pilha de execução.<br>Acerca dessas sentenças, assinale a alternativa CORRETA.",o:["As duas são verdadeiras, e a segunda é uma justificativa correta da primeira.","As duas são verdadeiras, mas a segunda não é uma justificativa correta da primeira.","A primeira é verdadeira, e a segunda, falsa.","A primeira é falsa, e a segunda, verdadeira."],a:0,e:"Método para asserção-razão, em 3 passos: <b>(1)</b> a primeira é verdadeira? Sim — todo algoritmo recursivo precisa de caso-base. <b>(2)</b> a segunda é verdadeira? Sim — sem parada há estouro de pilha (stack overflow). <b>(3)</b> a segunda EXPLICA a primeira? Sim: o caso-base existe justamente para evitar a recursão infinita. Logo, alternativa A. Só vá para o passo 3 se as duas forem verdadeiras — se qualquer uma for falsa, a resposta já está em C ou D."},
+  {q:"Avalie as sentenças a seguir:<br>A estrutura “repita...ate” deve ser usada sempre que não se souber previamente o número de repetições.<br><b>PORQUE</b><br>A estrutura “para...faca” exige que o número de repetições seja conhecido antes do início do laço.<br>Acerca dessas sentenças, assinale a alternativa CORRETA.",o:["As duas são verdadeiras, e a segunda é uma justificativa correta da primeira.","As duas são verdadeiras, mas a segunda não é uma justificativa correta da primeira.","A primeira é verdadeira, e a segunda, falsa.","A primeira é falsa, e a segunda, verdadeira."],a:3,e:"A <b>primeira é FALSA</b> por causa da palavra “sempre”: quando não se sabe o número de repetições pode-se usar o <b>enquanto</b> ou o <b>repita</b> — a escolha entre eles depende de o corpo precisar rodar ao menos uma vez, não do desconhecimento da quantidade. A <b>segunda é VERDADEIRA</b>: o “para” exige contagem conhecida. Primeira falsa + segunda verdadeira = <b>D</b>. Repare que a segunda sentença, sozinha, é correta — a armadilha é ela induzir você a aceitar a primeira."},
+  {q:"Considere o pseudocódigo:<br>" + C("algoritmo &quot;Media&quot;<br>var<br>&nbsp;&nbsp;falta: inteiro<br>&nbsp;&nbsp;n1, n2, media: real<br>inicio<br>&nbsp;&nbsp;leia(n1, n2, falta)<br>&nbsp;&nbsp;media &lt;- (n1 + n2) / 2<br>&nbsp;&nbsp;se (media &gt;= 7) e (falta &lt;= 5) entao<br>&nbsp;&nbsp;&nbsp;&nbsp;escreva(&quot;APROVADO&quot;)<br>&nbsp;&nbsp;senao<br>&nbsp;&nbsp;&nbsp;&nbsp;escreva(&quot;REPROVADO&quot;)<br>&nbsp;&nbsp;fimse<br>fimalgoritmo") + "<br>É CORRETO afirmar que:",o:["É possível gerar duas saídas em uma única execução do algoritmo.","A estrutura de seleção possui duas condições ligadas por um operador lógico.","O algoritmo executará corretamente se o usuário informar 8.0, 6.0 e 3.5 como entradas.","Não é possível informar valor negativo para “falta”, devido ao seu tipo de dado."],a:1,e:"<b>B está certa:</b> há duas condições (media&gt;=7 e falta&lt;=5) ligadas pelo operador lógico <b>e</b>. <b>A é falsa:</b> se/senão são mutuamente exclusivos — sai uma saída só. <b>C é falsa:</b> “falta” é <b>inteiro</b> e 3.5 é real — tipo incompatível. <b>D é falsa:</b> inteiro aceita negativos (o que não aceita fracionário); quem impede negativo seria uma validação, não o tipo."},
+  {q:"Em relação aos tipos de dados em algoritmos, assinale a alternativa INCORRETA.",o:["O tipo inteiro admite valores negativos.","O tipo real armazena valores com casas decimais.","O tipo lógico (booleano) admite apenas os valores verdadeiro e falso.","O tipo caractere admite apenas letras, não sendo possível armazenar dígitos ou símbolos."],a:3,e:"A <b>D é a incorreta</b> (e portanto o gabarito): o tipo caractere/literal armazena qualquer símbolo — letras, dígitos, pontuação. Um CEP guardado como caractere continua sendo texto: “01310” é caractere, não número. As outras três são verdadeiras. Em questões com INCORRETA, marque no papel V ou F ao lado de cada alternativa antes de escolher — é o erro mais comum da prova marcar uma verdadeira por distração."},
+  {q:"Considere um vetor V com 10 posições, indexado de 1 a 10, conforme a notação usual de pseudocódigo. A tentativa de acessar V[11] caracteriza:",o:["um erro de sintaxe, detectado na compilação","um acesso fora dos limites do vetor (estouro de índice)","uma atribuição implícita de valor nulo à posição 11","a criação automática de uma nova posição no vetor"],a:1,e:"Acessar índice fora do intervalo declarado é <b>estouro de índice</b> (out of bounds) — um erro de EXECUÇÃO, não de sintaxe (a sintaxe está perfeitamente correta). Vetores de tamanho fixo não crescem sozinhos. Atenção redobrada ao índice inicial: em <b>pseudocódigo/portugol</b> costuma começar em <b>1</b>, mas em <b>C, Java, Python e JavaScript</b> começa em <b>0</b> — a banca troca isso para confundir."},
+  {q:"Observe o trecho em Python:<br>" + C("total = 0<br>for i in range(1, 5):<br>&nbsp;&nbsp;&nbsp;&nbsp;total = total + i<br>print(total)") + "<br>O valor exibido é:",o:["10","15","6","4"],a:2,e:"A pegadinha está no <b>range(1, 5)</b>: em Python o limite final é <b>EXCLUSIVO</b>, então i assume 1, 2, 3 e 4 — o 5 NÃO entra. Soma = 1+2+3+4 = <b>6</b>. Quem responde 10 incluiu o 5 indevidamente. Guarde: range(a, b) vai de a até b−1, e range(n) sozinho vai de 0 até n−1."},
+  {q:"Observe o trecho em JavaScript:<br>" + C("let x = &quot;5&quot;;<br>let y = 3;<br>console.log(x + y);") + "<br>O resultado exibido no console é:",o:["8","53","2","Erro de tipo"],a:1,e:"JavaScript tem <b>tipagem dinâmica e fraca</b>: no operador <b>+</b>, se um dos operandos é string, o outro é convertido para string e ocorre CONCATENAÇÃO. Logo “5” + 3 = <b>“53”</b>. Detalhe que cai: com <b>−</b> aconteceria o contrário (“5” − 3 = 2, conversão para número), porque o menos só existe para números. Não há erro de tipo — JS não é de tipagem estática."},
+  {q:"Sobre paradigmas de programação, analise as sentenças:<br>I- O paradigma imperativo representa a computação como comandos que alteram o estado do programa.<br>II- O paradigma estruturado resolve problemas dividindo-os em subproblemas menores, na forma de sub-rotinas.<br>III- O paradigma declarativo consiste em descrever, passo a passo, o que o computador deve fazer a cada momento.<br>IV- O paradigma orientado a objetos trata o problema como uma coleção de objetos que trocam mensagens entre si.<br>Estão CORRETAS:",o:["Apenas I, II e III.","Apenas I, II e IV.","Apenas II, III e IV.","I, II, III e IV."],a:1,e:"<b>III é a falsa</b>: descrever passo a passo O QUE FAZER a cada momento é a definição do paradigma <b>IMPERATIVO</b>. O <b>declarativo</b> faz o oposto — você declara O QUE QUER, não COMO obter (exemplos: SQL, Prolog). I, II e IV estão corretas, logo a resposta é <b>B</b>. Essa questão caiu praticamente idêntica em prova da Consulpam."},
+  {q:"Considere o fluxograma descrito textualmente:<br>" + C("INÍCIO<br>&nbsp;&nbsp;↓<br>[ler N]  (paralelogramo)<br>&nbsp;&nbsp;↓<br>&lt;N &gt; 0 ?&gt;  (losango)<br>&nbsp;&nbsp;├─ SIM → [escrever &quot;POSITIVO&quot;] → FIM<br>&nbsp;&nbsp;└─ NÃO → [escrever &quot;NÃO POSITIVO&quot;] → FIM") + "<br>O número de ENTRADAS e de SAÍDAS presentes no fluxograma é, respectivamente:",o:["Entradas: 1 — Saídas: 1.","Entradas: 1 — Saídas: 2.","Entradas: 2 — Saídas: 2.","Entradas: 0 — Saídas: 2."],a:1,e:"Conte os símbolos, não os caminhos percorridos: há <b>1 entrada</b> (o único “ler N”) e <b>2 saídas</b> (dois blocos “escrever”, um em cada ramo da decisão). O fato de apenas UM dos dois “escrever” ser executado por vez não muda a CONTAGEM de saídas presentes no diagrama — a pergunta é sobre o que existe desenhado, não sobre o que roda numa execução. Essa distinção já derrubou questão em prova (chegou a ser anulada por má redação)."},
+  {q:"Um fluxograma lê um número inteiro R e calcula “area <- 3.14159 * R * R”, exibindo o resultado. Caso o usuário informe o valor −4, o valor de “area” exibido ao final será:",o:["−50,27","50,27","12,57","Erro, pois não existe área com raio negativo."],a:1,e:"Não interprete o problema pelo mundo real — <b>trace o que está escrito</b>. O algoritmo não tem NENHUMA validação de sinal: ele simplesmente calcula 3,14159 × (−4) × (−4). Menos vezes menos dá mais, então (−4)² = 16, e 3,14159 × 16 = <b>50,27</b>. A alternativa D é a armadilha: ela apela para o bom senso geométrico, mas o computador executa a fórmula, não o bom senso."}
+ ]},
  {id:"pt-interp",t:"Português — Interpretação de texto",cat:"pt",day:"16/06",qs:[
   {q:"A <i>inferência</i> em um texto consiste em:",o:["copiar literalmente uma informação","concluir algo não dito explicitamente, deduzido do texto","trocar uma palavra por sinônimo","resumir o último parágrafo"],a:1,e:"Inferir é deduzir informação implícita a partir de pistas do texto."},
   {q:"A função predominante em texto que defende um ponto de vista com argumentos é a:",o:["descritiva","narrativa","argumentativa","injuntiva"],a:2,e:"O tipo argumentativo busca convencer por argumentos."},
@@ -1180,7 +1423,10 @@ const Store={mem:{},LS:"seropedica_",
    this.mem[k]=v;
    try{localStorage.setItem(this.LS+k,JSON.stringify(v));}catch(e){}
    try{if(window.storage){await window.storage.set(k,JSON.stringify(v));}}catch(e){}}};
-const EXAM_DATE=new Date(2026,7,1);   // 1º de agosto de 2026 (mês 7 = agosto)
+/* Prova ADIADA (comunicado Consulpam 31/07/2026) e remarcada pelo cronograma
+   retificado em 03/08/2026: 29/08/2026, TARDE, para os cargos de nível superior.
+   Portões abrem 14:00 · FECHAM 14:40 · prova das 15:00 às 18:00. */
+const EXAM_DATE=new Date(2026,7,29);  // 29 de agosto de 2026 (mês 7 = agosto)
 let answers={};            // {id:{ok,ts,conf}}  -> "feito"
 let hist=[];               // [{id,ts,ok,label,cat,snap,conf}] mais recente primeiro
 let flags={};              // {id:{label,cat,ts,snap}} -> para revisar
@@ -1208,6 +1454,7 @@ async function init(){
   const d=await Store.get("daily"); if(d)daily=d;
   const sr=await Store.get("srs"); if(sr)srs=sr;
   const sa=await Store.get("simAttempts"); if(sa)simAttempts=sa;
+  const pd=await Store.get("planDone"); if(pd)planDone=pd;
   const g=await Store.get("goal"); if(g)goal=g;
   const th=await Store.get("theme"); if(th==="dark")applyTheme("dark");
   const ts=document.getElementById("g-tema"); if(ts)TEMAS.forEach(t=>{const o=document.createElement("option");o.value=t;o.textContent=t;ts.appendChild(o);});
@@ -1215,9 +1462,79 @@ async function init(){
   const hc=document.getElementById("hero-count");if(hc)hc.textContent=MODULES.reduce((s,m)=>s+m.qs.length,0);
   bindKeys();
   renderHome(); updateStats(); updateNav(); pickToday();
-  renderCountdown(); renderDaily(); renderAnalytics(); renderReviewCard();
+  renderCountdown(); renderDaily(); renderAnalytics(); renderReviewCard(); renderPlanCard();
 }
 
+
+/* ===== PLANO DE HOJE ===== */
+function planIdx(){const k=dayKey();return PLANO.findIndex(p=>p.d===k);}
+function planTotalMin(p){return p.bl.reduce((s,b)=>s+b.m,0);}
+function planGo(a){
+  if(!a)return;
+  if(a==="srs")return startReview();
+  if(a==="sim")return openSimulados();
+  if(a==="wrong")return redoWrong();
+  if(a==="flag")return openFlagged();
+  if(a==="high")return startHigh();
+  if(a.startsWith("mod:")){
+    const mi=MODULES.findIndex(m=>m.id===a.slice(4));
+    if(mi>=0)return startModule(mi);
+    toast("Módulo não encontrado: "+a.slice(4));
+  }
+}
+async function togglePlanBlock(di,bi){
+  const k=PLANO[di].d;
+  if(!planDone[k])planDone[k]={};
+  planDone[k][bi]=!planDone[k][bi];
+  await Store.set("planDone",planDone);
+  renderPlanCard(); if(document.getElementById("plano").style.display==="block")renderPlanoFull();
+}
+function planBlockHTML(di,bi,b){
+  const done=!!(planDone[PLANO[di].d]||{})[bi];
+  const t=b.m>=60?(b.m/60)+"h":b.m+" min";
+  return '<div class="pblk'+(done?" pdone":"")+'">'+
+    '<button class="pchk" onclick="togglePlanBlock('+di+','+bi+')" aria-label="Marcar como feito">'+(done?"✓":"")+'</button>'+
+    '<div class="pbi"><span class="pbm">'+(b.m?t:"depois")+'</span><span class="pbt">'+esc(b.t)+'</span></div>'+
+    (b.go?'<button class="pbgo" onclick="planGo(\''+b.go+'\')">Ir →</button>':'')+
+  '</div>';
+}
+function renderPlanCard(){
+  const wrap=document.getElementById("plancard");if(!wrap)return;
+  const di=planIdx();
+  if(di<0){                       // fora da janela do plano (antes de 03/08 ou depois da prova)
+    wrap.innerHTML='<div class="ptop"><div><div class="plbl">Plano de estudos</div>'+
+      '<h3>26 dias · 2h por dia</h3></div>'+
+      '<button class="btn sm white" onclick="openPlano()">Ver plano completo</button></div>'+
+      '<p class="psub">O plano diário cobre de 03/08 a 28/08/2026. Hoje está fora dessa janela — use o plano completo para se situar.</p>';
+    return;
+  }
+  const p=PLANO[di],done=Object.values(planDone[p.d]||{}).filter(Boolean).length;
+  const pct=Math.round(done/p.bl.length*100);
+  wrap.innerHTML='<div class="ptop"><div>'+
+      '<div class="plbl">Dia '+(di+1)+' de '+PLANO.length+' · '+(p.sim?"ENSAIO DE PROVA":Math.round(planTotalMin(p)/60*10)/10+"h")+'</div>'+
+      '<h3>'+esc(p.t)+'</h3></div>'+
+      '<button class="btn sm white" onclick="openPlano()">Plano completo</button></div>'+
+    '<div class="pbar"><i style="width:'+pct+'%"></i></div>'+
+    '<div class="pblks">'+p.bl.map((b,bi)=>planBlockHTML(di,bi,b)).join("")+'</div>'+
+    (done===p.bl.length?'<p class="pdoneMsg">Dia concluído. Amanhã tem mais. 💪</p>':'');
+}
+function openPlano(){hideAll();document.getElementById("plano").style.display="block";renderPlanoFull();window.scrollTo(0,0);}
+function renderPlanoFull(){
+  const box=document.getElementById("plano-list");box.innerHTML="";
+  const hoje=dayKey();
+  PLANO.forEach((p,di)=>{
+    const done=Object.values(planDone[p.d]||{}).filter(Boolean).length;
+    const [Y,M,D]=p.d.split("-");
+    const nomes=["domingo","segunda","terça","quarta","quinta","sexta","sábado"];
+    const dw=nomes[new Date(+Y,+M-1,+D).getDay()];
+    const el=document.createElement("div");
+    el.className="pday"+(p.d===hoje?" ptoday":"")+(p.d<hoje?" ppast":"")+(p.sim?" psim":"");
+    el.innerHTML='<div class="pdh"><b>'+D+"/"+M+' · '+dw+'</b><span>'+esc(p.t)+'</span>'+
+      '<em>'+done+"/"+p.bl.length+'</em></div>'+
+      '<div class="pblks">'+p.bl.map((b,bi)=>planBlockHTML(di,bi,b)).join("")+'</div>';
+    box.appendChild(el);
+  });
+}
 /* ===== TEMA (claro/escuro) ===== */
 function applyTheme(t){document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"");document.getElementById("themebtn").textContent=t==="dark"?"☀️":"🌙";}
 function toggleTheme(){const dark=document.documentElement.getAttribute("data-theme")==="dark";applyTheme(dark?"light":"dark");Store.set("theme",dark?"light":"dark");}
@@ -1230,7 +1547,7 @@ function renderCountdown(){
   const start=new Date(2026,5,16);   // início do plano (16/06)
   const total=Math.max(1,(EXAM_DATE-start)/86400000),passed=Math.min(total,Math.max(0,(today-start)/86400000));
   document.getElementById("cd-fill").style.width=Math.round(passed/total*100)+"%";
-  document.getElementById("cd-sub").textContent=days===0?"É hoje! Boa prova! 🍀":"Prova: 1º de agosto de 2026";
+  document.getElementById("cd-sub").textContent=days===0?"É hoje! Boa prova! 🍀":"Prova: 29/08 · portões fecham 14:40";
 }
 
 /* ===== META DIÁRIA ===== */
@@ -1495,7 +1812,7 @@ async function generateAndStart(){
 }
 
 /* ===== QUIZ ===== */
-function hideAll(){["home","simulados","desempenho","listview","quiz","summary","sessreview"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="none";});}
+function hideAll(){["home","plano","simulados","desempenho","listview","quiz","summary","sessreview"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="none";});}
 /* ===== GABARITO COMENTADO (questão por questão da última rodada) ===== */
 let srFilter="all";
 function reviewSession(){
@@ -1628,7 +1945,7 @@ function showSummary(){
   else if(pct>=90&&total>=5)toast("Excelente! 90%+ nessa rodada! 🏆",true);
   renderHome();updateStats();updateNav();pickToday();renderDaily();renderAnalytics();renderReviewCard();window.scrollTo(0,0);
 }
-function goHome(){clearSimTimer();hideAll();document.getElementById("home").style.display="block";renderHome();updateStats();updateNav();pickToday();renderCountdown();renderDaily();renderAnalytics();renderReviewCard();window.scrollTo(0,0);}
+function goHome(){clearSimTimer();hideAll();document.getElementById("home").style.display="block";renderHome();updateStats();updateNav();pickToday();renderCountdown();renderDaily();renderAnalytics();renderReviewCard();renderPlanCard();window.scrollTo(0,0);}
 
 /* ===== PARA REVISAR (flags) ===== */
 function openFlagged(){
@@ -1701,7 +2018,7 @@ async function resetAll(){if(!confirm("Zerar TUDO (feitas, histórico, marcadas,
 
 /* ===== EXPORTAR / IMPORTAR PROGRESSO ===== */
 function exportProgress(){
-  const data={v:1,exportedAt:new Date().toISOString(),answers,hist,flags,daily,goal,simAttempts,srs};
+  const data={v:1,exportedAt:new Date().toISOString(),answers,hist,flags,daily,goal,simAttempts,srs,planDone};
   const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);
   a.download="progresso-seropedica-"+dayKey()+".json";a.click();URL.revokeObjectURL(a.href);

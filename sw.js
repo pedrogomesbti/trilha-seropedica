@@ -1,6 +1,8 @@
 /* Service Worker — Trilha Seropédica
    App estático: cache-first do shell + fontes, para funcionar offline. */
-const CACHE = "trilha-v1";
+/* Bumpar esta versão a cada mudança no index.html: o activate abaixo apaga os
+   caches antigos, senão o cache-first continua servindo a versão anterior. */
+const CACHE = "trilha-v2";
 const ASSETS = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg"];
 
 self.addEventListener("install", (e) => {
