@@ -302,6 +302,48 @@
   .qclock.warn{color:var(--amber);border-color:#F0C24A;background:#FFF6E4}
   .qclock.crit{color:var(--wrong);border-color:#F0CACA;background:var(--wrong-bg);animation:pulseclk 1s ease-in-out infinite}
   @keyframes pulseclk{0%,100%{opacity:1}50%{opacity:.55}}
+
+  /* ===== MODO PROVA (caderno no padrão CONSULPAM) ===== */
+  /* Faixa de seção do caderno: "CONHECIMENTOS BÁSICOS" / "CONHECIMENTOS ESPECÍFICOS" */
+  .secdiv{display:none;text-align:center;font-family:"Space Grotesk";font-size:11.5px;font-weight:700;
+          letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+          border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:7px 0;margin:0 0 14px}
+  .secdiv.show{display:block}
+  /* número da questão como no caderno impresso */
+  .qnum{font-family:"Space Grotesk";font-size:15px;font-weight:700;color:var(--ink);margin:2px 0 6px}
+  .qnum small{font-weight:600;font-size:11px;color:var(--brand);text-transform:uppercase;letter-spacing:.5px;margin-left:8px}
+  /* texto de apoio (TEXTO I / TEXTO II) */
+  .texto{display:none;background:var(--soft);border:1px solid var(--line);border-left:3px solid var(--brand);
+         border-radius:10px;padding:14px 16px;margin:0 0 16px;font-size:13.6px;line-height:1.62}
+  .texto.show{display:block}
+  .texto .tlbl{font-family:"Space Grotesk";font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--brand);text-transform:uppercase}
+  .texto .ttit{font-weight:700;text-align:center;margin:8px 0 6px;font-size:14px}
+  .texto p{margin:0 0 8px;text-align:justify}
+  .texto .tfonte{font-size:11px;color:var(--muted);margin-top:8px;font-style:italic;text-align:right}
+  .texto.collapsed .tbody{max-height:190px;overflow:hidden;-webkit-mask-image:linear-gradient(#000 70%,transparent)}
+  .texto .tmore{background:none;border:none;color:var(--brand);font-weight:700;font-size:12px;cursor:pointer;
+                font-family:"Inter";padding:4px 0 0}
+  /* alternativa marcada no cartão-resposta (sem revelar gabarito) */
+  .opt.marked{background:var(--right-bg);border-color:var(--brand)}
+  .opt.marked .key{color:var(--brand-d,var(--brand))}
+  .opt .mkx{margin-left:auto;font-family:"Space Grotesk";font-size:11px;font-weight:700;color:var(--brand);align-self:center;flex:none}
+  /* folha de respostas */
+  .folha{display:none;margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+  .folha.show{display:block}
+  .folha .fh{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .folha .fh b{font-family:"Space Grotesk";font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .folha .fh small{font-size:11.5px;color:var(--muted);margin-left:auto}
+  .fgrid{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
+  @media(max-width:520px){.fgrid{grid-template-columns:repeat(8,1fr)}}
+  .fg{border:1px solid var(--line);background:var(--card);border-radius:7px;padding:5px 0;font-size:11px;
+      font-family:"Space Grotesk";font-weight:700;color:var(--muted);cursor:pointer;line-height:1.15}
+  .fg:hover{border-color:var(--brand)}
+  .fg.done{background:var(--right-bg);border-color:#BfE4CE;color:var(--right)}
+  .fg.flag{box-shadow:inset 0 -3px 0 var(--amber)}
+  .fg.now{outline:2px solid var(--brand);outline-offset:1px;color:var(--ink)}
+  .fg i{display:block;font-style:normal;font-size:9.5px;font-weight:600;opacity:.8}
+  /* aviso de prova em andamento */
+  .provawarn{font-size:11.5px;color:var(--muted);text-align:center;margin-top:10px;line-height:1.5}
   /* card de revisão espaçada */
   .revcard{display:flex;align-items:center;gap:14px;margin:12px 0 0;border:none;border-radius:16px;padding:15px 18px;cursor:pointer;text-align:left;width:100%;font-family:"Inter";color:#fff;background:linear-gradient(135deg,#1E8E5A,#137A47);box-shadow:var(--shadow);transition:transform .08s}
   .revcard:active{transform:translateY(1px)} .revcard.muted{background:var(--card);color:var(--ink);border:1px solid var(--line)}
@@ -467,6 +509,8 @@
       <h3>📝 Simulados completos</h3>
     </div>
     <p class="lvsub">Cada simulado segue a <b>estrutura oficial do edital</b> (cargo Analista de Tecnologia da Informação): <b>10 Língua Portuguesa + 10 Conhecimentos Gerais</b> (Informática, Matemática/RLM, Direito Adm. e Const., Município de Seropédica e Regimento) <b>+ 20 Conhecimentos Específicos de TI</b> = 40 questões, 2,5 pts cada (mínimo 50 pts p/ aprovação). <b>Cronometrado em 3h</b>, como no dia da prova. As questões são fixas: dá pra repetir e comparar a evolução.</p>
+    <p class="lvsub" style="background:var(--soft);border:1px solid var(--line);border-left:3px solid var(--brand);border-radius:10px;padding:11px 13px">
+      🖊️ <b>Modo prova:</b> aqui você não vê gabarito nem explicação durante a prova — só <b>marca a alternativa</b> no cartão-resposta, como no caderno da CONSULPAM. Dá para voltar, trocar a marcação e deixar em branco. A correção completa sai <b>ao finalizar</b>.</p>
     <div class="simlist" id="simlist"></div>
     <p class="lvsub" style="margin-top:14px">Dica: faça 1 simulado por semana cronometrando ~3 min/questão e revise <b>todas</b> as erradas no Desempenho.</p>
   </section>
@@ -515,9 +559,17 @@
       <div class="qcount" id="qcount">1 / 5</div>
     </div>
     <div class="qcard">
+      <div class="secdiv" id="qsec"></div>
       <div class="qtag" id="qtag"></div>
+      <div class="texto" id="qtexto"></div>
+      <div class="qnum" id="qnum" style="display:none"></div>
       <div class="qtext" id="qtext"></div>
       <div class="opts" id="opts"></div>
+      <div class="folha" id="folha">
+        <div class="fh"><b>Cartão-resposta</b><small id="folha-info"></small></div>
+        <div class="fgrid" id="fgrid"></div>
+        <p class="provawarn" id="provawarn"></p>
+      </div>
       <div class="conf" id="conf">
         <small>Confiança:</small>
         <button type="button" data-c="3" onclick="setConf(3)">😎 Sei</button>
@@ -525,7 +577,7 @@
         <button type="button" data-c="1" onclick="setConf(1)">🎲 Chute</button>
       </div>
       <div class="expl" id="expl"></div>
-      <div class="khint">Atalhos: <b>A</b> <b>B</b> <b>C</b> <b>D</b> responder · <b>←</b> <b>→</b> navegar · <b>F</b> marcar · <b>E</b> explicar</div>
+      <div class="khint" id="khint">Atalhos: <b>A</b> <b>B</b> <b>C</b> <b>D</b> responder · <b>←</b> <b>→</b> navegar · <b>F</b> marcar · <b>E</b> explicar</div>
       <div class="qnav">
         <button class="btn sm ghost" id="prev" style="display:none" onclick="prevQ()">← Anterior</button>
         <button class="btn sm white" id="deepbtn" style="display:none" onclick="deepen()">💡 Aprofundar com IA</button>
@@ -1384,6 +1436,284 @@ const HIGH={t:"🔥 Essenciais — quase certo na prova",qs:[
 
 const TEMAS=["TI — Arquitetura e Sistemas Operacionais","TI — Administração de Linux e Windows","TI — Virtualização e Computação em Nuvem","TI — Redes, modelo OSI e TCP/IP","TI — Protocolos e portas","TI — Endereçamento IP, subnetting e equipamentos","TI — Segurança da Informação e criptografia","TI — LGPD (Lei 13.709/2018)","TI — Banco de dados, modelo ER e SQL","TI — Normalização e transações ACID","TI — Engenharia de software e métodos ágeis (Scrum)","TI — Testes, Git e orientação a objetos","TI — Governança de TI (ITIL e COBIT)","TI — Servidores, RAID, backup e monitoramento","TI — Web (HTML, CSS, JS) e API REST","TI — Contratações de TI e Lei 14.133/2021","Português — Interpretação de texto","Português — Crase e acentuação","Português — Pontuação","Português — Concordância","Português — Regência e colocação pronominal","Direito Administrativo","Direito Constitucional (arts. 1º a 41)","Município de Seropédica","Regimento Interno da Câmara de Seropédica","Matemática e Raciocínio Lógico","Informática (noções)"];
 
+/* ===== CADERNOS DE PROVA (padrão CONSULPAM) =====
+   Provas escritas no formato real da banca: texto de apoio para Português,
+   comando com CORRETA/INCORRETA em caixa alta, itens I–IV com alternativas em
+   pares, e 4 alternativas longas e PARECIDAS entre si — o erro do distrator
+   mora numa palavra ("exclusivamente", "ignorando", "sem considerar").
+   Estrutura: 10 Português + 10 Gerais (BÁSICOS) + 20 TI (ESPECÍFICOS).
+   Campos: sec (faixa do caderno) · mat (matéria) · txt (id do texto de apoio). */
+const T1_P1={id:"T1",lbl:"TEXTO I",tit:"A ADMINISTRAÇÃO PÚBLICA NA ERA DOS DADOS",
+ fonte:"Texto elaborado para esta prova.",
+ html:`<p>A digitalização dos serviços públicos brasileiros deixou de ser promessa e tornou-se rotina administrativa. Requerimentos que antes exigiam filas, carimbos e deslocamentos hoje se resolvem em poucos cliques, e a expectativa do cidadão passou a ser moldada menos pelo balcão do órgão e mais pela experiência que ele tem com aplicativos de banco e de comércio eletrônico.</p>
+ <p>Essa mudança, contudo, não se esgota na troca do papel pela tela. Ao converter processos em dados, o poder público assume também a responsabilidade de protegê-los. A Lei Geral de Proteção de Dados Pessoais impôs à Administração deveres que, até pouco tempo, pareciam restritos ao setor privado: informar a finalidade do tratamento, limitar a coleta ao estritamente necessário e responder pelos incidentes de segurança que vier a sofrer.</p>
+ <p>Há, ainda, um risco menos visível. A modernização tecnológica pode aprofundar desigualdades quando pressupõe que todos os cidadãos disponham de conexão estável, dispositivo adequado e alguma familiaridade com o ambiente digital. Sem política de inclusão, o canal eletrônico que promete aproximar acaba, para uma parcela da população, afastando.</p>
+ <p>Transformação digital, portanto, é menos uma questão de tecnologia do que de gestão. Servidores capacitados, processos revistos e governança bem definida importam mais do que a última novidade do mercado — porque sistema mal implantado não elimina a burocracia: apenas a informatiza.</p>`};
+
+const PROVA1={i:0,textos:[T1_P1],qs:[
+/* ---------- LÍNGUA PORTUGUESA (01 a 10) ---------- */
+{sec:"CONHECIMENTOS BÁSICOS",mat:"Língua Portuguesa",cat:"pt",txt:"T1",
+ q:"Assinale a alternativa que sintetiza CORRETAMENTE a tese defendida no Texto I.",
+ o:["A digitalização dos serviços públicos já cumpriu o seu papel ao substituir o atendimento presencial, restando à Administração apenas ampliar a oferta de aplicativos.",
+    "O êxito da transformação digital no setor público depende mais de gestão, capacitação e governança do que da adoção das tecnologias mais recentes do mercado.",
+    "A Lei Geral de Proteção de Dados Pessoais inviabilizou a digitalização de processos na Administração Pública, dado o excesso de deveres impostos ao gestor público.",
+    "A exclusão digital é consequência inevitável da modernização administrativa, razão pela qual a oferta de canais eletrônicos deve ser postergada pelos órgãos públicos."],
+ a:1,e:"O último parágrafo é explícito: “Transformação digital, portanto, é menos uma questão de tecnologia do que de gestão”. As demais extrapolam ou invertem o texto."},
+{mat:"Língua Portuguesa",cat:"pt",txt:"T1",
+ q:"No trecho “porque sistema mal implantado não elimina a burocracia: apenas a informatiza”, o efeito de sentido produzido é o de:",
+ o:["Relação de causa e consequência entre a implantação do sistema e a efetiva redução dos entraves administrativos.",
+    "Ressalva de caráter concessivo, admitindo que a informatização, ainda que parcial, supera a burocracia anterior.",
+    "Crítica irônica, ao indicar que a simples mudança de suporte preserva o problema que se pretendia resolver.",
+    "Hipérbole, ao exagerar deliberadamente os efeitos da informatização sobre a qualidade do serviço público."],
+ a:2,e:"“Apenas a informatiza” frustra a expectativa de solução: a burocracia continua, agora em meio digital — ironia crítica."},
+{mat:"Língua Portuguesa",cat:"pt",txt:"T1",
+ q:"Assinale a alternativa que descreve com maior acuidade o valor sintático-semântico dos dois-pontos empregados em “não elimina a burocracia: apenas a informatiza”.",
+ o:["Introduzem enumeração de itens que detalham o sujeito da oração anterior.",
+    "Introduzem um esclarecimento que restringe e explicita a afirmação negativa que os antecede.",
+    "Marcam a supressão de um verbo facilmente subentendido, evitando a repetição desnecessária.",
+    "Anunciam a fala de outrem, em discurso direto, dispensando o emprego do travessão."],
+ a:1,e:"Os dois-pontos anunciam a explicação do que foi negado antes: em vez de eliminar, apenas informatiza."},
+{mat:"Língua Portuguesa",cat:"pt",txt:"T1",
+ q:"Em “Ao converter processos em dados, o poder público assume também a responsabilidade de protegê-los”, a oração reduzida destacada exprime circunstância de:",
+ o:["Tempo e condição, indicando que o dever surge no momento e em razão da conversão dos processos.",
+    "Concessão, indicando que o dever subsiste apesar da conversão dos processos em dados.",
+    "Finalidade, indicando o objetivo perseguido pelo poder público ao tratar dados pessoais.",
+    "Comparação, aproximando o tratamento de dados públicos daquele praticado pelo setor privado."],
+ a:0,e:"“Ao + infinitivo” equivale a “quando/se converte”: valor temporal-condicional, não concessivo nem final."},
+{mat:"Língua Portuguesa",cat:"pt",txt:"T1",
+ q:"As vírgulas empregadas em “o canal eletrônico que promete aproximar acaba, para uma parcela da população, afastando” justificam-se porque:",
+ o:["Isolam aposto explicativo referente à expressão “canal eletrônico”.",
+    "Separam oração coordenada sindética explicativa deslocada para o interior do período.",
+    "Isolam adjunto adverbial intercalado no interior da locução verbal.",
+    "Marcam a elipse do verbo principal, retomado adiante por zeugma."],
+ a:2,e:"“Para uma parcela da população” é adjunto adverbial intercalado entre “acaba” e “afastando”."},
+{mat:"Língua Portuguesa",cat:"pt",txt:"T1",
+ q:"No trecho “quando pressupõe que todos os cidadãos disponham de conexão estável”, o vocábulo destacado pode ser substituído, sem prejuízo do sentido, por:",
+ o:["Recusa antecipadamente.","Toma como premissa.","Comprova previamente.","Impõe como obrigação legal."],
+ a:1,e:"Pressupor é admitir algo como ponto de partida — tomar como premissa; não há verificação nem imposição."},
+{mat:"Língua Portuguesa",cat:"pt",txt:"T1",
+ q:"Assinale a alternativa em que o emprego do sinal indicativo de crase está CORRETO.",
+ o:["A Administração passou a responder à incidentes de segurança decorrentes do tratamento de dados.",
+    "O acesso ao canal eletrônico ficou restrito à uma parcela da população do município.",
+    "A nova legislação impôs à Administração Pública deveres antes atribuídos ao setor privado.",
+    "Os requerimentos do cidadão passaram à ser resolvidos em poucos cliques, sem deslocamento."],
+ a:2,e:"“Impor a alguém” + “a Administração” = à Administração. Em A há plural sem artigo (a incidentes); em B, “a uma” não recebe crase; em D, antes de verbo não há crase."},
+{mat:"Língua Portuguesa",cat:"pt",txt:"T1",
+ q:"Em “Requerimentos que antes exigiam filas, carimbos e deslocamentos hoje se resolvem em poucos cliques”, a oração destacada classifica-se como subordinada:",
+ o:["Adjetiva restritiva, pois delimita a quais requerimentos o enunciado se refere.",
+    "Adjetiva explicativa, pois acrescenta informação acessória à totalidade dos requerimentos.",
+    "Substantiva completiva nominal, pois completa o sentido do substantivo “requerimentos”.",
+    "Adverbial temporal, pois situa no tempo o momento em que os requerimentos eram exigidos."],
+ a:0,e:"Sem vírgulas e delimitando o antecedente, a oração iniciada por “que” é adjetiva restritiva."},
+{mat:"Língua Portuguesa",cat:"pt",txt:"T1",
+ q:"Sobre a regência em “responder pelos incidentes de segurança que vier a sofrer”, assinale a alternativa CORRETA.",
+ o:["No sentido de assumir a responsabilidade, o verbo “responder” é transitivo indireto e rege a preposição “por”.",
+    "O verbo “responder” é transitivo direto, e a preposição “por” decorre apenas do uso coloquial da língua.",
+    "A construção seria igualmente correta com a preposição “a”, sem qualquer alteração de sentido.",
+    "Trata-se de verbo intransitivo, seguido de adjunto adverbial de causa iniciado por preposição."],
+ a:0,e:"Responder por = ser responsável por (transitivo indireto). “Responder a” significa dar resposta a algo, sentido diverso."},
+{mat:"Língua Portuguesa",cat:"pt",txt:"T1",
+ q:"Considerando os conectivos “contudo” (2º parágrafo) e “portanto” (4º parágrafo), assinale a alternativa CORRETA.",
+ o:["O primeiro introduz conclusão do raciocínio; o segundo, ressalva ao argumento imediatamente anterior.",
+    "O primeiro introduz oposição à expectativa criada no parágrafo inicial; o segundo, conclusão do raciocínio desenvolvido.",
+    "Ambos estabelecem relação de adição entre os parágrafos, reforçando a progressão temática do texto.",
+    "O primeiro estabelece relação de causa; o segundo, relação de finalidade entre as ideias apresentadas."],
+ a:1,e:"“Contudo” é adversativo (quebra a expectativa de que bastaria trocar papel por tela); “portanto”, conclusivo."},
+/* ---------- CONHECIMENTOS GERAIS (11 a 20) ---------- */
+{mat:"Informática",cat:"ger",fix:true,
+ q:"Analise a situação hipotética a seguir: em uma planilha do Microsoft Excel, as células A1, A2, A3 e A4 contêm, respectivamente, os valores 8, 6, 10 e 4. Na célula B1, o servidor digitou a fórmula <b>=SE(MÉDIA(A1:A4)&gt;7;SOMA(A1:A2);MÁXIMO(A1:A4))</b>. O valor exibido na célula B1 será:",
+ o:["4.","7.","10.","14."],
+ a:2,e:"A média é (8+6+10+4)/4 = 7, e 7 não é maior que 7 — o teste é FALSO. Retorna-se MÁXIMO(A1:A4) = 10. (14 seria a SOMA, se o teste fosse verdadeiro.)"},
+{mat:"Informática",cat:"ger",
+ q:"Assinale a alternativa que descreve CORRETAMENTE o resultado da combinação de teclas CTRL + SHIFT + T nos navegadores Google Chrome, Mozilla Firefox e Microsoft Edge.",
+ o:["Abre uma nova janela de navegação anônima, sem registro no histórico do usuário.",
+    "Reabre a última guia fechada, restaurando a página encerrada na sessão de navegação.",
+    "Fecha todas as guias abertas, mantendo apenas o navegador em execução.",
+    "Alterna sequencialmente entre as guias abertas, da esquerda para a direita."],
+ a:1,e:"CTRL+SHIFT+T reabre a última aba fechada. A navegação anônima é CTRL+SHIFT+N (no Firefox, CTRL+SHIFT+P)."},
+{mat:"Raciocínio Lógico",cat:"ger",fix:true,
+ q:"Em uma repartição com 60 servidores, 34 dominam planilhas eletrônicas, 28 dominam editores de texto e 12 dominam as duas ferramentas. O número de servidores que não dominam nenhuma dessas duas ferramentas é igual a:",
+ o:["8.","10.","12.","14."],
+ a:1,e:"União = 34 + 28 − 12 = 50. Logo, 60 − 50 = 10 servidores não dominam nenhuma delas."},
+{mat:"Raciocínio Lógico",cat:"ger",
+ q:"Assinale a alternativa que apresenta a negação lógica da proposição: “Todo servidor aprovado no concurso participou do curso de formação.”",
+ o:["Nenhum servidor aprovado no concurso participou do curso de formação.",
+    "Pelo menos um servidor aprovado no concurso não participou do curso de formação.",
+    "Todo servidor aprovado no concurso não participou do curso de formação.",
+    "Se um servidor não participou do curso de formação, então não foi aprovado no concurso."],
+ a:1,e:"A negação de “todo A é B” é “existe pelo menos um A que não é B” — e não “nenhum A é B”, que é a contrária, não a contraditória."},
+{mat:"Direito Administrativo",cat:"dir",
+ q:"Sobre os princípios expressos no art. 37, caput, da Constituição Federal, assinale a alternativa CORRETA.",
+ o:["O princípio da legalidade, aplicado à Administração Pública, autoriza o administrador a fazer tudo aquilo que a lei não proíba, tal como ocorre com o particular.",
+    "O princípio da impessoalidade impede que a publicidade de atos, programas e obras dos órgãos públicos contenha nomes, símbolos ou imagens que caracterizem promoção pessoal de autoridades.",
+    "O princípio da publicidade é absoluto, não admitindo qualquer restrição de acesso às informações produzidas pelos órgãos públicos.",
+    "O princípio da eficiência, por constituir norma meramente programática, não pode fundamentar a invalidação de atos administrativos."],
+ a:1,e:"É a redação do art. 37, §1º, da CF. Pegadinha: quem pode fazer tudo o que a lei não proíbe é o PARTICULAR — a Administração só pode o que a lei autoriza."},
+{mat:"Direito Administrativo",cat:"dir",
+ q:"A respeito da anulação e da revogação dos atos administrativos, assinale a alternativa CORRETA.",
+ o:["A revogação atinge ato válido, por razões de conveniência e oportunidade, e produz efeitos a partir da própria revogação (ex nunc).",
+    "A anulação decorre de juízo de mérito administrativo e produz efeitos apenas para o futuro, preservando os efeitos já produzidos.",
+    "A revogação pode recair sobre atos vinculados e sobre atos que já exauriram os seus efeitos, desde que fundamentada no interesse público.",
+    "Somente o Poder Judiciário pode anular ato administrativo ilegal, sendo vedado à própria Administração desfazer os seus atos."],
+ a:0,e:"Revogação: ato válido, mérito, efeitos ex nunc. Anulação: ato ilegal, efeitos ex tunc, e a Administração pode fazê-la por autotutela (Súmula 473 do STF)."},
+{mat:"Direito Constitucional",cat:"dir",
+ q:"Nos termos da Constituição Federal, quanto ao acesso a cargos públicos, assinale a alternativa CORRETA.",
+ o:["O prazo de validade do concurso público será de até dois anos, prorrogável uma única vez, por igual período.",
+    "A investidura em emprego público em empresa pública dispensa a prévia aprovação em concurso público.",
+    "O prazo de validade do concurso público é de quatro anos, admitidas duas prorrogações sucessivas.",
+    "O candidato aprovado e preterido na ordem de classificação detém mera expectativa de direito, não lhe cabendo o direito à nomeação."],
+ a:0,e:"Art. 37, III, da CF. O candidato preterido na ordem classificatória tem direito subjetivo à nomeação, e não mera expectativa."},
+{mat:"Município de Seropédica",cat:"loc",
+ q:"De acordo com a Lei Orgânica do Município de Seropédica, assinale a alternativa CORRETA.",
+ o:["São Poderes do Município, independentes e harmônicos entre si, o Legislativo, o Executivo e o Judiciário municipal.",
+    "São símbolos do Município a Bandeira, o Hino e o Brasão, na forma estabelecida pela Lei Orgânica.",
+    "O número de Vereadores da Câmara Municipal é fixado em vinte e um, eleitos pelo sistema majoritário.",
+    "Compete ao Município legislar sobre direito penal e processual penal no âmbito do seu território."],
+ a:1,e:"Art. 5º da Lei Orgânica: Bandeira, Hino e Brasão. No Município só há dois Poderes (Legislativo e Executivo); são 9 Vereadores, eleitos pelo sistema proporcional."},
+{mat:"Município de Seropédica",cat:"loc",
+ q:"Sobre a composição da Câmara Municipal de Seropédica e o mandato de seus membros, assinale a alternativa CORRETA.",
+ o:["A Câmara compõe-se de 9 (nove) Vereadores, eleitos pelo sistema proporcional, para mandato de 4 (quatro) anos.",
+    "A Câmara compõe-se de 9 (nove) Vereadores, eleitos pelo sistema majoritário, para mandato de 2 (dois) anos.",
+    "A Câmara compõe-se de 11 (onze) Vereadores, eleitos pelo sistema proporcional, para mandato de 4 (quatro) anos.",
+    "A Câmara compõe-se de 13 (treze) Vereadores, eleitos pelo sistema majoritário, para mandato de 4 (quatro) anos."],
+ a:0,e:"Art. 27, §1º, da Lei Orgânica: 9 Vereadores; sistema proporcional; mandato de 4 anos (o sistema majoritário é o do Prefeito)."},
+{mat:"Regimento Interno da Câmara",cat:"loc",fix:true,
+ q:"Considere as afirmativas a seguir sobre o Regimento Interno da Câmara Municipal de Seropédica (Resolução nº 018/2025):<br>I- A Mesa Diretora é composta por Presidente, Vice-Presidente, 1º Secretário e 2º Secretário.<br>II- O mandato dos membros da Mesa Diretora é de 2 (dois) anos.<br>III- O Regimento Interno é alterado por decreto do Prefeito Municipal, após parecer da Câmara.<br>IV- A legislatura tem duração de 2 (dois) anos, correspondendo cada semestre a uma sessão legislativa.<br>Assinale a alternativa que traz APENAS as afirmativas corretas.",
+ o:["Apenas I e II.","Apenas I e IV.","Apenas II e III.","Apenas III e IV."],
+ a:0,e:"I e II estão corretas (art. 18). III é falsa: matéria interna da Câmara se altera por RESOLUÇÃO. IV é falsa: a legislatura dura 4 anos e cada ANO corresponde a uma sessão legislativa."},
+/* ---------- CONHECIMENTOS ESPECÍFICOS — TI (21 a 40) ---------- */
+{sec:"CONHECIMENTOS ESPECÍFICOS",mat:"Sistemas Operacionais",cat:"ti",
+ q:"Assinale a alternativa que apresenta CORRETAMENTE as condições necessárias para a ocorrência de um <i>deadlock</i> em sistemas operacionais.",
+ o:["Exclusão mútua, posse e espera, ausência de preempção e espera circular, que devem ocorrer simultaneamente.",
+    "Exclusão mútua, preempção obrigatória do recurso, espera circular e prioridade fixa, bastando que uma delas ocorra.",
+    "Posse e espera, preempção do recurso pelo escalonador, ausência de espera circular e paginação sob demanda.",
+    "Compartilhamento irrestrito de recursos, preempção, liberação antecipada de recursos e ausência de fila circular."],
+ a:0,e:"São as quatro condições de Coffman, e todas precisam ocorrer ao mesmo tempo: quebrar qualquer uma delas evita o impasse."},
+{mat:"Sistemas Operacionais",cat:"ti",
+ q:"Analise a situação hipotética a seguir: um servidor de aplicação passou a apresentar lentidão extrema, com baixa utilização de CPU e atividade de disco altíssima, logo após a execução simultânea de vários processos que exigem grande quantidade de memória. O fenômeno descrito é conhecido como:",
+ o:["Fragmentação externa da memória principal, corrigida por meio da compactação das partições.",
+    "<i>Thrashing</i>, caracterizado pela troca excessiva de páginas entre a memória principal e o disco.",
+    "<i>Starvation</i>, caracterizado pela postergação indefinida de processos de baixa prioridade.",
+    "<i>Deadlock</i>, caracterizado pelo bloqueio mútuo de processos que disputam os mesmos recursos."],
+ a:1,e:"CPU ociosa + disco saturado + excesso de demanda de memória = thrashing: o sistema gasta mais tempo paginando do que executando."},
+{mat:"Administração de Linux",cat:"ti",
+ q:"Um administrador executou, em um servidor Linux, o comando <b>chmod 640 relatorio.txt</b>. As permissões resultantes para o arquivo são:",
+ o:["Leitura e escrita para o dono; leitura para o grupo; nenhuma permissão para os demais usuários.",
+    "Leitura, escrita e execução para o dono; leitura e execução para o grupo; nenhuma para os demais.",
+    "Leitura e escrita para o dono e para o grupo; apenas leitura para os demais usuários.",
+    "Leitura para o dono; leitura e escrita para o grupo; execução para os demais usuários."],
+ a:0,e:"6 = 4+2 (rw-) para o dono; 4 = r-- para o grupo; 0 = --- para outros."},
+{mat:"Administração de Linux",cat:"ti",fix:true,
+ q:"Considere as afirmativas a seguir sobre comandos do sistema operacional Linux:<br>I- O comando <b>grep</b> exibe as linhas de um arquivo que correspondem a um padrão informado.<br>II- O comando <b>chown</b> altera as permissões de acesso de um arquivo ou diretório.<br>III- O comando <b>ps</b> exibe os processos em execução no sistema.<br>IV- O comando <b>df</b> altera o diretório de trabalho atual do usuário.<br>Assinale a alternativa que traz APENAS as afirmativas corretas.",
+ o:["Apenas I e II.","Apenas I e III.","Apenas II e IV.","Apenas III e IV."],
+ a:1,e:"chown altera o DONO (as permissões são alteradas por chmod) e df mostra o espaço em disco (quem muda de diretório é o cd)."},
+{mat:"Computação em Nuvem",cat:"ti",
+ q:"Analise a situação hipotética a seguir: uma Câmara Municipal contratou uma solução em que o fornecedor entrega servidores virtuais, armazenamento e rede, cabendo à própria Câmara instalar e manter o sistema operacional, o middleware e as aplicações. Assinale a alternativa que identifica CORRETAMENTE o modelo de serviço contratado.",
+ o:["Software como Serviço (SaaS), pois a contratante recebe a aplicação pronta para uso e não administra o sistema operacional.",
+    "Plataforma como Serviço (PaaS), pois o fornecedor entrega o ambiente de execução e o sistema operacional já gerenciados.",
+    "Infraestrutura como Serviço (IaaS), pois o fornecedor entrega os recursos computacionais básicos e a gestão do sistema operacional permanece com a contratante.",
+    "Função como Serviço (FaaS), pois a contratante executa apenas trechos de código, sem qualquer responsabilidade sobre o ambiente."],
+ a:2,e:"Quem administra o SO é a contratante → IaaS. No PaaS o SO já vem gerenciado; no SaaS entrega-se o software pronto."},
+{mat:"Virtualização",cat:"ti",
+ q:"Sobre virtualização e contêineres, assinale a alternativa CORRETA.",
+ o:["O hipervisor do tipo 1 (bare metal) é executado diretamente sobre o hardware, sem sistema operacional hospedeiro, o que reduz a sobrecarga e o torna comum em datacenters.",
+    "O hipervisor do tipo 2 dispensa o sistema operacional hospedeiro e, por essa razão, apresenta desempenho superior ao do tipo 1.",
+    "Os contêineres virtualizam integralmente o hardware, cada um com o seu próprio núcleo (kernel), o que os torna mais pesados que as máquinas virtuais.",
+    "A adoção de virtualização elimina, por definição, o ponto único de falha, dispensando planos de contingência e de recuperação."],
+ a:0,e:"Tipo 1 roda sobre o hardware; tipo 2 roda sobre um SO hospedeiro. Contêineres COMPARTILHAM o kernel do host — por isso são mais leves."},
+{mat:"Redes de Computadores",cat:"ti",
+ q:"No modelo de referência OSI, a camada responsável pelo endereçamento lógico e pelo roteamento de pacotes entre redes distintas é a camada de:",
+ o:["Enlace de dados, que utiliza o endereço MAC para entregar quadros dentro do mesmo segmento de rede.",
+    "Rede, que utiliza o endereço IP para determinar o melhor caminho entre a origem e o destino.",
+    "Transporte, que utiliza portas lógicas para identificar as aplicações envolvidas na comunicação.",
+    "Sessão, que estabelece, gerencia e encerra os diálogos mantidos entre as aplicações."],
+ a:1,e:"Camada 3 (Rede): endereçamento lógico (IP) e roteamento. A camada 2 trabalha com MAC dentro do mesmo segmento."},
+{mat:"Protocolos",cat:"ti",fix:true,
+ q:"Considere as afirmativas a seguir sobre os protocolos da camada de transporte:<br>I- O TCP é orientado à conexão e garante a entrega ordenada dos segmentos, com retransmissão em caso de perda.<br>II- O UDP realiza controle de fluxo e de congestionamento equivalente ao do TCP, diferindo dele apenas na numeração das portas.<br>III- O UDP é adequado a aplicações de tempo real, nas quais o atraso da retransmissão é mais prejudicial do que a perda eventual de pacotes.<br>IV- O TCP dispensa o estabelecimento prévio da conexão, empregando o <i>three-way handshake</i> somente no encerramento.<br>Assinale a alternativa que traz APENAS as afirmativas corretas.",
+ o:["Apenas I e II.","Apenas I e III.","Apenas II e IV.","Apenas III e IV."],
+ a:1,e:"O UDP não faz controle de fluxo/congestionamento (II falsa) e o three-way handshake do TCP ocorre na ABERTURA da conexão (IV falsa)."},
+{mat:"Protocolos e portas",cat:"ti",
+ q:"Assinale a alternativa que associa CORRETAMENTE os serviços às suas respectivas portas padrão.",
+ o:["HTTPS — porta 443; SSH — porta 22; DNS — porta 53.",
+    "HTTPS — porta 80; SSH — porta 23; DNS — porta 25.",
+    "HTTPS — porta 8080; SSH — porta 21; DNS — porta 110.",
+    "HTTPS — porta 443; SSH — porta 23; DNS — porta 143."],
+ a:0,e:"443 (HTTPS), 22 (SSH), 53 (DNS). Cuidado: 23 é Telnet, 21 é FTP, 25 é SMTP, 110 é POP3 e 143 é IMAP."},
+{mat:"Endereçamento IP",cat:"ti",fix:true,
+ q:"Uma rede local foi endereçada com o bloco 192.168.10.0/26. O número de endereços IPv4 utilizáveis por hosts nessa sub-rede é igual a:",
+ o:["30.","62.","64.","126."],
+ a:1,e:"/26 deixa 6 bits de host: 2⁶ = 64 endereços, menos o de rede e o de broadcast = 62 utilizáveis."},
+{mat:"Equipamentos de rede",cat:"ti",
+ q:"Analise a situação hipotética a seguir: a Câmara possui dois prédios, cada um com a sua própria rede local e faixa de endereçamento IP distinta, e precisa que os computadores de um prédio acessem os servidores do outro. Assinale a alternativa que indica CORRETAMENTE o equipamento adequado e a sua justificativa.",
+ o:["Concentrador (hub), pois replica os quadros recebidos em todas as portas, viabilizando a comunicação entre redes distintas.",
+    "Comutador (switch) de camada 2, pois encaminha quadros com base no endereço MAC e realiza o roteamento entre redes IP diferentes.",
+    "Roteador, pois encaminha pacotes entre redes IP distintas com base nas informações de sua tabela de rotas.",
+    "Repetidor, pois amplifica o sinal e converte automaticamente os endereços lógicos das duas redes."],
+ a:2,e:"Interligar redes IP distintas é função de camada 3 — roteador. O switch de camada 2 opera dentro do mesmo domínio de broadcast."},
+{mat:"Segurança da Informação",cat:"ti",
+ q:"Sobre criptografia e assinatura digital, assinale a alternativa INCORRETA.",
+ o:["Na criptografia simétrica, a mesma chave é utilizada para cifrar e decifrar, o que exige um canal seguro para a sua distribuição.",
+    "Na criptografia assimétrica, aquilo que é cifrado com a chave pública somente pode ser decifrado com a chave privada correspondente.",
+    "A assinatura digital é gerada com a chave privada do signatário e verificada com a sua chave pública, garantindo autenticidade e não repúdio.",
+    "As funções de <i>hash</i>, por serem reversíveis, permitem recuperar integralmente a mensagem original a partir do resumo gerado."],
+ a:3,e:"Hash é função de mão única (irreversível): serve para verificar integridade, não para recuperar a mensagem."},
+{mat:"LGPD",cat:"ti",
+ q:"Nos termos da Lei nº 13.709/2018 (LGPD), assinale a alternativa CORRETA.",
+ o:["Controlador é a pessoa natural ou jurídica que realiza o tratamento de dados pessoais em nome de outrem, seguindo as instruções recebidas.",
+    "Dados pessoais sensíveis são os relativos a origem racial ou étnica, convicção religiosa, opinião política, saúde, vida sexual, dado genético ou biométrico, sujeitos a regime jurídico mais rigoroso.",
+    "O consentimento do titular é a única hipótese legal que autoriza o tratamento de dados pessoais pelo poder público.",
+    "A LGPD aplica-se exclusivamente às pessoas jurídicas de direito privado, sujeitando-se a Administração Pública apenas à Lei de Acesso à Informação."],
+ a:1,e:"Art. 5º, II, da LGPD. Quem trata em nome de outrem é o OPERADOR; e existem 10 bases legais além do consentimento (art. 7º), aplicáveis também ao poder público."},
+{mat:"Banco de Dados",cat:"ti",
+ q:"Considere a tabela SERVIDOR(matricula, nome, lotacao, salario). Assinale a alternativa que apresenta o comando SQL que retorna a quantidade de servidores por lotação, exibindo somente as lotações que possuem mais de 5 servidores.",
+ o:["SELECT lotacao, COUNT(*) FROM SERVIDOR WHERE COUNT(*) &gt; 5 GROUP BY lotacao;",
+    "SELECT lotacao, COUNT(*) FROM SERVIDOR GROUP BY lotacao HAVING COUNT(*) &gt; 5;",
+    "SELECT lotacao, COUNT(*) FROM SERVIDOR HAVING COUNT(*) &gt; 5;",
+    "SELECT lotacao, SUM(*) FROM SERVIDOR GROUP BY lotacao WHERE COUNT(*) &gt; 5;"],
+ a:1,e:"Filtro sobre função de agregação usa HAVING, sempre depois do GROUP BY. O WHERE atua antes do agrupamento e não aceita funções de agregação."},
+{mat:"Normalização",cat:"ti",
+ q:"Uma tabela relacional encontra-se na Segunda Forma Normal (2FN) quando:",
+ o:["Está na 1FN e todos os atributos não chave dependem funcionalmente da totalidade da chave primária, eliminando-se as dependências parciais.",
+    "Está na 1FN e não apresenta dependências transitivas entre os atributos que não compõem a chave primária.",
+    "Possui somente atributos atômicos, ainda que existam grupos de valores repetitivos em uma mesma coluna.",
+    "Está na 3FN e todos os determinantes de suas dependências funcionais são superchaves da relação."],
+ a:0,e:"2FN elimina dependência PARCIAL. Eliminar dependência transitiva é a 3FN; determinante como superchave é a Forma Normal de Boyce-Codd."},
+{mat:"Transações (ACID)",cat:"ti",
+ q:"Sobre as propriedades ACID das transações em bancos de dados, assinale a alternativa CORRETA.",
+ o:["A atomicidade garante que a transação seja executada integralmente ou não produza efeito algum, sem estados intermediários persistidos.",
+    "A consistência garante que transações concorrentes não interfiram umas nas outras, como se fossem executadas isoladamente.",
+    "O isolamento garante que o banco permaneça em estado válido antes e depois da transação, respeitando as regras de integridade definidas.",
+    "A durabilidade garante que a transação possa ser desfeita a qualquer tempo, mesmo após a sua confirmação (commit)."],
+ a:0,e:"Os distratores trocam as definições de consistência e de isolamento entre si, e invertem a durabilidade — que assegura justamente a PERMANÊNCIA dos efeitos após o commit."},
+{mat:"Métodos Ágeis (Scrum)",cat:"ti",
+ q:"Sobre o framework Scrum, assinale a alternativa CORRETA.",
+ o:["O Scrum Master é o responsável por definir e priorizar o Product Backlog, respondendo pelo valor de negócio entregue.",
+    "O Product Owner é o responsável por remover impedimentos da equipe e por garantir que o Scrum seja compreendido e aplicado.",
+    "O Sprint Backlog é formado pelos itens selecionados para a Sprint somados ao plano para entregá-los, pertencendo aos desenvolvedores.",
+    "A Sprint Retrospective destina-se a apresentar o incremento às partes interessadas e a colher feedback sobre o produto."],
+ a:2,e:"Os distratores trocam os papéis: priorizar o Product Backlog é do Product Owner e remover impedimentos é do Scrum Master. Apresentar o incremento às partes interessadas é a Sprint REVIEW, não a Retrospective."},
+{mat:"Controle de versão (Git)",cat:"ti",fix:true,
+ q:"Considere as afirmativas a seguir sobre o Git:<br>I- O comando <b>git clone</b> cria uma cópia local de um repositório remoto, incluindo o seu histórico.<br>II- O comando <b>git commit</b> envia ao repositório remoto todas as alterações confirmadas localmente.<br>III- O comando <b>git merge</b> integra o histórico de uma ramificação (branch) a outra.<br>IV- O comando <b>git status</b> descarta todas as alterações não confirmadas do diretório de trabalho.<br>Assinale a alternativa que traz APENAS as afirmativas corretas.",
+ o:["Apenas I e II.","Apenas I e III.","Apenas II e III.","Apenas II e IV."],
+ a:1,e:"O commit registra a alteração no repositório LOCAL — quem envia ao remoto é o push. O git status apenas exibe a situação da árvore de trabalho."},
+{mat:"Testes de software",cat:"ti",
+ q:"Assinale a alternativa que descreve CORRETAMENTE o teste de caixa-preta (<i>black box</i>).",
+ o:["Avalia o software a partir de suas entradas e saídas esperadas, sem considerar a estrutura interna do código.",
+    "Exige o conhecimento do código-fonte, avaliando caminhos, laços de repetição e condições internas do programa.",
+    "Verifica a integração entre módulos exclusivamente por meio da análise da cobertura de linhas executadas.",
+    "Destina-se unicamente à validação do desempenho da aplicação sob condições de carga elevada."],
+ a:0,e:"Caixa-preta olha o comportamento externo (entradas × saídas). Quem analisa a estrutura interna é o teste de caixa-branca."},
+{mat:"Infraestrutura e backup",cat:"ti",
+ q:"Um servidor de arquivos da Câmara foi configurado com cinco discos em RAID 5. Assinale a alternativa CORRETA a respeito dessa configuração.",
+ o:["O RAID 5 distribui os dados e a informação de paridade entre os discos, tolerando a falha de um disco sem perda de dados.",
+    "O RAID 5 espelha integralmente o conteúdo de um disco em outro, resultando em aproveitamento de 50% da capacidade total instalada.",
+    "O RAID 5 não oferece qualquer redundância, sendo empregado apenas para ganho de desempenho por distribuição (<i>striping</i>).",
+    "O RAID 5 tolera a falha simultânea de dois discos, uma vez que mantém duas cópias de paridade distribuídas entre eles."],
+ a:0,e:"RAID 5 = striping com paridade distribuída, tolera 1 falha. Espelhamento é o RAID 1; striping puro é o RAID 0; duas paridades é o RAID 6."}
+]};
+
+const PROVAS=[PROVA1];
+
 /* ===== SIMULADOS COMPLETOS (provas inteiras, fixas) =====
    Cada simulado é montado de forma DETERMINÍSTICA a partir do banco verificado,
    no peso do edital (Língua Portuguesa, Raciocínio Lógico, Informática,
@@ -1418,10 +1748,40 @@ function simShuffles(){
     _simShuffles[k]=seededShuffle(pool,seed);}
   return _simShuffles;
 }
+/* Distribui o gabarito entre A, B, C e D de forma equilibrada (como faz a banca),
+   trocando de posição apenas a alternativa correta. É DETERMINÍSTICO: a prova sai
+   sempre igual, dá para repetir e comparar. Questões marcadas com fix:true — as de
+   resposta numérica em ordem crescente e as de itens I–IV — não são mexidas. */
+function balanceProva(qs,seed){
+  const r=mulberry32(seed),cnt=[0,0,0,0];
+  qs.forEach(q=>{if(q.fix)cnt[q.a]++;});
+  return qs.map(q=>{
+    if(q.fix)return {o:q.o.slice(),a:q.a};
+    const min=Math.min(...cnt),cand=[0,1,2,3].filter(i=>cnt[i]===min);
+    const t=cand[Math.floor(r()*cand.length)];cnt[t]++;
+    const o=q.o.slice();[o[t],o[q.a]]=[o[q.a],o[t]];
+    return {o,a:t};
+  });
+}
+/* caderno escrito à mão, no padrão da banca: usa os textos de apoio e a ordem oficial */
+function buildProva(p,si,def){
+  const tx={};(p.textos||[]).forEach(t=>tx[t.id]=t);
+  const bal=balanceProva(p.qs,7000+si*97);
+  let lastSec=null;
+  const items=p.qs.map((q,pos)=>{
+    const sec=(q.sec&&q.sec!==lastSec)?(lastSec=q.sec):null;   // faixa só na virada de seção
+    return {q:{q:q.q,o:bal[pos].o,a:bal[pos].a,e:q.e},id:"sim"+(si+1)+"_"+pos,
+      label:`${def.t.split(" — ")[0]} · Q${pos+1}`,cat:q.cat,
+      sec,mat:q.mat,texto:q.txt?tx[q.txt]:null};
+  });
+  return {id:"sim"+(si+1),t:def.t,sub:p.sub||def.sub,reta:!!def.reta,total:items.length,items,real:true};
+}
 function buildSims(){
   if(_simCache)return _simCache;
   const sh=simShuffles();
   _simCache=SIM_DEFS.map((def,si)=>{
+    const escrita=PROVAS.find(p=>p.i===si);
+    if(escrita)return buildProva(escrita,si,def);
     const list=[];
     SIM_ORDER.forEach(k=>{const need=def.plan[k]||0,arr=sh[k],n=arr.length;
       const start=(si*(def.plan[k]||0))%(n||1);
@@ -1679,11 +2039,12 @@ function bindKeys(){
     if(/input|textarea|select/i.test((e.target.tagName||"")))return;
     const it=cur&&cur.list[cur.idx];if(!it)return;
     const k=e.key.toLowerCase();
-    if(["a","b","c","d"].includes(k)&&!it._answered){e.preventDefault();answer({a:0,b:1,c:2,d:3}[k]);}
+    if(["a","b","c","d"].includes(k)&&(cur.exam||!it._answered)){e.preventDefault();answer({a:0,b:1,c:2,d:3}[k]);}
+    else if(k==="0"&&cur.exam){e.preventDefault();clearMark();}
     else if(e.key==="ArrowRight"){e.preventDefault();document.getElementById("next").click();}
     else if(e.key==="ArrowLeft"&&cur.idx>0){e.preventDefault();prevQ();}
     else if(k==="f"){e.preventDefault();toggleFlag();}
-    else if(k==="e"&&it._answered){e.preventDefault();const db=document.getElementById("deepbtn");if(db.style.display!=="none")deepen();}
+    else if(k==="e"&&it._answered&&!cur.exam){e.preventDefault();const db=document.getElementById("deepbtn");if(db.style.display!=="none")deepen();}
   });
 }
 
@@ -1753,22 +2114,26 @@ function openSimulados(){
     const el=document.createElement("div");el.className="simcard"+(s.reta?" reta":"");
     el.innerHTML=`<div class="snum">${s.reta?"🔥":(i+1)}</div>
       <div class="sinfo"><h5>${s.t}</h5>
-        <div class="smeta"><span>${s.total} questões</span><span>· ${s.sub}</span>${atts.length?`<span class="sbest ${cls}">melhor ${best}%</span>`:'<span class="sbest">ainda não feito</span>'}</div></div>
+        <div class="smeta"><span>${s.total} questões</span><span>· ${s.sub}</span>${s.real?'<span class="sbest ok">✍️ padrão CONSULPAM</span>':""}${atts.length?`<span class="sbest ${cls}">melhor ${best}%</span>`:'<span class="sbest">ainda não feito</span>'}</div></div>
       <div class="sact"><button class="btn sm">${atts.length?"Refazer":"Começar"}</button>${atts.length?`<small style="font-size:10.5px;color:var(--muted)">${atts.length}x · última ${last}%</small>`:""}</div>`;
     el.querySelector("button").onclick=()=>startSim(s.id);box.appendChild(el);});
   window.scrollTo(0,0);
 }
 function startSim(id){const s=buildSims().find(x=>x.id===id);if(!s)return;
   const budget=s.total*270000;  // 4,5 min/questão → 40q = 3h (duração oficial do edital)
-  cur={title:s.t,list:s.items.map(it=>({q:it.q,id:it.id,label:it.label,cat:it.cat})),idx:0,simId:id,simName:s.t,budget};
-  showQuiz();startSimTimer(budget);}
+  // MODO PROVA: nada é corrigido antes de finalizar — igual ao caderno da banca
+  cur={title:s.t,list:s.items.map(it=>Object.assign({},it,{_choice:null})),idx:0,
+       simId:id,simName:s.t,budget,exam:true};
+  showQuiz();startSimTimer(budget);
+  toast("Modo prova: o gabarito só aparece ao finalizar. Boa prova! 📝",true);}
 /* ===== CRONÔMETRO ===== */
 function fmtClock(ms){ms=Math.max(0,ms);const s=Math.round(ms/1000);return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");}
 function startSimTimer(budgetMs){simStart=Date.now();simEnd=simStart+budgetMs;const clk=document.getElementById("qclock");if(clk)clk.style.display="block";tickSim();simTimer=setInterval(tickSim,1000);}
 function tickSim(){const clk=document.getElementById("qclock"),t=document.getElementById("qclock-t");if(!clk||!t)return;
   const left=simEnd-Date.now();t.textContent=fmtClock(left);
   clk.className="qclock"+(left<=60000?" crit":left<=300000?" warn":"");
-  if(left<=0){clearSimTimer();if(cur&&cur.simId){toast("⏰ Tempo esgotado! Veja seu resultado.",false);showSummary();}}}
+  if(left<=0){clearSimTimer();if(cur&&cur.simId){toast("⏰ Tempo esgotado! Veja seu resultado.",false);
+    if(cur.exam)finishExam(true);else showSummary();}}}
 function clearSimTimer(){if(simTimer){clearInterval(simTimer);simTimer=null;}const clk=document.getElementById("qclock");if(clk)clk.style.display="none";}
 function recordSimAttempt(){
   if(!cur||!cur.simId||cur._recorded)return;cur._recorded=true;   // evita registrar a mesma tentativa 2x
@@ -1949,28 +2314,101 @@ function reviewSession(){
 }
 function showQuiz(){hideAll();document.getElementById("quiz").style.display="block";cur._origin=cur.list.slice();window.scrollTo(0,0);renderQ();}
 function renderQ(){
-  const it=cur.list[cur.idx],tag=document.getElementById("qtag");
+  const it=cur.list[cur.idx],tag=document.getElementById("qtag"),exam=!!cur.exam;
   tag.textContent=it.label;tag.className="qtag"+(it.cat==="ai"?" ai":"");
+  tag.style.display=exam?"none":"block";
+  // caderno de prova: faixa de seção, texto de apoio e "Questão 01"
+  const sec=document.getElementById("qsec");
+  if(exam&&it.sec){sec.className="secdiv show";sec.textContent=it.sec;}else{sec.className="secdiv";sec.textContent="";}
+  renderTexto(exam?it.texto:null);
+  const qn=document.getElementById("qnum");
+  if(exam){qn.style.display="block";
+    qn.innerHTML=`Questão ${String(cur.idx+1).padStart(2,"0")}`+(it.mat?`<small>${it.mat}</small>`:"");}
+  else qn.style.display="none";
   document.getElementById("qtext").innerHTML=it.q.q;
   document.getElementById("qcount").textContent=`${cur.idx+1} / ${cur.list.length}`;
   document.getElementById("qprog").style.width=(cur.idx/cur.list.length*100)+"%";
   const opts=document.getElementById("opts");opts.innerHTML="";const keys=["A","B","C","D"];
-  it.q.o.forEach((txt,i)=>{const b=document.createElement("button");b.className="opt";b.innerHTML=`<span class="key">${keys[i]})</span><span>${txt}</span><span class="kbd">${kbd[i]}</span>`;b.onclick=()=>answer(i);opts.appendChild(b);});
+  it.q.o.forEach((txt,i)=>{const b=document.createElement("button");b.className="opt";
+    b.innerHTML=`<span class="key">${keys[i]})</span><span>${txt}</span>`+
+      (exam?(it._choice===i?`<span class="mkx">● marcada</span>`:""):`<span class="kbd">${keys[i]}</span>`);
+    if(exam&&it._choice===i)b.classList.add("marked");
+    b.onclick=()=>answer(i);opts.appendChild(b);});
   document.getElementById("expl").className="expl";document.getElementById("expl").innerHTML="";
   document.getElementById("deepbtn").style.display="none";
   curConf=it._conf||0;renderConf();
   document.getElementById("newqbtn").style.display=(cur._regen&&!cur.simId)?"inline-block":"none";
-  document.getElementById("conf").style.display=it._answered?"none":"flex";
+  document.getElementById("conf").style.display=(exam||it._answered)?"none":"flex";
   const last=cur.idx===cur.list.length-1;
   document.getElementById("prev").style.display=cur.idx>0?"inline-block":"none";
   const next=document.getElementById("next");next.style.display="inline-block";
-  if(it._answered){                       // questão já respondida nesta sessão: reexibe travada
+  renderFolha();                          // some sozinho fora do modo prova
+  if(exam){                               // modo prova: nada é corrigido antes do fim
+    next.textContent=last?"Finalizar prova →":"Próxima →";
+  }else if(it._answered){                 // questão já respondida nesta sessão: reexibe travada
     reveal(it,it._choice);
     next.textContent=last?"Ver resultado →":"Próxima →";
   }else{                                  // ainda não respondida: pode pular sem registrar
     next.textContent=last?"Finalizar →":"Pular →";
   }
+  document.getElementById("khint").innerHTML=exam
+    ?'Atalhos: <b>A</b> <b>B</b> <b>C</b> <b>D</b> marcar · <b>←</b> <b>→</b> navegar · <b>F</b> marcar p/ revisar · <b>0</b> apagar marcação'
+    :'Atalhos: <b>A</b> <b>B</b> <b>C</b> <b>D</b> responder · <b>←</b> <b>→</b> navegar · <b>F</b> marcar · <b>E</b> explicar';
   renderFlagBtn();
+}
+/* texto de apoio do caderno (TEXTO I, TEXTO II…) */
+function renderTexto(tx){
+  const box=document.getElementById("qtexto");
+  if(!tx){box.className="texto";box.innerHTML="";return;}
+  box.className="texto show collapsed";
+  box.innerHTML=`<div class="tlbl">${tx.lbl||"TEXTO"}</div>
+    <div class="tbody">${tx.tit?`<div class="ttit">${tx.tit}</div>`:""}${tx.html}
+    ${tx.fonte?`<div class="tfonte">${tx.fonte}</div>`:""}</div>
+    <button class="tmore" type="button">▾ Ler o texto completo</button>`;
+  const btn=box.querySelector(".tmore");
+  btn.onclick=()=>{const col=box.classList.toggle("collapsed");
+    btn.textContent=col?"▾ Ler o texto completo":"▴ Recolher texto";};
+}
+/* cartão-resposta: mostra o que já foi marcado e permite pular para qualquer questão */
+function renderFolha(){
+  const f=document.getElementById("folha");
+  if(!cur||!cur.exam){f.className="folha";return;}
+  f.className="folha show";
+  const keys=["A","B","C","D"],marc=cur.list.filter(it=>it._choice!=null).length,branco=cur.list.length-marc;
+  document.getElementById("folha-info").textContent=`${marc} marcada(s) · ${branco} em branco`;
+  const g=document.getElementById("fgrid");g.innerHTML="";
+  cur.list.forEach((it,i)=>{const b=document.createElement("button");b.type="button";
+    b.className="fg"+(it._choice!=null?" done":"")+(flags[it.id]?" flag":"")+(i===cur.idx?" now":"");
+    b.innerHTML=`${String(i+1).padStart(2,"0")}<i>${it._choice!=null?keys[it._choice]:"—"}</i>`;
+    b.title=`Questão ${i+1}`+(it._choice!=null?` · marcada ${keys[it._choice]}`:" · em branco");
+    b.onclick=()=>{cur.idx=i;renderQ();window.scrollTo(0,0);};g.appendChild(b);});
+  document.getElementById("provawarn").innerHTML=branco
+    ?`Você ainda tem <b>${branco}</b> questão(ões) em branco. Na prova real, em branco conta como erro — não deixe nada sem marcar.`
+    :`Todas as ${cur.list.length} questões marcadas. Revise as ★ antes de finalizar.`;
+}
+/* modo prova: marcar/desmarcar sem revelar nada */
+function markExam(choice){
+  const it=cur.list[cur.idx];
+  it._choice=(it._choice===choice)?null:choice;   // clicar de novo apaga a marcação
+  renderQ();
+}
+function clearMark(){const it=cur.list[cur.idx];if(it._choice!=null){it._choice=null;renderQ();}}
+/* fim da prova: só agora tudo é corrigido e contabilizado */
+function finishExam(fromTimeout){
+  const branco=cur.list.filter(it=>it._choice==null).length;
+  if(!fromTimeout&&branco&&!confirm(`Você tem ${branco} questão(ões) em branco — elas contam como erro.\n\nFinalizar a prova mesmo assim?`))return;
+  cur._origin.forEach(it=>{
+    if(it._choice==null)return;                   // em branco: não vira histórico, mas conta na nota
+    const ok=it._choice===it.q.a;
+    it._answered=true;it._wrong=!ok;
+    srsUpdate(it,ok);
+    answers[it.id]={ok,ts:Date.now(),conf:0};
+    hist.unshift({id:it.id,ts:Date.now(),ok,label:it.label,cat:it.cat,snap:snapOf(it),conf:0});
+    daily[dayKey()]=todayCount()+1;
+  });
+  if(hist.length>HISTCAP)hist=hist.slice(0,HISTCAP);
+  Store.set("answers",answers);Store.set("hist",hist);Store.set("daily",daily);
+  showSummary();
 }
 function reveal(it,choice){               // mostra gabarito/explicação e trava as alternativas
   const correct=it.q.a,ok=choice===correct;
@@ -1990,8 +2428,9 @@ function renderFlagBtn(){const it=cur.list[cur.idx],b=document.getElementById("f
   if(flags[it.id]){b.classList.add("on");b.textContent="★ Marcada";}else{b.classList.remove("on");b.textContent="☆ Revisar";}}
 function toggleFlag(){const it=cur.list[cur.idx];
   if(flags[it.id])delete flags[it.id];else flags[it.id]={label:it.label,cat:it.cat,ts:Date.now(),snap:snapOf(it)};
-  Store.set("flags",flags);renderFlagBtn();updateNav();}
+  Store.set("flags",flags);renderFlagBtn();updateNav();if(cur.exam)renderFolha();}
 function answer(choice){
+  if(cur.exam)return markExam(choice);    // prova: apenas preenche o cartão-resposta
   const it=cur.list[cur.idx];
   if(it._answered)return;                 // já respondida: não conta de novo
   const correct=it.q.a,ok=choice===correct;
@@ -2021,14 +2460,19 @@ async function deepen(){
   catch(e){db.textContent="IA indisponível offline";setTimeout(()=>{db.style.display="none";},1500);}
   finally{db.disabled=false;if(db.innerHTML.includes("Pensando"))db.textContent=old;}
 }
-function nextQ(){if(cur.idx<cur.list.length-1){cur.idx++;renderQ();window.scrollTo(0,0);}else showSummary();}
+function nextQ(){if(cur.idx<cur.list.length-1){cur.idx++;renderQ();window.scrollTo(0,0);}
+  else if(cur.exam)finishExam(false);else showSummary();}
 function showSummary(){
   const _simDur=cur&&cur.simId&&simStart?Math.min(Date.now()-simStart,cur.budget||0):0;
   clearSimTimer();
   hideAll();document.getElementById("summary").style.display="block";
   const answered=cur._origin.filter(it=>it._answered);
   const total=answered.length, cor=answered.filter(it=>it._wrong===false).length;
-  const skipped=cur._origin.length-total, pct=total?Math.round(cor/total*100):0;
+  const skipped=cur._origin.length-total;
+  // no simulado a nota é sobre as 40 questões (em branco = erro, como na prova real);
+  // no treino livre, só sobre o que foi respondido
+  const base=cur.simId?cur._origin.length:total;
+  const pct=base?Math.round(cor/base*100):0;
   document.getElementById("ringval").textContent=pct+"%";
   const fill=document.getElementById("ringfill");fill.setAttribute("stroke",pct>=70?"#1E8E5A":pct>=50?"#D98A00":"#CF3D3D");fill.setAttribute("stroke-dashoffset",352);
   setTimeout(()=>{fill.style.transition="stroke-dashoffset 1s ease";fill.setAttribute("stroke-dashoffset",352-(352*pct/100));},50);
@@ -2055,7 +2499,10 @@ function showSummary(){
   else if(pct>=90&&total>=5)toast("Excelente! 90%+ nessa rodada! 🏆",true);
   renderHome();updateStats();updateNav();pickToday();renderDaily();renderAnalytics();renderReviewCard();window.scrollTo(0,0);
 }
-function goHome(){clearSimTimer();hideAll();document.getElementById("home").style.display="block";renderHome();updateStats();updateNav();pickToday();renderCountdown();renderDaily();renderAnalytics();renderReviewCard();renderPlanCard();window.scrollTo(0,0);}
+function goHome(){
+  if(cur&&cur.exam&&document.getElementById("quiz").style.display==="block"
+     &&!confirm("Sair da prova em andamento?\n\nAs marcações do cartão-resposta serão perdidas e a tentativa NÃO será registrada no boletim."))return;
+  clearSimTimer();hideAll();document.getElementById("home").style.display="block";renderHome();updateStats();updateNav();pickToday();renderCountdown();renderDaily();renderAnalytics();renderReviewCard();renderPlanCard();window.scrollTo(0,0);}
 
 /* ===== PARA REVISAR (flags) ===== */
 function openFlagged(){
