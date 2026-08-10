@@ -494,10 +494,11 @@
   <section class="listview" id="plano">
     <div class="lvtop">
       <button class="back" onclick="goHome()">← Início</button>
-      <h3>🗓️ Plano completo · 25 dias</h3>
+      <h3>🗓️ Plano completo · reta final de 19 dias</h3>
     </div>
-    <p class="lvsub">De <b>04/08</b> a <b>28/08/2026</b>, <b>2h por dia</b>, sem folga. Prova no sábado <b>29/08, às 15h</b> — portões fecham <b>14:40</b>.<br>
-    Cada dia tem 15 min de revisão espaçada, <b>20 min de matemática</b> (todo dia, um assunto por vez), 55 min no assunto principal, 25 min numa matéria de peso e 5 min de fechamento. Os <b>3 domingos são simulados de 3h</b>.<br>
+    <p class="lvsub">Replanejado em <b>10/08</b> para a reta final: de <b>10/08</b> a <b>28/08/2026</b>, <b>2h por dia</b>. Prova no sábado <b>29/08, às 15h</b> — portões fecham <b>14:40</b>.<br>
+    Prioridade pelo peso real da prova: <b>55 min de TI</b> (20 questões, metade da prova), <b>30 min de Português</b> (10 questões), 15 min de revisão espaçada e 15 min no <b>bloco garantido</b> — Seropédica, Regimento, Direito, Informática e RLM em rodízio. Matemática saiu do diário: vale 2 questões e o programa é imenso.<br>
+    <b>3 simulados de 3h</b>: 16/08, 23/08 e 27/08 — o último no horário exato da prova.<br>
     Marque cada bloco no ✓ conforme for fazendo — fica salvo.</p>
     <div id="plano-list"></div>
   </section>
@@ -619,165 +620,152 @@
 
 <script>
 
-/* ===== PLANO DE ESTUDOS — 26 dias, 2h/dia, de 03/08 a 28/08/2026 =====
-   Montado a partir de 3 provas reais da Consulpam (Limoeiro do Norte 2026 —
-   Analista de Sistemas; CISCOPAR 2023 — Analista em Informática; CONAB 2025 —
-   Analista de TI) cruzadas com o Anexo do Edital 001/2026.
+/* ===== PLANO DE ESTUDOS — RETA FINAL: 19 dias, de 10/08 a 28/08/2026 =====
+   Replanejado em 10/08 depois de 6 dias perdidos. Aqui não cabe mais estudar
+   tudo: cabe estudar o que PONTUA. A triagem sai do peso real da prova
+   (Anexo do Edital 001/2026, nível superior — 40 questões de 2,5 pts):
+
+     20 questões  Conhecimentos Específicos de TI ....... 50 pts  (METADE DA PROVA)
+     10 questões  Língua Portuguesa ..................... 25 pts
+      3 questões  Direito Administrativo e Constitucional  7,5 pts
+      3 questões  Seropédica + Regimento Interno ........ 7,5 pts
+      2 questões  Noções de Informática .................   5 pts
+      2 questões  Raciocínio Lógico / Matemática ........   5 pts
+   Corte de aprovação: 50 pts = 20 acertos.
+
+   O QUE FOI CORTADO e por quê:
+   - Matemática deixou de ser diária. O programa é imenso (trigonometria,
+     geometria espacial, PA/PG, combinatória, estatística, sistemas lineares)
+     e vale 2 questões. Ficaram só os assuntos de maior recorrência —
+     porcentagem, regra de três, conjuntos e sequência lógica — em 3 doses.
+     Trigonometria e geometria espacial saíram: custo alto, retorno mínimo.
+   - Algoritmos caiu de 5 dias para 1. Está em NOÇÕES DE INFORMÁTICA, não em
+     Conhecimentos Específicos: divide 2 questões com Office, internet,
+     e-mail, backup e nuvem.
+
+   O QUE FOI PRIORIZADO:
+   - TI todo dia no bloco principal, na ordem de recorrência da banca:
+     redes, segurança, banco de dados, SO, engenharia de software,
+     governança, infraestrutura, web e contratações.
+   - Seropédica e Regimento Interno em 4 doses. É o melhor retorno por hora
+     da prova inteira: escopo fechado, texto literal, 3 questões quase certas.
+   - Português todo dia, com peso extra em interpretação de texto.
 
    Estrutura fixa de cada dia (120 min):
      15 min  revisão espaçada (o que o SRS cobrar)
-     20 min  MATEMÁTICA — dose diária, um assunto por dia, sem pular
-     55 min  bloco principal (assunto da vez)
-     25 min  bloco secundário (Português / Direito / Local — as que valem 16 questões)
+     55 min  TI — bloco principal, metade da prova
+     30 min  Português — 1/4 da prova
+     15 min  bloco garantido (Local / Direito / Informática / RLM em rodízio)
       5 min  fechamento: anotar a pegadinha do dia
 
-   Por que matemática TODO dia em vez de um bloco de 4 dias: cálculo trava por
-   falta de contato recente, não por falta de horas seguidas. 20 min x 26 dias
-   valem mais que 9 horas amontoadas numa semana.
-
-   Nos 3 domingos o dia é de SIMULADO e leva 3h, não 2h — é ensaio de prova. */
+   3 simulados de 3h: domingos 16/08 e 23/08 e quinta 27/08 — este último
+   das 15h às 18h, no horário exato da prova. */
 const PLANO=[
- {d:"2026-08-04",t:"Algoritmos I — Fluxograma",bl:[
+ {d:"2026-08-10",t:"Redes I — Modelo OSI, TCP/IP e portas",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Razão e Proporção: o que é razão, proporção e a propriedade fundamental",go:"mod:ger-mat",yt:"razão e proporção aula concurso"},
-   {m:55,t:"Símbolos do fluxograma, contagem de entradas e saídas, caminhos da decisão",go:"mod:ti-algo",yt:"fluxograma algoritmo símbolos"},
-   {m:25,t:"Português: interpretação de texto",go:"mod:pt-interp2",yt:"interpretação de texto concurso"},
+   {m:55,t:"As 7 camadas do OSI x as 4 do TCP/IP; o que cada camada endereça (MAC x IP x porta)",go:"mod:ti-redes",yt:"modelo OSI camadas aula concurso"},
+   {m:30,t:"Português: interpretação de texto — o naipe que mais cai",go:"mod:pt-interp",yt:"interpretação de texto concurso"},
+   {m:15,t:"Seropédica: emancipação, data comemorativa, limítrofes e símbolos",go:"mod:loc-sero",yt:"Seropédica história emancipação"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-05",t:"Algoritmos II — Pseudocódigo",bl:[
+ {d:"2026-08-11",t:"Redes II — Protocolos, portas e equipamentos",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Divisão proporcional (direta e inversa)",go:"mod:ger-mat",yt:"divisão proporcional direta e inversa"},
-   {m:55,t:"Pseudocódigo: variáveis, tipos, se/senão, operadores lógicos E/OU",go:"mod:ti-algo",yt:"pseudocódigo portugol aula"},
-   {m:25,t:"Português: acentuação e crase",go:"mod:pt-crase",yt:"crase regras aula"},
+   {m:55,t:"TCP x UDP; portas 20/21, 22, 23, 25, 53, 80, 110, 143, 443; hub x switch x roteador",go:"mod:ti-protoc",yt:"protocolos e portas TCP UDP concurso"},
+   {m:30,t:"Português: acentuação e crase",go:"mod:pt-crase",yt:"crase regras aula concurso"},
+   {m:15,t:"Lei Orgânica: 9 vereadores, competências do Município, símbolos",go:"mod:loc-lo",yt:"lei orgânica municipal concurso"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-06",t:"Algoritmos III — Laços e traçado",bl:[
+ {d:"2026-08-12",t:"Redes III — Endereçamento IP e subnetting",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Regra de três simples (direta e inversa)",go:"mod:ger-mat",yt:"regra de três simples e inversa"},
-   {m:55,t:"enquanto x repita x para; contar iterações e atribuições; valor final da variável",go:"mod:ti-algo",yt:"estrutura de repetição enquanto para repita"},
-   {m:25,t:"Local: Lei Orgânica de Seropédica",go:"mod:loc-lo",yt:"lei orgânica municipal concurso"},
+   {m:55,t:"Classes, máscara, /24 /25 /26 /27, hosts válidos (2^n − 2), rede e broadcast",go:"mod:ti-ip",yt:"subnetting cálculo de sub-redes concurso"},
+   {m:30,t:"Português: pontuação — vírgula, ponto e vírgula e dois-pontos",go:"mod:pt-pont",yt:"pontuação vírgula regras concurso"},
+   {m:15,t:"Regimento Interno: Mesa Diretora, sessões e comissões",go:"mod:loc-ri",yt:"regimento interno câmara municipal"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-07",t:"Algoritmos IV — Recursão",bl:[
+ {d:"2026-08-13",t:"Segurança I — CID, criptografia e assinatura digital",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Regra de três composta (3 grandezas)",go:"mod:ger-mat",yt:"regra de três composta exercícios"},
-   {m:55,t:"Contar chamadas recursivas; caso-base; tabela T(n) do Fibonacci",go:"mod:ti-algo",yt:"recursividade algoritmos aula"},
-   {m:25,t:"Português: pontuação",go:"mod:pt-pont",yt:"pontuação vírgula regras concurso"},
+   {m:55,t:"Confidencialidade, integridade, disponibilidade; simétrica x assimétrica; hash é MÃO ÚNICA",go:"mod:ti-seg1",yt:"criptografia simétrica assimétrica concurso"},
+   {m:30,t:"Português: concordância nominal e verbal",go:"mod:pt-conc",yt:"concordância verbal e nominal concurso"},
+   {m:15,t:"Direito Administrativo: princípios do art. 37 e poderes",go:"mod:dir-adm1",yt:"princípios da administração pública LIMPE"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-08",t:"Algoritmos V — Ordenação e leitura de código",bl:[
+ {d:"2026-08-14",t:"Segurança II — Ataques, defesas e LGPD",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Porcentagem (de, aumento e desconto)",go:"mod:ger-mat",yt:"porcentagem para concurso aula"},
-   {m:55,t:"Bubble x Selection x Insertion; ler código Python e JavaScript e achar a saída",go:"mod:ti-algo",yt:"bubble sort selection sort insertion sort"},
-   {m:25,t:"Direito Administrativo: princípios e poderes",go:"mod:dir-adm1",yt:"princípios da administração pública"},
+   {m:55,t:"Phishing, ransomware, DoS, engenharia social; firewall x IDS x IPS; LGPD: agentes e bases legais",go:"mod:ti-lgpd",yt:"LGPD para concurso resumo"},
+   {m:30,t:"Português: regência e colocação pronominal",go:"mod:pt-reg",yt:"regência verbal e nominal concurso"},
+   {m:15,t:"Direito Administrativo: atos administrativos (anulação x revogação)",go:"mod:dir-adm2",yt:"atos administrativos anulação revogação"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-09",t:"SIMULADO — prova completa cronometrada (3h)",sim:true,bl:[
-   {m:180,t:"Simulado completo: 40 questões no peso do edital, 3h corridas",go:"sim"},
+ {d:"2026-08-15",t:"Banco de Dados I — Modelo ER, chaves e SQL",bl:[
+   {m:15,t:"Revisão espaçada do dia",go:"srs"},
+   {m:55,t:"Entidade, atributo, cardinalidade; N:N vira tabela associativa; SELECT, WHERE, GROUP BY, HAVING, JOINs",go:"mod:ti-bd1",yt:"SQL para concurso select join group by"},
+   {m:30,t:"Português: semântica, figuras de linguagem e formação de palavras",go:"mod:pt-edital",yt:"figuras de linguagem concurso"},
+   {m:15,t:"Informática: Excel e Word — fórmulas, referências e formatos de arquivo",go:"mod:ger-inf",yt:"Excel para concurso fórmulas básicas"},
+   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
+ {d:"2026-08-16",t:"SIMULADO 1 — prova completa cronometrada (3h)",sim:true,bl:[
+   {m:180,t:"Simulado 1: 40 questões no padrão CONSULPAM, 3h corridas, sem consultar nada",go:"sim"},
    {m:0,t:"Depois: gabarito comentado de TODAS as erradas, sem exceção",go:"wrong"}]},
- {d:"2026-08-10",t:"Formatos da banca I — Asserção-razão",bl:[
+ {d:"2026-08-17",t:"Banco de Dados II — Normalização e ACID",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Porcentagens sucessivas (a pegadinha do 'volta ao valor original')",go:"mod:ger-mat",yt:"aumento e desconto sucessivo porcentagem"},
-   {m:55,t:"O formato PORQUE em 3 passos — 15% da prova da CONAB, 7,5% da de Limoeiro",go:"mod:ti-banca",yt:"questão asserção razão como resolver"},
-   {m:25,t:"Local: Regimento Interno da Câmara",go:"mod:loc-ri",yt:"regimento interno câmara municipal"},
+   {m:55,t:"1FN, 2FN (dependência parcial), 3FN (transitiva); atomicidade, consistência, isolamento, durabilidade",go:"mod:ti-bd2",yt:"normalização 1FN 2FN 3FN concurso"},
+   {m:30,t:"Português: interpretação de texto II — inferência, ironia e pressuposto",go:"mod:pt-interp2",yt:"inferência e pressuposto interpretação de texto"},
+   {m:15,t:"Direito Constitucional: art. 5º — direitos e deveres individuais",go:"mod:dir-const1",yt:"artigo 5 constituição concurso"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-11",t:"Formatos da banca II — Colunas, V/F e EXCETO",bl:[
+ {d:"2026-08-18",t:"Sistemas Operacionais e administração de Linux",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Juros simples (J = C·i·t)",go:"mod:ger-mat",yt:"juros simples aula concurso"},
-   {m:55,t:"Relacionar colunas, sequência V/F, EXCETO e preenchimento de lacuna",go:"mod:ti-banca2",yt:"questões de concurso relacionar colunas dicas"},
-   {m:25,t:"Português: concordância",go:"mod:pt-conc",yt:"concordância verbal e nominal"},
+   {m:55,t:"Processos, escalonamento, deadlock, memória virtual; chmod/chown, permissões rwx e comandos do dia a dia",go:"mod:ti-linux",yt:"comandos linux para concurso chmod permissões"},
+   {m:30,t:"Português: classes de palavras e termos da oração",go:"mod:pt-reforco",yt:"classes gramaticais e termos da oração"},
+   {m:15,t:"RLM: porcentagem e regra de três — os que mais caem",go:"mod:ger-mat",yt:"porcentagem e regra de três concurso"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-12",t:"Banco de Dados I — ER e chaves",bl:[
+ {d:"2026-08-19",t:"Arquitetura, virtualização e computação em nuvem",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Média aritmética (e como achar o termo que falta)",go:"mod:ger-mat",yt:"média aritmética exercícios concurso"},
-   {m:55,t:"Modelo ER, chave primária x estrangeira, cardinalidade, contar PK/FK num diagrama",go:"mod:ti-bd1",yt:"modelo entidade relacionamento chave primária estrangeira"},
-   {m:25,t:"Direito Constitucional: art. 5º",go:"mod:dir-const1",yt:"artigo 5 constituição direitos e garantias"},
+   {m:55,t:"Hipervisor tipo 1 x tipo 2; contêiner compartilha o kernel; IaaS x PaaS x SaaS; nuvem pública, privada e híbrida",go:"mod:ti-nuvem",yt:"IaaS PaaS SaaS diferença concurso"},
+   {m:30,t:"Português: coesão, coerência e tipos textuais",go:"mod:pt-banca",yt:"coesão e coerência textual concurso"},
+   {m:15,t:"Direito Constitucional: Municípios (arts. 29 a 31) e Administração Pública (arts. 37 a 41)",go:"mod:dir-const2",yt:"constituição municípios artigos 29 a 31"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-13",t:"Banco de Dados II — Normalização",bl:[
+ {d:"2026-08-20",t:"Engenharia de Software — ciclo de vida, ágil e requisitos",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Média ponderada",go:"mod:ger-mat",yt:"média ponderada exercícios"},
-   {m:55,t:"1FN, 2FN e 3FN: dada a tabela, dizer em que forma normal ela está",go:"mod:ti-bd2",yt:"normalização banco de dados 1FN 2FN 3FN"},
-   {m:25,t:"Português: regência e colocação pronominal",go:"mod:pt-reg",yt:"regência verbal e colocação pronominal"},
+   {m:55,t:"Cascata x iterativo; Scrum: papéis, eventos e artefatos; requisito funcional x não funcional",go:"mod:ti-eng1",yt:"scrum papéis eventos artefatos concurso"},
+   {m:30,t:"Português: reescrita de frases, paralelismo e substituição",go:"mod:pt-reforco",yt:"reescrita de frases concurso paralelismo"},
+   {m:15,t:"Direito Administrativo: servidores, improbidade e licitações",go:"mod:dir-adm3",yt:"lei 14133 licitações resumo"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-14",t:"Banco de Dados III — ACID e SQL",bl:[
+ {d:"2026-08-21",t:"Testes de software e versionamento (Git)",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Moda e mediana (e quando a mediana é a média de dois)",go:"mod:ger-mat",yt:"média moda e mediana estatística"},
-   {m:55,t:"ACID por relacionar colunas, transações, SQL DDL/DML/DCL, índices",go:"mod:ti-bd2",yt:"propriedades ACID transações banco de dados"},
-   {m:25,t:"Local: Seropédica (história, geografia, símbolos)",go:"mod:loc-sero",yt:"história do município de Seropédica"},
+   {m:55,t:"Caixa-preta x caixa-branca; unitário, integração, regressão, aceitação; clone, commit, push, merge, branch",go:"mod:ti-eng2",yt:"tipos de teste de software concurso git comandos"},
+   {m:30,t:"Português: ortografia e emprego dos porquês",go:"mod:pt-crase",yt:"ortografia porquês concurso"},
+   {m:15,t:"Informática: internet, navegadores, e-mail e segurança do usuário",go:"mod:ger-inf",yt:"noções de informática internet navegador concurso"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-15",t:"Segurança I — Criptografia",bl:[
+ {d:"2026-08-22",t:"Governança de TI — ITIL e COBIT",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: PA — termo geral  an = a1 + (n−1)·r   (caiu literal em Limoeiro)",go:"mod:ger-mat",yt:"progressão aritmética termo geral"},
-   {m:55,t:"Tríade CID; simétrica x assimétrica; qual chave cifra e qual decifra",go:"mod:ti-seg1",yt:"criptografia simétrica e assimétrica"},
-   {m:25,t:"Português: interpretação de texto",go:"mod:pt-interp",yt:"interpretação de texto concurso"},
+   {m:55,t:"ITIL v4: SVS, cadeia de valor e princípios; COBIT: governança x gestão; incidente x problema x mudança",go:"mod:ti-gov",yt:"ITIL 4 resumo concurso COBIT"},
+   {m:30,t:"Português: interpretação de texto III — texto argumentativo e tese",go:"mod:pt-interp",yt:"texto argumentativo tese concurso"},
+   {m:15,t:"RLM: conjuntos, diagramas e sequência lógica",go:"mod:ger-mat",yt:"conjuntos diagrama de venn concurso"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-16",t:"SIMULADO — prova completa cronometrada (3h)",sim:true,bl:[
-   {m:180,t:"Simulado completo: 40 questões no peso do edital, 3h corridas",go:"sim"},
+ {d:"2026-08-23",t:"SIMULADO 2 — prova completa cronometrada (3h)",sim:true,bl:[
+   {m:180,t:"Simulado 2: 40 questões no padrão CONSULPAM, 3h corridas, sem consultar nada",go:"sim"},
    {m:0,t:"Depois: gabarito comentado de TODAS as erradas, sem exceção",go:"wrong"}]},
- {d:"2026-08-17",t:"Segurança II — Hash e assinatura digital",bl:[
+ {d:"2026-08-24",t:"Infraestrutura — servidores, RAID, backup e monitoramento",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: PA — soma dos n termos  Sn = n·(a1 + an)/2",go:"mod:ger-mat",yt:"progressão aritmética soma dos termos"},
-   {m:55,t:"Hash (MD5/SHA), assinatura digital x certificado digital, integridade x autenticidade",go:"mod:ti-seg1",yt:"função hash assinatura digital certificado digital"},
-   {m:25,t:"Direito Administrativo: atos administrativos",go:"mod:dir-adm2",yt:"atos administrativos requisitos atributos"},
+   {m:55,t:"RAID 0/1/5/6; incremental x diferencial; NAS (arquivo) x SAN (bloco); monitoramento e limiares",go:"mod:ti-infra",yt:"RAID e backup incremental diferencial concurso"},
+   {m:30,t:"Português: crase e regência — segunda passada nos que mais erra",go:"mod:pt-reg",yt:"crase exercícios comentados concurso"},
+   {m:15,t:"Regimento Interno: processo legislativo, sanção, veto e espécies normativas",go:"mod:loc-reg",yt:"processo legislativo municipal sanção veto"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-18",t:"Segurança III — Firewall, IDS/IPS e LGPD",bl:[
+ {d:"2026-08-25",t:"Web, APIs e contratações de TI (Lei 14.133)",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: PA — revisão e questões no estilo da banca",go:"mod:ger-mat",yt:"progressão aritmética exercícios concurso"},
-   {m:55,t:"Firewall (stateless/stateful/proxy), IDS x IPS, malware, LGPD 13.709/2018",go:"mod:ti-lgpd",yt:"firewall IDS IPS diferença"},
-   {m:25,t:"Local: Regimento (Mesa Diretora, comissões, sessões)",go:"mod:loc-reg",yt:"mesa diretora e comissões câmara municipal"},
+   {m:55,t:"HTML/CSS/JS (noções); REST: GET, POST, PUT, DELETE; status 200/301/403/404/500; ETP e termo de referência",go:"mod:ti-banca2",yt:"API REST métodos e status HTTP concurso"},
+   {m:30,t:"Português: fonologia, sílabas e divisão silábica",go:"mod:pt-edital",yt:"fonologia encontros vocálicos dígrafos"},
+   {m:15,t:"Informática: algoritmos e fluxograma — dose única, vale 1 questão",go:"mod:ti-algo",yt:"fluxograma algoritmo símbolos"},
    {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-19",t:"Redes I — OSI, TCP/IP e portas",bl:[
+ {d:"2026-08-26",t:"Revisão dirigida — só o que você erra",bl:[
    {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: PG e sequências lógicas — termo geral, soma e como achar o padrão",go:"mod:ger-mat",yt:"progressão geométrica e sequência lógica concurso"},
-   {m:55,t:"As 7 camadas, TCP x UDP, e a tabela de portas (a pegadinha 443 x 433)",go:"mod:ti-protoc",yt:"modelo OSI e TCP/IP camadas"},
-   {m:25,t:"Português: fonologia e formação de palavras",go:"mod:pt-edital",yt:"fonologia e formação de palavras"},
-   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-20",t:"Redes II — IP e subnetting",bl:[
-   {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Conjuntos e o princípio da inclusão-exclusão",go:"mod:ger-mat",yt:"diagrama de venn união interseção problemas"},
-   {m:55,t:"Classes, máscara, sub-redes, switch x roteador x firewall",go:"mod:ti-ip",yt:"endereçamento IP e sub-redes aula"},
-   {m:25,t:"Direito Constitucional: Municípios (arts. 29 a 31)",go:"mod:dir-const2",yt:"municípios constituição federal artigo 29"},
-   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-21",t:"Sistemas Operacionais e arquitetura",bl:[
-   {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Combinatória — princípio multiplicativo (placas e senhas)",go:"mod:ger-mat",yt:"princípio fundamental da contagem"},
-   {m:55,t:"Kernel, processos, gerência de memória, permissões Linux, comandos",go:"mod:ti-linux",yt:"gerência de processos e memória sistema operacional"},
-   {m:25,t:"Português: semântica e figuras de linguagem",go:"mod:pt-reforco",yt:"figuras de linguagem concurso"},
-   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-22",t:"Engenharia de Software e testes",bl:[
-   {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Arranjo, permutação e combinação (quando a ordem importa)",go:"mod:ger-mat",yt:"arranjo permutação e combinação"},
-   {m:55,t:"Ciclo de vida, ágil x tradicional, requisito funcional x não-funcional, erro x defeito x falha",go:"mod:ti-eng1",yt:"requisito funcional e não funcional erro defeito falha"},
-   {m:25,t:"Local: Lei Orgânica (competências do Município)",go:"mod:loc-lo",yt:"competências do município constituição"},
-   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-23",t:"SIMULADO — prova completa cronometrada (3h)",sim:true,bl:[
-   {m:180,t:"Simulado completo: 40 questões no peso do edital, 3h corridas",go:"sim"},
+   {m:55,t:"Refazer TODAS as erradas dos simulados e as marcadas com estrela",go:"wrong"},
+   {m:30,t:"As 2 matérias com pior acerto no Desempenho — abra o boletim e ataque",go:"perf"},
+   {m:15,t:"Essenciais: as de alta probabilidade de cair",go:"high"},
+   {m:5,t:"Fechamento: releia as pegadinhas anotadas",go:null}]},
+ {d:"2026-08-27",t:"SIMULADO 3 — ensaio geral, das 15h às 18h",sim:true,bl:[
+   {m:180,t:"Simulado 3 no HORÁRIO EXATO da prova (15h–18h): sem celular, sem pausa, sem consulta",go:"sim"},
    {m:0,t:"Depois: gabarito comentado de TODAS as erradas, sem exceção",go:"wrong"}]},
- {d:"2026-08-24",t:"Git, orientação a objetos e Web",bl:[
-   {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Probabilidade (favoráveis/total, e a resposta em %)",go:"mod:ger-mat",yt:"probabilidade básica concurso"},
-   {m:55,t:"Git (commit, branch, merge x rebase), POO (encapsulamento, herança, polimorfismo), HTML/CSS/JS e API REST",go:"mod:ti-eng2",yt:"git merge rebase e pilares da orientação a objetos"},
-   {m:25,t:"Direito: licitações e Lei 14.133/2021",go:"mod:dir-adm3",yt:"lei 14133 licitações resumo"},
-   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-25",t:"Governança — ITIL, COBIT e PMBOK",bl:[
-   {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Sistemas lineares e álgebra básica (traduzir texto em equação)",go:"mod:ger-mat",yt:"sistema de equações do primeiro grau problemas"},
-   {m:55,t:"Ciclo de vida ITIL, COBIT e PMBOK (projeto x programa x portfólio)",go:"mod:ti-gov",yt:"ITIL COBIT PMBOK governança de TI"},
-   {m:25,t:"Português: reforço geral",go:"mod:pt-banca",yt:"português para concurso revisão"},
-   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-26",t:"Nuvem, virtualização e infraestrutura",bl:[
-   {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Geometria plana e espacial (áreas e volumes)",go:"mod:ger-mat",yt:"áreas e volumes geometria concurso"},
-   {m:55,t:"IaaS/PaaS/SaaS por associação de colunas, RAID, backup completo x incremental x diferencial",go:"mod:ti-infra",yt:"IaaS PaaS SaaS e backup incremental diferencial"},
-   {m:25,t:"Local: Regimento (processo legislativo)",go:"mod:loc-ri",yt:"processo legislativo municipal"},
-   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
- {d:"2026-08-27",t:"Revisão dirigida — erros, marcadas e pontos fracos",bl:[
-   {m:15,t:"Revisão espaçada do dia",go:"srs"},
-   {m:20,t:"Matemática: Trigonometria no triângulo retângulo (seno, cosseno, tangente)",go:"mod:ger-mat",yt:"trigonometria no triângulo retângulo"},
-   {m:55,t:"Refazer TODAS as erradas, depois as marcadas com estrela e a matéria com pior acerto no Desempenho",go:"wrong"},
-   {m:25,t:"Essenciais — alta probabilidade de cair",go:"high"},
-   {m:5,t:"Fechamento: anote a pegadinha do dia",go:null}]},
  {d:"2026-08-28",t:"Véspera — leve, sem matéria nova",bl:[
    {m:20,t:"Revisão espaçada: última rodada",go:"srs"},
-   {m:30,t:"Folha de fórmulas: PA, PG, juros, porcentagem, média, probabilidade, combinatória",go:"mod:ger-mat",yt:"revisão de fórmulas matemática concurso"},
-   {m:30,t:"Local: Seropédica e Regimento — decoreba pura, vale 3 questões garantidas",go:"mod:loc-sero"},
+   {m:40,t:"Seropédica e Regimento: decoreba pura, escopo fechado, 3 questões quase certas",go:"mod:loc-lo"},
    {m:20,t:"Essenciais: última passada",go:"high"},
-   {m:20,t:"Logística: documento e caneta preta separados. PORTÕES FECHAM 14:40. Dormir cedo.",go:null}]}
+   {m:20,t:"Releia as pegadinhas que você anotou nestes 19 dias",go:"flag"},
+   {m:20,t:"Logística: documento com foto e caneta preta separados. PORTÕES FECHAM 14:40. Dormir cedo.",go:null}]}
 ];
 let planDone={};   // blocos marcados
 let planTime={};   // segundos estudados por dia (cronômetro)   // {"AAAA-MM-DD":{indiceDoBloco:true}}
@@ -2218,6 +2206,7 @@ function planGo(a){
   if(a==="sim")return openSimulados();
   if(a==="wrong")return redoWrong();
   if(a==="flag")return openFlagged();
+  if(a==="perf")return openDesempenho();
   if(a==="high")return startHigh();
   if(a.startsWith("mod:")){
     const mi=MODULES.findIndex(m=>m.id===a.slice(4));
